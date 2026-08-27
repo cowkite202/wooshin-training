@@ -21,9 +21,18 @@ function startTraining(){
 function showQuiz(){
  document.getElementById("training").classList.add("hidden");
  document.getElementById("quizSection").classList.remove("hidden");
- const form=document.getElementById("quizForm");
-form.innerHTML=questions.map((q,i)=>`<div class="question"><p>${i+1}. ${q[0]}</p>${q[1].map((c,j)=>`<label class="choice"><input type="radio" name="q${i}" value="${j}">${String.fromCharCode(9312+j)} ${c}</label>`).join("")}</div>`).join("");
+ var form=document.getElementById("quizForm");
+ var html="";
+ questions.forEach(function(q,i){
+  html += '<div class="question"><p>' + (i+1) + '. ' + q[0] + '</p>';
+  q[1].forEach(function(c,j){
+   html += '<label class="choice"><input type="radio" name="q' + i + '" value="' + j + '">' + String.fromCharCode(9312+j) + ' ' + c + '</label>';
+  });
+  html += '</div>';
+ });
+ form.innerHTML=html;
  window.scrollTo({top:0,behavior:"smooth"});
+}
 }
 function gradeQuiz(){
  let answered=0;score=0;
