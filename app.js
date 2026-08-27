@@ -22,7 +22,6 @@ function showQuiz(){
  document.getElementById("training").classList.add("hidden");
  document.getElementById("quizSection").classList.remove("hidden");
 form.innerHTML=questions.map((q,i)=>`<div class="question"><p>${i+1}. ${q[0]}</p>${q[1].map((c,j)=>`<label class="choice"><input type="radio" name="q${i}" value="${j}">${String.fromCharCode(9312+j)} ${c}</label>`).join("")}</div>`).join("");
- form.innerHTML=questions.map((q,i)=>`<div class="question"><p>${i+1}. ${q[0]}</p>${q[1].map((c,j)=>`<label class="choice"><input type="radio" name="q${i}" value="${j}">${String.fromCharCode(①".charCodeAt(0)+j)} ${c}</label>`).join("")}</div>`).join("");
  window.scrollTo({top:0,behavior:"smooth"});
 }
 function gradeQuiz(){
