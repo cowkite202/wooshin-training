@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026학년도 우신고등학교 교직원 성폭력 예방교육</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header class="hero">
+    <div class="badge">2026 예방교육</div>
+    <h1>우신고등학교<br>교직원 성폭력 예방교육</h1>
+    <p>교육 영상을 시청하고 확인 퀴즈에 참여해 주세요.</p>
+  </header>
+
+  <main>
+    <section class="card" id="start">
+      <h2>1. 성명 입력</h2>
+      <label for="name">성명 <span>*</span></label>
+      <input id="name" maxlength="20" placeholder="성명을 입력하세요">
+      <p class="hint">※ 교육 이수 확인을 위해 성명만 기록합니다.</p>
+      <button onclick="startTraining()">교육 시작하기</button>
+    </section>
+
+    <section class="card hidden" id="training">
+      <h2>2. 교육 영상 시청</h2>
+      <div class="video-wrap">
+        <video id="trainingVideo" controls preload="metadata">
+          <source src="video/training.mp4" type="video/mp4">
+          브라우저가 동영상 재생을 지원하지 않습니다.
+        </video>
+      </div>
+      <p class="hint">영상 시청 후 아래 핵심 내용을 확인하고 퀴즈를 풀어 주세요.</p>
+
+      <div class="summary">
+        <h3>핵심 교육 내용</h3>
+        <ol>
+          <li>성희롱·성폭력은 개인의 문제가 아니라 안전한 조직문화를 위해 함께 예방해야 할 문제입니다.</li>
+          <li>상대방의 의사에 반하는 성적 언동은 피해를 유발할 수 있습니다.</li>
+          <li>피해 사실을 알게 되었을 때 피해자에게 책임을 돌리거나 소문을 퍼뜨리지 않아야 합니다.</li>
+          <li>디지털 공간에서도 동의 없는 촬영·유포·저장·공유는 심각한 피해를 초래할 수 있습니다.</li>
+          <li>피해 발생 시 신뢰할 수 있는 기관이나 담당자에게 도움을 요청하고 적절한 절차를 이용합니다.</li>
+          <li>서로의 경계를 존중하고 2차 피해가 발생하지 않도록 주의합니다.</li>
+        </ol>
+      </div>
+      <button onclick="showQuiz()">확인 퀴즈 시작하기</button>
+    </section>
+
+    <section class="card hidden" id="quizSection">
+      <h2>3. 교육내용 확인 퀴즈</h2>
+      <p class="hint">총 10문항 · 80점 이상이면 교육 이수입니다.</p>
+      <form id="quizForm"></form>
+      <button type="button" onclick="gradeQuiz()">채점하고 결과 보기</button>
+    </section>
+
+    <section class="card hidden" id="result"></section>
+
+    <section class="card hidden" id="survey">
+      <h2>4. 만족도 조사</h2>
+      <label>교육 내용은 이해하기 쉬웠습니까?</label>
+      <select id="understanding"><option>매우 만족</option><option>만족</option><option>보통</option><option>불만족</option><option>매우 불만족</option></select>
+      <label>교육 내용이 유익했습니까?</label>
+      <select id="usefulness"><option>매우 만족</option><option>만족</option><option>보통</option><option>불만족</option><option>매우 불만족</option></select>
+      <label>개선 의견 (선택)</label>
+      <textarea id="comment" rows="4" placeholder="자유롭게 작성해 주세요."></textarea>
+      <button onclick="completeTraining()">교육 완료하기</button>
+    </section>
+
+    <section class="card hidden" id="complete"></section>
+  </main>
+
+  <footer>우신고등학교 · 교직원 성폭력 예방교육</footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
