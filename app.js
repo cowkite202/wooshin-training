@@ -1,4 +1,3 @@
-```javascript
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyl6Qq03k4zIjHv8buA_TqtYVy4vLVmeYde2j68LD59XqpKBATQFaetN36EDyMTPLi2mQ/exec";
 
@@ -19,6 +18,7 @@ const questions = [
     answer: 0,
     explanation: "친한 관계인지 여부와 관계없이 상대방의 의사와 개인적 경계를 존중하는 것이 중요합니다."
   },
+
   {
     question: "직장 내 성희롱이 발생했을 때 적절하지 않은 행동은 무엇입니까?",
     choices: [
@@ -30,6 +30,7 @@ const questions = [
     answer: 2,
     explanation: "피해 사실을 소문으로 퍼뜨리는 행동은 피해자에게 추가적인 고통을 주는 2차 피해가 될 수 있습니다."
   },
+
   {
     question: "성폭력 피해 발생 시 2차 피해에 해당할 수 있는 것은?",
     choices: [
@@ -41,6 +42,7 @@ const questions = [
     answer: 1,
     explanation: "피해자에게 책임을 묻거나 비난하는 것은 피해 이후 추가적인 피해를 줄 수 있는 대표적인 2차 피해입니다."
   },
+
   {
     question: "디지털 성범죄 예방과 관련하여 옳은 것은?",
     choices: [
@@ -52,6 +54,7 @@ const questions = [
     answer: 0,
     explanation: "디지털 공간에서도 상대방의 동의와 개인정보 보호가 중요하며 동의 없는 촬영과 공유는 해서는 안 됩니다."
   },
+
   {
     question: "상대방이 불편함을 표현했을 때 가장 적절한 행동은?",
     choices: [
@@ -63,6 +66,7 @@ const questions = [
     answer: 2,
     explanation: "상대방이 불편함을 표현하면 자신의 의도와 관계없이 즉시 행동을 멈추고 의사를 존중해야 합니다."
   },
+
   {
     question: "성폭력 예방은 누구의 책임입니까?",
     choices: [
@@ -74,6 +78,7 @@ const questions = [
     answer: 2,
     explanation: "성폭력 예방과 안전한 조직문화 조성은 특정 개인만의 책임이 아니라 모든 구성원이 함께 만들어 가야 합니다."
   },
+
   {
     question: "성적 농담이나 외모 평가에 대한 설명으로 옳은 것은?",
     choices: [
@@ -85,6 +90,7 @@ const questions = [
     answer: 0,
     explanation: "성적 농담이나 외모 평가는 관계와 횟수에 관계없이 상대방에게 불편함이나 피해를 줄 수 있으므로 주의해야 합니다."
   },
+
   {
     question: "피해 사실을 알게 된 동료의 적절한 태도는?",
     choices: [
@@ -96,6 +102,7 @@ const questions = [
     answer: 1,
     explanation: "피해자의 의사를 존중하고 개인정보를 보호하며 필요한 상담과 지원 정보를 안내하는 것이 중요합니다."
   },
+
   {
     question: "성폭력 예방을 위한 조직문화로 가장 적절한 것은?",
     choices: [
@@ -107,6 +114,7 @@ const questions = [
     answer: 2,
     explanation: "누구나 안전하게 자신의 의견과 불편함을 표현할 수 있는 상호 존중의 조직문화가 중요합니다."
   },
+
   {
     question: "교육 내용을 실천하는 방법으로 적절한 것은?",
     choices: [
@@ -130,8 +138,8 @@ let currentQuestion = 0;
 let answers = [];
 let score = 0;
 
-let canvas;
-let ctx;
+let canvas = null;
+let ctx = null;
 let drawing = false;
 let hasSignature = false;
 
@@ -142,11 +150,14 @@ let hasSignature = false;
 
 function startTraining() {
 
-  const nameInput =
-    document.getElementById("name");
+  const nameInput = document.getElementById("name");
 
-  userName =
-    nameInput.value.trim();
+  if (!nameInput) {
+    alert("이름 입력창을 찾을 수 없습니다.");
+    return;
+  }
+
+  userName = nameInput.value.trim();
 
   if (!userName) {
 
@@ -155,18 +166,20 @@ function startTraining() {
     nameInput.focus();
 
     return;
-
   }
 
   hideAllSteps();
 
-  document
-    .getElementById("videoStep")
-    .classList
-    .remove("hidden");
+  const videoStep =
+    document.getElementById("videoStep");
+
+  if (videoStep) {
+
+    videoStep.classList.remove("hidden");
+
+  }
 
   scrollTop();
-
 }
 
 
@@ -200,7 +213,6 @@ function hideAllSteps() {
     }
 
   });
-
 }
 
 
@@ -210,20 +222,35 @@ function hideAllSteps() {
 
 function watchVideo() {
 
-  document
-    .getElementById("videoChoice")
-    .classList
-    .add("hidden");
+  const videoChoice =
+    document.getElementById("videoChoice");
 
-  document
-    .getElementById("videoPlayer")
-    .classList
-    .remove("hidden");
+  const videoPlayer =
+    document.getElementById("videoPlayer");
 
-  document
-    .getElementById("videoNextButton")
-    .classList
-    .remove("hidden");
+  const videoNextButton =
+    document.getElementById("videoNextButton");
+
+
+  if (videoChoice) {
+
+    videoChoice.classList.add("hidden");
+
+  }
+
+
+  if (videoPlayer) {
+
+    videoPlayer.classList.remove("hidden");
+
+  }
+
+
+  if (videoNextButton) {
+
+    videoNextButton.classList.remove("hidden");
+
+  }
 
 }
 
@@ -256,10 +283,18 @@ function showSummary() {
 
   hideAllSteps();
 
-  document
-    .getElementById("summaryStep")
-    .classList
-    .remove("hidden");
+  const summaryStep =
+    document.getElementById("summaryStep");
+
+  if (!summaryStep) {
+
+    alert("요점 정리 화면을 찾을 수 없습니다.");
+
+    return;
+
+  }
+
+  summaryStep.classList.remove("hidden");
 
   scrollTop();
 
@@ -280,10 +315,14 @@ function startQuiz() {
 
   hideAllSteps();
 
-  document
-    .getElementById("quizStep")
-    .classList
-    .remove("hidden");
+  const quizStep =
+    document.getElementById("quizStep");
+
+  if (quizStep) {
+
+    quizStep.classList.remove("hidden");
+
+  }
 
   renderQuestion();
 
@@ -307,6 +346,14 @@ function renderQuestion() {
   const content =
     document.getElementById("quizContent");
 
+
+  if (!question || !progress || !content) {
+
+    return;
+
+  }
+
+
   progress.innerHTML =
     '<div class="quiz-progress">' +
     '문제 ' +
@@ -315,37 +362,50 @@ function renderQuestion() {
     questions.length +
     '</div>';
 
-  let html = '';
+
+  let html = "";
 
   html += '<div class="question">';
 
   html +=
-    '<h3>' +
+    "<h3>" +
     question.question +
-    '</h3>';
+    "</h3>";
+
 
   question.choices.forEach(
     function(choice, index) {
 
       html +=
         '<label class="choice">' +
-        '<input type="radio" name="quizAnswer" value="' +
+
+        '<input type="radio" ' +
+        'name="quizAnswer" ' +
+        'value="' +
         index +
-        '"> ' +
+        '">' +
+
+        " " +
+
         String.fromCharCode(9312 + index) +
-        ' ' +
+
+        " " +
+
         choice +
-        '</label>';
+
+        "</label>";
 
     }
   );
 
+
   html +=
     '<button type="button" onclick="checkAnswer()">' +
-    '정답 확인하기' +
-    '</button>';
+    "정답 확인하기" +
+    "</button>";
 
-  html += '</div>';
+
+  html += "</div>";
 
   content.innerHTML = html;
 
@@ -363,6 +423,7 @@ function checkAnswer() {
       'input[name="quizAnswer"]:checked'
     );
 
+
   if (!selected) {
 
     alert("답을 선택해 주세요.");
@@ -371,17 +432,22 @@ function checkAnswer() {
 
   }
 
+
   const selectedAnswer =
     Number(selected.value);
+
 
   answers[currentQuestion] =
     selectedAnswer;
 
+
   const question =
     questions[currentQuestion];
 
+
   const isCorrect =
     selectedAnswer === question.answer;
+
 
   if (isCorrect) {
 
@@ -389,23 +455,32 @@ function checkAnswer() {
 
   }
 
+
   const labels =
     document.querySelectorAll(
       "#quizContent .choice"
     );
+
 
   labels.forEach(function(label, index) {
 
     const input =
       label.querySelector("input");
 
-    input.disabled = true;
+
+    if (input) {
+
+      input.disabled = true;
+
+    }
+
 
     if (index === question.answer) {
 
       label.classList.add("correct");
 
     }
+
 
     if (
       index === selectedAnswer &&
@@ -418,10 +493,12 @@ function checkAnswer() {
 
   });
 
+
   const button =
     document.querySelector(
       "#quizContent .question button"
     );
+
 
   if (button) {
 
@@ -429,7 +506,9 @@ function checkAnswer() {
 
   }
 
+
   let feedback = "";
+
 
   feedback +=
     '<div class="answer-feedback ' +
@@ -440,28 +519,32 @@ function checkAnswer() {
     ) +
     '">';
 
+
   feedback +=
-    '<h3>' +
+    "<h3>" +
     (
       isCorrect
         ? "🎉 정답입니다!"
         : "다시 확인해 볼까요?"
     ) +
-    '</h3>';
+    "</h3>";
+
 
   feedback +=
-    '<p><strong>정답:</strong> ' +
+    "<p><strong>정답:</strong> " +
     String.fromCharCode(
       9312 + question.answer
     ) +
-    ' ' +
+    " " +
     question.choices[question.answer] +
-    '</p>';
+    "</p>";
+
 
   feedback +=
-    '<p><strong>해설:</strong> ' +
+    "<p><strong>해설:</strong> " +
     question.explanation +
-    '</p>';
+    "</p>";
+
 
   feedback +=
     '<button type="button" onclick="nextQuestion()">' +
@@ -470,9 +553,11 @@ function checkAnswer() {
         ? "최종 결과 확인 →"
         : "다음 문제 →"
     ) +
-    '</button>';
+    "</button>";
 
-  feedback += '</div>';
+
+  feedback += "</div>";
+
 
   document
     .getElementById("quizContent")
@@ -521,38 +606,48 @@ function showResult() {
   const resultStep =
     document.getElementById("resultStep");
 
-  resultStep
-    .classList
-    .remove("hidden");
+
+  if (!resultStep) {
+
+    return;
+
+  }
+
+
+  resultStep.classList.remove("hidden");
+
 
   const points =
     score * 10;
 
+
   const wrongCount =
     questions.length - score;
 
+
   resultStep.innerHTML =
+
     '<div class="step-badge">STEP 4</div>' +
 
-    '<h2>최종 결과</h2>' +
+    "<h2>최종 결과</h2>" +
 
     '<div class="result-score">' +
 
-    '<p>' +
+    "<p>" +
     userName +
-    ' 선생님의 점수</p>' +
+    " 선생님의 점수</p>" +
 
-    '<h1>' +
+    "<h1>" +
     points +
-    '점</h1>' +
+    "점</h1>" +
 
-    '<p>' +
+    "<p>" +
     questions.length +
-    '문제 중 ' +
+    "문제 중 " +
     score +
-    '문제 정답</p>' +
+    "문제 정답</p>" +
 
-    '</div>' +
+    "</div>" +
 
     '<p class="' +
     (
@@ -568,7 +663,7 @@ function showResult() {
         : "교육 내용을 다시 확인해 주세요."
     ) +
 
-    '</p>' +
+    "</p>" +
 
     '<button type="button" onclick="' +
 
@@ -586,7 +681,8 @@ function showResult() {
         : "핵심 메시지 확인 →"
     ) +
 
-    '</button>';
+    "</button>";
+
 
   scrollTop();
 
@@ -601,15 +697,33 @@ function showWrongAnswers() {
 
   hideAllSteps();
 
-  document
-    .getElementById("wrongStep")
-    .classList
-    .remove("hidden");
+  const wrongStep =
+    document.getElementById("wrongStep");
+
+
+  if (!wrongStep) {
+
+    return;
+
+  }
+
+
+  wrongStep.classList.remove("hidden");
+
 
   const wrongList =
     document.getElementById("wrongList");
 
+
+  if (!wrongList) {
+
+    return;
+
+  }
+
+
   let html = "";
+
 
   questions.forEach(
     function(question, index) {
@@ -622,39 +736,45 @@ function showWrongAnswers() {
         html +=
           '<div class="wrong-answer">';
 
+
         html +=
-          '<h3>문제 ' +
+          "<h3>문제 " +
           (index + 1) +
-          '</h3>';
+          "</h3>";
+
 
         html +=
-          '<p>' +
+          "<p>" +
           question.question +
-          '</p>';
+          "</p>";
+
 
         html +=
-          '<p><strong>정답:</strong> ' +
+          "<p><strong>정답:</strong> " +
           String.fromCharCode(
             9312 + question.answer
           ) +
-          ' ' +
+          " " +
           question.choices[
             question.answer
           ] +
-          '</p>';
+          "</p>";
+
 
         html +=
-          '<p><strong>해설:</strong> ' +
+          "<p><strong>해설:</strong> " +
           question.explanation +
-          '</p>';
+          "</p>";
+
 
         html +=
-          '</div>';
+          "</div>";
 
       }
 
     }
   );
+
 
   wrongList.innerHTML = html;
 
@@ -671,18 +791,30 @@ function showKeyMessage() {
 
   hideAllSteps();
 
-  document
-    .getElementById("messageStep")
-    .classList
-    .remove("hidden");
+
+  const messageStep =
+    document.getElementById("messageStep");
+
+
+  if (!messageStep) {
+
+    return;
+
+  }
+
+
+  messageStep.classList.remove("hidden");
+
 
   hasSignature = false;
+
 
   setTimeout(function() {
 
     initSignatureCanvas();
 
   }, 100);
+
 
   scrollTop();
 
@@ -700,14 +832,24 @@ function initSignatureCanvas() {
       "signatureCanvas"
     );
 
+
   if (!canvas) {
 
     return;
 
   }
 
+
   ctx =
     canvas.getContext("2d");
+
+
+  if (!ctx) {
+
+    return;
+
+  }
+
 
   ctx.lineWidth = 2;
 
@@ -718,6 +860,7 @@ function initSignatureCanvas() {
 
     const rect =
       canvas.getBoundingClientRect();
+
 
     if (event.touches) {
 
@@ -734,6 +877,7 @@ function initSignatureCanvas() {
       };
 
     }
+
 
     return {
 
@@ -756,15 +900,19 @@ function initSignatureCanvas() {
 
     drawing = true;
 
+
     const position =
       getPosition(event);
 
+
     ctx.beginPath();
+
 
     ctx.moveTo(
       position.x,
       position.y
     );
+
 
     hasSignature = true;
 
@@ -779,15 +927,19 @@ function initSignatureCanvas() {
 
     }
 
+
     event.preventDefault();
+
 
     const position =
       getPosition(event);
+
 
     ctx.lineTo(
       position.x,
       position.y
     );
+
 
     ctx.stroke();
 
@@ -837,12 +989,14 @@ function clearSignature() {
 
   }
 
+
   ctx.clearRect(
     0,
     0,
     canvas.width,
     canvas.height
   );
+
 
   hasSignature = false;
 
@@ -863,12 +1017,23 @@ function confirmSignature() {
 
   }
 
+
   hideAllSteps();
 
-  document
-    .getElementById("surveyStep")
-    .classList
-    .remove("hidden");
+
+  const surveyStep =
+    document.getElementById("surveyStep");
+
+
+  if (!surveyStep) {
+
+    return;
+
+  }
+
+
+  surveyStep.classList.remove("hidden");
+
 
   scrollTop();
 
@@ -876,37 +1041,49 @@ function confirmSignature() {
 
 
 /* =========================
-   STEP 7 교육 완료 및
+   STEP 7 교육 완료
    Google Sheets 저장
 ========================= */
 
 async function completeTraining(event) {
 
+  const understandingElement =
+    document.getElementById("understanding");
+
+
+  const usefulnessElement =
+    document.getElementById("usefulness");
+
+
+  const commentElement =
+    document.getElementById("comment");
+
+
   const understanding =
-    document
-      .getElementById("understanding")
-      .value;
+    understandingElement
+      ? understandingElement.value
+      : "";
+
 
   const usefulness =
-    document
-      .getElementById("usefulness")
-      .value;
+    usefulnessElement
+      ? usefulnessElement.value
+      : "";
+
 
   const comment =
-    document
-      .getElementById("comment")
-      .value
-      .trim();
+    commentElement
+      ? commentElement.value.trim()
+      : "";
 
 
   let signatureData = "";
 
+
   if (canvas && hasSignature) {
 
     signatureData =
-      canvas.toDataURL(
-        "image/png"
-      );
+      canvas.toDataURL("image/png");
 
   }
 
@@ -936,10 +1113,19 @@ async function completeTraining(event) {
 
   const button =
     event
-      ? event.target
+      ? event.currentTarget
       : document.querySelector(
-          '#surveyStep button'
+          "#surveyStep button"
         );
+
+
+  if (!button) {
+
+    alert("교육 완료 버튼을 찾을 수 없습니다.");
+
+    return;
+
+  }
 
 
   const originalText =
@@ -987,35 +1173,39 @@ async function completeTraining(event) {
       );
 
 
-    completeStep
-      .classList
-      .remove("hidden");
+    if (!completeStep) {
+
+      return;
+
+    }
+
+
+    completeStep.classList.remove("hidden");
 
 
     completeStep.innerHTML =
 
-      '<h2>🎉 교육 이수가 완료되었습니다</h2>' +
+      "<h2>🎉 교육 이수가 완료되었습니다</h2>" +
 
       '<div class="completion-box">' +
 
-      '<p><strong>' +
+      "<p><strong>" +
       userName +
-      '</strong> 선생님의 교육 이수 기록이 저장되었습니다.</p>' +
+      "</strong> 선생님의 교육 이수 기록이 저장되었습니다.</p>" +
 
-      '<p>이수 점수: ' +
+      "<p>이수 점수: " +
       score * 10 +
-      '점</p>' +
+      "점</p>" +
 
-      '<p>교육 완료일시: ' +
-      new Date()
-        .toLocaleString("ko-KR") +
-      '</p>' +
+      "<p>교육 완료일시: " +
+      new Date().toLocaleString("ko-KR") +
+      "</p>" +
 
-      '</div>' +
+      "</div>" +
 
       '<button type="button" onclick="location.reload()">' +
-      '처음으로 돌아가기' +
-      '</button>';
+      "처음으로 돌아가기" +
+      "</button>";
 
 
     scrollTop();
@@ -1025,9 +1215,11 @@ async function completeTraining(event) {
 
     console.error(error);
 
+
     alert(
       "교육 기록 저장 중 오류가 발생했습니다. 다시 시도해 주세요."
     );
+
 
     button.disabled = false;
 
