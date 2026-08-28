@@ -111,6 +111,18 @@ const questions = [
   }
 ];
 
+
+/* =========================
+   Google Apps Script 연결
+========================= */
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyl6Qq03k4zIjHv8buA_TqtYVy4vLVmeYde2j68LD59XqpKBATQFaetN36EDyMTPLi2mQ/exec";
+
+const TRAINING_NAME =
+  "2026 교직원 성폭력 교육";
+
+
 let userName = "";
 let currentQuestion = 0;
 let answers = [];
@@ -127,9 +139,11 @@ let hasSignature = false;
 ========================= */
 
 function startTraining() {
-  const nameInput = document.getElementById("name");
+  const nameInput =
+    document.getElementById("name");
 
-  userName = nameInput.value.trim();
+  userName =
+    nameInput.value.trim();
 
   if (!userName) {
     alert("성명을 입력해 주세요.");
@@ -153,6 +167,7 @@ function startTraining() {
 ========================= */
 
 function hideAllSteps() {
+
   const steps = [
     "start",
     "videoStep",
@@ -166,12 +181,16 @@ function hideAllSteps() {
   ];
 
   steps.forEach(function(id) {
-    const element = document.getElementById(id);
+
+    const element =
+      document.getElementById(id);
 
     if (element) {
       element.classList.add("hidden");
     }
+
   });
+
 }
 
 
@@ -180,6 +199,7 @@ function hideAllSteps() {
 ========================= */
 
 function watchVideo() {
+
   document
     .getElementById("videoChoice")
     .classList
@@ -194,6 +214,7 @@ function watchVideo() {
     .getElementById("videoNextButton")
     .classList
     .remove("hidden");
+
 }
 
 
@@ -202,13 +223,16 @@ function watchVideo() {
 ========================= */
 
 function skipVideo() {
-  const confirmed = confirm(
-    "영상을 나중에 시청하시겠습니까?\n교육 내용 요점 정리로 이동합니다."
-  );
+
+  const confirmed =
+    confirm(
+      "영상을 나중에 시청하시겠습니까?\n교육 내용 요점 정리로 이동합니다."
+    );
 
   if (confirmed) {
     showSummary();
   }
+
 }
 
 
@@ -217,6 +241,7 @@ function skipVideo() {
 ========================= */
 
 function showSummary() {
+
   hideAllSteps();
 
   document
@@ -225,6 +250,7 @@ function showSummary() {
     .remove("hidden");
 
   scrollTop();
+
 }
 
 
@@ -233,6 +259,7 @@ function showSummary() {
 ========================= */
 
 function startQuiz() {
+
   currentQuestion = 0;
   answers = [];
   score = 0;
@@ -247,6 +274,7 @@ function startQuiz() {
   renderQuestion();
 
   scrollTop();
+
 }
 
 
@@ -255,13 +283,19 @@ function startQuiz() {
 ========================= */
 
 function renderQuestion() {
-  const question = questions[currentQuestion];
+
+  const question =
+    questions[currentQuestion];
 
   const progress =
-    document.getElementById("quizProgress");
+    document.getElementById(
+      "quizProgress"
+    );
 
   const content =
-    document.getElementById("quizContent");
+    document.getElementById(
+      "quizContent"
+    );
 
   progress.innerHTML =
     '<div class="quiz-progress">' +
@@ -275,23 +309,26 @@ function renderQuestion() {
 
   html += '<div class="question">';
 
-  html += '<h3>' +
+  html +=
+    '<h3>' +
     question.question +
     '</h3>';
 
-  question.choices.forEach(function(choice, index) {
+  question.choices.forEach(
+    function(choice, index) {
 
-    html +=
-      '<label class="choice">' +
-      '<input type="radio" name="quizAnswer" value="' +
-      index +
-      '"> ' +
-      String.fromCharCode(9312 + index) +
-      ' ' +
-      choice +
-      '</label>';
+      html +=
+        '<label class="choice">' +
+        '<input type="radio" name="quizAnswer" value="' +
+        index +
+        '"> ' +
+        String.fromCharCode(9312 + index) +
+        ' ' +
+        choice +
+        '</label>';
 
-  });
+    }
+  );
 
   html +=
     '<button type="button" onclick="checkAnswer()">' +
@@ -301,6 +338,7 @@ function renderQuestion() {
   html += '</div>';
 
   content.innerHTML = html;
+
 }
 
 
@@ -341,26 +379,27 @@ function checkAnswer() {
       "#quizContent .choice"
     );
 
-  labels.forEach(function(label, index) {
+  labels.forEach(
+    function(label, index) {
 
-    const input =
-      label.querySelector("input");
+      const input =
+        label.querySelector("input");
 
-    input.disabled = true;
+      input.disabled = true;
 
-    if (index === question.answer) {
-      label.classList.add("correct");
+      if (index === question.answer) {
+        label.classList.add("correct");
+      }
+
+      if (
+        index === selectedAnswer &&
+        !isCorrect
+      ) {
+        label.classList.add("incorrect");
+      }
+
     }
-
-    if (
-      index === selectedAnswer &&
-      !isCorrect
-    ) {
-      label.classList.add("incorrect");
-    }
-
-  });
-
+  );
 
   const button =
     document.querySelector(
@@ -371,21 +410,24 @@ function checkAnswer() {
     button.remove();
   }
 
-
   let feedback = "";
 
   feedback +=
     '<div class="answer-feedback ' +
-    (isCorrect
-      ? "feedback-correct"
-      : "feedback-wrong") +
+    (
+      isCorrect
+        ? "feedback-correct"
+        : "feedback-wrong"
+    ) +
     '">';
 
   feedback +=
     '<h3>' +
-    (isCorrect
-      ? "🎉 정답입니다!"
-      : "다시 확인해 볼까요?") +
+    (
+      isCorrect
+        ? "🎉 정답입니다!"
+        : "다시 확인해 볼까요?"
+    ) +
     '</h3>';
 
   feedback +=
@@ -394,7 +436,9 @@ function checkAnswer() {
       9312 + question.answer
     ) +
     ' ' +
-    question.choices[question.answer] +
+    question.choices[
+      question.answer
+    ] +
     '</p>';
 
   feedback +=
@@ -419,6 +463,7 @@ function checkAnswer() {
       "beforeend",
       feedback
     );
+
 }
 
 
@@ -444,6 +489,7 @@ function nextQuestion() {
     showResult();
 
   }
+
 }
 
 
@@ -456,13 +502,16 @@ function showResult() {
   hideAllSteps();
 
   const resultStep =
-    document.getElementById("resultStep");
+    document.getElementById(
+      "resultStep"
+    );
 
   resultStep
     .classList
     .remove("hidden");
 
-  const points = score * 10;
+  const points =
+    score * 10;
 
   const wrongCount =
     questions.length - score;
@@ -525,6 +574,7 @@ function showResult() {
     '</button>';
 
   scrollTop();
+
 }
 
 
@@ -542,56 +592,61 @@ function showWrongAnswers() {
     .remove("hidden");
 
   const wrongList =
-    document.getElementById("wrongList");
+    document.getElementById(
+      "wrongList"
+    );
 
   let html = "";
 
-  questions.forEach(function(question, index) {
+  questions.forEach(
+    function(question, index) {
 
-    if (
-      answers[index] !==
-      question.answer
-    ) {
+      if (
+        answers[index] !==
+        question.answer
+      ) {
 
-      html +=
-        '<div class="wrong-answer">';
+        html +=
+          '<div class="wrong-answer">';
 
-      html +=
-        '<h3>문제 ' +
-        (index + 1) +
-        '</h3>';
+        html +=
+          '<h3>문제 ' +
+          (index + 1) +
+          '</h3>';
 
-      html +=
-        '<p>' +
-        question.question +
-        '</p>';
+        html +=
+          '<p>' +
+          question.question +
+          '</p>';
 
-      html +=
-        '<p><strong>정답:</strong> ' +
-        String.fromCharCode(
-          9312 + question.answer
-        ) +
-        ' ' +
-        question.choices[
-          question.answer
-        ] +
-        '</p>';
+        html +=
+          '<p><strong>정답:</strong> ' +
+          String.fromCharCode(
+            9312 + question.answer
+          ) +
+          ' ' +
+          question.choices[
+            question.answer
+          ] +
+          '</p>';
 
-      html +=
-        '<p><strong>해설:</strong> ' +
-        question.explanation +
-        '</p>';
+        html +=
+          '<p><strong>해설:</strong> ' +
+          question.explanation +
+          '</p>';
 
-      html +=
-        '</div>';
+        html +=
+          '</div>';
+
+      }
 
     }
-
-  });
+  );
 
   wrongList.innerHTML = html;
 
   scrollTop();
+
 }
 
 
@@ -608,11 +663,15 @@ function showKeyMessage() {
     .classList
     .remove("hidden");
 
-  setTimeout(function() {
-    initSignatureCanvas();
-  }, 100);
+  setTimeout(
+    function() {
+      initSignatureCanvas();
+    },
+    100
+  );
 
   scrollTop();
+
 }
 
 
@@ -624,30 +683,6 @@ function showCanvasSignature() {
 
   document
     .getElementById("canvasSignature")
-    .classList
-    .remove("hidden");
-
-  document
-    .getElementById("textSignature")
-    .classList
-    .add("hidden");
-
-}
-
-
-/* =========================
-   키보드 서명 선택
-========================= */
-
-function showTextSignature() {
-
-  document
-    .getElementById("canvasSignature")
-    .classList
-    .add("hidden");
-
-  document
-    .getElementById("textSignature")
     .classList
     .remove("hidden");
 
@@ -805,42 +840,13 @@ function clearSignature() {
 
 function confirmSignature() {
 
-  const textSignature =
-    document
-      .getElementById("signatureText")
-      .value
-      .trim();
-
-  const canvasVisible =
-    !document
-      .getElementById("canvasSignature")
-      .classList
-      .contains("hidden");
-
-
-  if (
-    canvasVisible &&
-    !hasSignature
-  ) {
+  if (!hasSignature) {
 
     alert("서명을 작성해 주세요.");
 
     return;
 
   }
-
-
-  if (
-    !canvasVisible &&
-    !textSignature
-  ) {
-
-    alert("성명을 입력해 주세요.");
-
-    return;
-
-  }
-
 
   hideAllSteps();
 
@@ -877,27 +883,55 @@ function completeTraining() {
       .trim();
 
 
+  /* 서명 이미지 저장 */
+
+  let signature = "";
+
+  if (canvas && hasSignature) {
+
+    signature =
+      canvas.toDataURL(
+        "image/png"
+      );
+
+  }
+
+
+  /* 저장할 교육 기록 */
+
   const record = {
 
-    name: userName,
+    trainingName:
+      TRAINING_NAME,
 
-    score: score * 10,
+    name:
+      userName,
+
+    score:
+      score * 10,
 
     completedAt:
       new Date()
         .toLocaleString("ko-KR"),
 
-    understanding: understanding,
+    signature:
+      signature,
 
-    usefulness: usefulness,
+    understanding:
+      understanding,
 
-    comment: comment
+    usefulness:
+      usefulness,
+
+    comment:
+      comment
 
   };
 
 
-  let records = [];
+  /* 기존 브라우저 저장 */
 
+  let records = [];
 
   try {
 
@@ -914,9 +948,7 @@ function completeTraining() {
 
   }
 
-
   records.push(record);
-
 
   localStorage.setItem(
     "wooshinTrainingRecords",
@@ -924,19 +956,53 @@ function completeTraining() {
   );
 
 
-  hideAllSteps();
+  /* Google Apps Script로 전송 */
 
+  fetch(
+    GOOGLE_SCRIPT_URL,
+    {
+      method: "POST",
+
+      mode: "no-cors",
+
+      headers: {
+        "Content-Type":
+          "text/plain;charset=utf-8"
+      },
+
+      body:
+        JSON.stringify(record)
+    }
+  )
+  .then(function() {
+
+    console.log(
+      "구글 스프레드시트 저장 요청 완료"
+    );
+
+  })
+  .catch(function(error) {
+
+    console.error(
+      "구글 저장 오류:",
+      error
+    );
+
+  });
+
+
+  /* 완료 화면 */
+
+  hideAllSteps();
 
   const completeStep =
     document.getElementById(
       "completeStep"
     );
 
-
   completeStep
     .classList
     .remove("hidden");
-
 
   completeStep.innerHTML =
 
@@ -961,7 +1027,6 @@ function completeTraining() {
     '<button type="button" onclick="location.reload()">' +
     '처음으로 돌아가기' +
     '</button>';
-
 
   scrollTop();
 
