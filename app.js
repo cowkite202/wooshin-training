@@ -33,7 +33,6 @@ function showQuiz(){
  form.innerHTML=html;
  window.scrollTo({top:0,behavior:"smooth"});
 }
-}
 function gradeQuiz(){
  let answered=0;score=0;
  questions.forEach((q,i)=>{const v=document.querySelector(`input[name="q${i}"]:checked`);if(v){answered++;if(+v.value===q[2])score++;}});
