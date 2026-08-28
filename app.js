@@ -1,3 +1,8 @@
+```javascript
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyl6Qq03k4zIjHv8buA_TqtYVy4vLVmeYde2j68LD59XqpKBATQFaetN36EDyMTPLi2mQ/exec";
+
+
 const questions = [
   {
     question: "성폭력 예방을 위해 가장 바람직한 태도는 무엇입니까?",
@@ -112,17 +117,6 @@ const questions = [
 ];
 
 
-/* =========================
-   Google Apps Script 연결
-========================= */
-
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyl6Qq03k4zIjHv8buA_TqtYVy4vLVmeYde2j68LD59XqpKBATQFaetN36EDyMTPLi2mQ/exec";
-
-const TRAINING_NAME =
-  "2026 교직원 성폭력 교육";
-
-
 let userName = "";
 let currentQuestion = 0;
 let answers = [];
@@ -139,6 +133,7 @@ let hasSignature = false;
 ========================= */
 
 function startTraining() {
+
   const nameInput =
     document.getElementById("name");
 
@@ -146,9 +141,13 @@ function startTraining() {
     nameInput.value.trim();
 
   if (!userName) {
+
     alert("성명을 입력해 주세요.");
+
     nameInput.focus();
+
     return;
+
   }
 
   hideAllSteps();
@@ -159,6 +158,7 @@ function startTraining() {
     .remove("hidden");
 
   scrollTop();
+
 }
 
 
@@ -186,7 +186,9 @@ function hideAllSteps() {
       document.getElementById(id);
 
     if (element) {
+
       element.classList.add("hidden");
+
     }
 
   });
@@ -230,7 +232,9 @@ function skipVideo() {
     );
 
   if (confirmed) {
+
     showSummary();
+
   }
 
 }
@@ -261,7 +265,9 @@ function showSummary() {
 function startQuiz() {
 
   currentQuestion = 0;
+
   answers = [];
+
   score = 0;
 
   hideAllSteps();
@@ -288,14 +294,10 @@ function renderQuestion() {
     questions[currentQuestion];
 
   const progress =
-    document.getElementById(
-      "quizProgress"
-    );
+    document.getElementById("quizProgress");
 
   const content =
-    document.getElementById(
-      "quizContent"
-    );
+    document.getElementById("quizContent");
 
   progress.innerHTML =
     '<div class="quiz-progress">' +
@@ -354,8 +356,11 @@ function checkAnswer() {
     );
 
   if (!selected) {
+
     alert("답을 선택해 주세요.");
+
     return;
+
   }
 
   const selectedAnswer =
@@ -371,7 +376,9 @@ function checkAnswer() {
     selectedAnswer === question.answer;
 
   if (isCorrect) {
+
     score++;
+
   }
 
   const labels =
@@ -379,27 +386,29 @@ function checkAnswer() {
       "#quizContent .choice"
     );
 
-  labels.forEach(
-    function(label, index) {
+  labels.forEach(function(label, index) {
 
-      const input =
-        label.querySelector("input");
+    const input =
+      label.querySelector("input");
 
-      input.disabled = true;
+    input.disabled = true;
 
-      if (index === question.answer) {
-        label.classList.add("correct");
-      }
+    if (index === question.answer) {
 
-      if (
-        index === selectedAnswer &&
-        !isCorrect
-      ) {
-        label.classList.add("incorrect");
-      }
+      label.classList.add("correct");
 
     }
-  );
+
+    if (
+      index === selectedAnswer &&
+      !isCorrect
+    ) {
+
+      label.classList.add("incorrect");
+
+    }
+
+  });
 
   const button =
     document.querySelector(
@@ -407,7 +416,9 @@ function checkAnswer() {
     );
 
   if (button) {
+
     button.remove();
+
   }
 
   let feedback = "";
@@ -436,9 +447,7 @@ function checkAnswer() {
       9312 + question.answer
     ) +
     ' ' +
-    question.choices[
-      question.answer
-    ] +
+    question.choices[question.answer] +
     '</p>';
 
   feedback +=
@@ -502,9 +511,7 @@ function showResult() {
   hideAllSteps();
 
   const resultStep =
-    document.getElementById(
-      "resultStep"
-    );
+    document.getElementById("resultStep");
 
   resultStep
     .classList
@@ -592,9 +599,7 @@ function showWrongAnswers() {
     .remove("hidden");
 
   const wrongList =
-    document.getElementById(
-      "wrongList"
-    );
+    document.getElementById("wrongList");
 
   let html = "";
 
@@ -663,28 +668,13 @@ function showKeyMessage() {
     .classList
     .remove("hidden");
 
-  setTimeout(
-    function() {
-      initSignatureCanvas();
-    },
-    100
-  );
+  setTimeout(function() {
+
+    initSignatureCanvas();
+
+  }, 100);
 
   scrollTop();
-
-}
-
-
-/* =========================
-   직접 서명 선택
-========================= */
-
-function showCanvasSignature() {
-
-  document
-    .getElementById("canvasSignature")
-    .classList
-    .remove("hidden");
 
 }
 
@@ -701,13 +691,16 @@ function initSignatureCanvas() {
     );
 
   if (!canvas) {
+
     return;
+
   }
 
   ctx =
     canvas.getContext("2d");
 
   ctx.lineWidth = 2;
+
   ctx.lineCap = "round";
 
 
@@ -719,6 +712,7 @@ function initSignatureCanvas() {
     if (event.touches) {
 
       return {
+
         x:
           event.touches[0].clientX -
           rect.left,
@@ -726,11 +720,13 @@ function initSignatureCanvas() {
         y:
           event.touches[0].clientY -
           rect.top
+
       };
 
     }
 
     return {
+
       x:
         event.clientX -
         rect.left,
@@ -738,6 +734,7 @@ function initSignatureCanvas() {
       y:
         event.clientY -
         rect.top
+
     };
 
   }
@@ -765,7 +762,9 @@ function initSignatureCanvas() {
   function draw(event) {
 
     if (!drawing) {
+
       return;
+
     }
 
     event.preventDefault();
@@ -784,7 +783,9 @@ function initSignatureCanvas() {
 
 
   function stopDrawing() {
+
     drawing = false;
+
   }
 
 
@@ -819,7 +820,9 @@ function initSignatureCanvas() {
 function clearSignature() {
 
   if (!canvas || !ctx) {
+
     return;
+
   }
 
   ctx.clearRect(
@@ -861,10 +864,10 @@ function confirmSignature() {
 
 
 /* =========================
-   STEP 7 만족도 및 완료
+   STEP 7 교육 완료
 ========================= */
 
-function completeTraining() {
+async function completeTraining() {
 
   const understanding =
     document
@@ -883,39 +886,22 @@ function completeTraining() {
       .trim();
 
 
-  /* 서명 이미지 저장 */
+  // 서명을 이미지 데이터로 변환
+  const signatureData =
+    canvas.toDataURL(
+      "image/png"
+    );
 
-  let signature = "";
-
-  if (canvas && hasSignature) {
-
-    signature =
-      canvas.toDataURL(
-        "image/png"
-      );
-
-  }
-
-
-  /* 저장할 교육 기록 */
 
   const record = {
 
-    trainingName:
-      TRAINING_NAME,
-
-    name:
-      userName,
+    name: userName,
 
     score:
       score * 10,
 
-    completedAt:
-      new Date()
-        .toLocaleString("ko-KR"),
-
     signature:
-      signature,
+      signatureData,
 
     understanding:
       understanding,
@@ -929,106 +915,97 @@ function completeTraining() {
   };
 
 
-  /* 기존 브라우저 저장 */
+  const button =
+    event.target;
 
-  let records = [];
+  const originalText =
+    button.innerText;
+
+  button.disabled = true;
+
+  button.innerText =
+    "교육 이수 기록 저장 중...";
+
 
   try {
 
-    records =
-      JSON.parse(
-        localStorage.getItem(
-          "wooshinTrainingRecords"
-        ) || "[]"
+    await fetch(
+      GOOGLE_SCRIPT_URL,
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+          "Content-Type":
+            "text/plain;charset=utf-8"
+        },
+
+        body:
+          JSON.stringify(record)
+
+      }
+    );
+
+
+    hideAllSteps();
+
+
+    const completeStep =
+      document.getElementById(
+        "completeStep"
       );
+
+
+    completeStep
+      .classList
+      .remove("hidden");
+
+
+    completeStep.innerHTML =
+
+      '<h2>🎉 교육 이수가 완료되었습니다</h2>' +
+
+      '<div class="completion-box">' +
+
+      '<p><strong>' +
+      userName +
+      '</strong> 선생님의 교육 이수 기록이 저장되었습니다.</p>' +
+
+      '<p>이수 점수: ' +
+      score * 10 +
+      '점</p>' +
+
+      '<p>교육 완료일시: ' +
+      new Date()
+        .toLocaleString("ko-KR") +
+      '</p>' +
+
+      '</div>' +
+
+      '<button type="button" onclick="location.reload()">' +
+      '처음으로 돌아가기' +
+      '</button>';
+
+
+    scrollTop();
+
 
   } catch (error) {
 
-    records = [];
+    console.error(error);
+
+    alert(
+      "교육 기록 저장 중 오류가 발생했습니다. 다시 시도해 주세요."
+    );
+
+    button.disabled = false;
+
+    button.innerText =
+      originalText;
 
   }
-
-  records.push(record);
-
-  localStorage.setItem(
-    "wooshinTrainingRecords",
-    JSON.stringify(records)
-  );
-
-
-  /* Google Apps Script로 전송 */
-
-  fetch(
-    GOOGLE_SCRIPT_URL,
-    {
-      method: "POST",
-
-      mode: "no-cors",
-
-      headers: {
-        "Content-Type":
-          "text/plain;charset=utf-8"
-      },
-
-      body:
-        JSON.stringify(record)
-    }
-  )
-  .then(function() {
-
-    console.log(
-      "구글 스프레드시트 저장 요청 완료"
-    );
-
-  })
-  .catch(function(error) {
-
-    console.error(
-      "구글 저장 오류:",
-      error
-    );
-
-  });
-
-
-  /* 완료 화면 */
-
-  hideAllSteps();
-
-  const completeStep =
-    document.getElementById(
-      "completeStep"
-    );
-
-  completeStep
-    .classList
-    .remove("hidden");
-
-  completeStep.innerHTML =
-
-    '<h2>🎉 교육 이수가 완료되었습니다</h2>' +
-
-    '<div class="completion-box">' +
-
-    '<p><strong>' +
-    userName +
-    '</strong> 선생님의 교육 이수 기록이 저장되었습니다.</p>' +
-
-    '<p>이수 점수: ' +
-    score * 10 +
-    '점</p>' +
-
-    '<p>완료 일시: ' +
-    record.completedAt +
-    '</p>' +
-
-    '</div>' +
-
-    '<button type="button" onclick="location.reload()">' +
-    '처음으로 돌아가기' +
-    '</button>';
-
-  scrollTop();
 
 }
 
@@ -1040,8 +1017,12 @@ function completeTraining() {
 function scrollTop() {
 
   window.scrollTo({
+
     top: 0,
+
     behavior: "smooth"
+
   });
 
 }
+```
