@@ -1,14 +1,15 @@
-```html
 <!doctype html>
+
 <html lang="ko">
 
 <head>
   <meta charset="utf-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1"
+
+>
 
   <title>
     2026학년도 우신고등학교 교직원 성폭력 예방교육
@@ -17,613 +18,584 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
   <div class="container">
 
-
-    <!-- =========================
-         상단
-    ========================== -->
-
-    <header class="hero">
-
-      <div class="badge">
-        2026 예방교육
-      </div>
-
-      <h1>
-        우신고등학교<br>
-        교직원 성폭력 예방교육
-      </h1>
-
-      <p>
-        서로 존중하고 안전한 학교 문화를 함께 만들어 갑니다.
-      </p>
-
-    </header>
-
-
-
-    <main>
-
-
-      <!-- =========================
-           교육 시작
-      ========================== -->
-
-      <section
-        class="card"
-        id="start"
-      >
-
-        <h2>
-          교육 시작
-        </h2>
-
-
-        <label for="name">
-          성명 <span>*</span>
-        </label>
-
-
-        <input
-          type="text"
-          id="name"
-          maxlength="20"
-          placeholder="성명을 입력하세요"
-          autocomplete="name"
-        >
-
-
-        <p class="hint">
-          교육 이수 확인을 위해 성명을 입력해 주세요.
-        </p>
-
-
-        <button
-          type="button"
-          onclick="startTraining()"
-        >
-          교육 시작하기
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 1 영상
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="videoStep"
-      >
-
-        <div class="step-badge">
-          STEP 1
-        </div>
-
-
-        <h2>
-          교육 영상 시청
-        </h2>
-
-
-        <p class="step-description">
-          교육 영상을 시청해 주세요.
-        </p>
-
-
-        <div id="videoChoice">
-
-          <button
-            type="button"
-            onclick="watchVideo()"
-          >
-            ▶ 영상 시청하기
-          </button>
-
-
-          <button
-            type="button"
-            class="secondary-button"
-            onclick="skipVideo()"
-          >
-            나중에 볼게요
-          </button>
-
-        </div>
-
-
-
-        <!-- =========================
-             영상
-        ========================== -->
-
-        <div
-          class="video-wrap hidden"
-          id="videoPlayer"
-        >
-
-          <iframe
-            width="100%"
-            height="450"
-            src="https://www.youtube-nocookie.com/embed/zJG4Dz15B_8?rel=0"
-            title="교직원 성폭력 예방교육"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-
-        </div>
-
-
-        <button
-          type="button"
-          id="videoNextButton"
-          class="hidden"
-          onclick="showSummary()"
-        >
-          영상 시청 완료 · 다음 단계 →
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 2 요점 정리
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="summaryStep"
-      >
-
-        <div class="step-badge">
-          STEP 2
-        </div>
-
-
-        <h2>
-          영상 내용 핵심 요점
-        </h2>
-
-
-        <p class="step-description">
-          교육 내용을 간단하게 다시 확인해 보세요.
-        </p>
-
-
-
-        <div class="summary-grid">
-
-
-          <div class="summary-item">
-
-            <div class="summary-icon">
-              🤝
-            </div>
-
-            <h3>
-              서로의 경계 존중
-            </h3>
-
-            <p>
-              친한 사이라도 상대방의 의사와
-              불편함을 존중해야 합니다.
-            </p>
-
-          </div>
-
-
-
-          <div class="summary-item">
-
-            <div class="summary-icon">
-              🛡️
-            </div>
-
-            <h3>
-              함께 만드는 안전
-            </h3>
-
-            <p>
-              성폭력 예방은 특정 개인이 아니라
-              모든 구성원의 책임입니다.
-            </p>
-
-          </div>
-
-
-
-          <div class="summary-item">
-
-            <div class="summary-icon">
-              💬
-            </div>
-
-            <h3>
-              2차 피해 예방
-            </h3>
-
-            <p>
-              피해자를 비난하거나 소문을 퍼뜨리지 않고
-              필요한 도움을 안내합니다.
-            </p>
-
-          </div>
-
-
-
-          <div class="summary-item">
-
-            <div class="summary-icon">
-              📱
-            </div>
-
-            <h3>
-              디지털 공간도 동일
-            </h3>
-
-            <p>
-              동의 없는 촬영·저장·유포·공유는
-              해서는 안 됩니다.
-            </p>
-
-          </div>
-
-
-        </div>
-
-
-
-        <button
-          type="button"
-          onclick="startQuiz()"
-        >
-          확인 문제 풀기 →
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 3 문제풀이
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="quizStep"
-      >
-
-        <div class="step-badge">
-          STEP 3
-        </div>
-
-
-        <h2>
-          교육 내용 확인
-        </h2>
-
-
-        <div id="quizProgress"></div>
-
-
-        <div id="quizContent"></div>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 4 결과
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="resultStep"
-      >
-      </section>
-
-
-
-      <!-- =========================
-           STEP 5 오답 확인
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="wrongStep"
-      >
-
-        <div class="step-badge">
-          STEP 5
-        </div>
-
-
-        <h2>
-          다시 확인해 볼 내용
-        </h2>
-
-
-        <p class="step-description">
-          틀린 문제와 정답을 다시 확인해 주세요.
-        </p>
-
-
-        <div id="wrongList"></div>
-
-
-        <button
-          type="button"
-          onclick="showKeyMessage()"
-        >
-          핵심 메시지 확인 →
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 6 핵심 메시지 및 서명
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="messageStep"
-      >
-
-        <div class="step-badge">
-          STEP 6
-        </div>
-
-
-        <h2>
-          꼭 기억해야 할 핵심 메시지
-        </h2>
-
-
-
-        <div class="key-message">
-
-          <div class="message-icon">
-            💙
-          </div>
-
-
-          <h3>
-            존중은 동의에서 시작됩니다.
-          </h3>
-
-
-          <p>
-            상대방의 의사를 확인하고,
-            불편함이 표현되면 즉시 멈춥니다.
-          </p>
-
-
-          <p>
-            피해자에게 책임을 묻지 않고,
-            서로를 보호하는 문화를 만들어 갑니다.
-          </p>
-
-        </div>
-
-
-
-        <!-- =========================
-             교육 이수 확인 서명
-        ========================== -->
-
-        <div class="signature-section">
-
-          <h3>
-            교육 이수 확인 서명
-          </h3>
-
-
-          <p class="hint">
-            휴대폰에서는 손가락으로,
-            PC에서는 마우스로 직접 서명해 주세요.
-          </p>
-
-
-
-          <div
-            id="canvasSignature"
-            class="signature-box"
-          >
-
-            <canvas
-              id="signatureCanvas"
-              width="600"
-              height="200">
-            </canvas>
-
-
-            <button
-              type="button"
-              class="secondary-button"
-              onclick="clearSignature()"
-            >
-              다시 서명하기
-            </button>
-
-          </div>
-
-        </div>
-
-
-
-        <button
-          type="button"
-          onclick="confirmSignature()"
-        >
-          서명하고 만족도 조사 →
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           STEP 7 만족도 조사
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="surveyStep"
-      >
-
-        <div class="step-badge">
-          STEP 7
-        </div>
-
-
-        <h2>
-          만족도 조사
-        </h2>
-
-
-        <p class="step-description">
-          교육에 대한 의견을 남겨 주세요.
-        </p>
-
-
-
-        <!-- 이해도 -->
-
-        <label for="understanding">
-          교육 내용은 이해하기 쉬웠습니까?
-        </label>
-
-
-        <select id="understanding">
-
-          <option value="매우 만족">
-            매우 만족
-          </option>
-
-          <option value="만족">
-            만족
-          </option>
-
-          <option value="보통">
-            보통
-          </option>
-
-          <option value="불만족">
-            불만족
-          </option>
-
-          <option value="매우 불만족">
-            매우 불만족
-          </option>
-
-        </select>
-
-
-
-        <!-- 유익성 -->
-
-        <label for="usefulness">
-          교육 내용이 유익했습니까?
-        </label>
-
-
-        <select id="usefulness">
-
-          <option value="매우 만족">
-            매우 만족
-          </option>
-
-          <option value="만족">
-            만족
-          </option>
-
-          <option value="보통">
-            보통
-          </option>
-
-          <option value="불만족">
-            불만족
-          </option>
-
-          <option value="매우 불만족">
-            매우 불만족
-          </option>
-
-        </select>
-
-
-
-        <!-- 개선 의견 -->
-
-        <label for="comment">
-          개선 의견 (선택)
-        </label>
-
-
-        <textarea
-          id="comment"
-          rows="4"
-          placeholder="교육에 대한 의견이나 개선사항을 자유롭게 작성해 주세요."
-        ></textarea>
-
-
-
-        <!-- 중요:
-             event를 전달해야 app.js의
-             completeTraining(event)가
-             정확하게 실행됩니다.
-        -->
-
-        <button
-          type="button"
-          onclick="completeTraining(event)"
-        >
-          교육 완료하기
-        </button>
-
-      </section>
-
-
-
-      <!-- =========================
-           교육 완료
-      ========================== -->
-
-      <section
-        class="card hidden"
-        id="completeStep"
-      >
-      </section>
-
-
-    </main>
-
-
-
-    <!-- =========================
-         하단
-    ========================== -->
-
-    <footer>
-
-      우신고등학교 · 교직원 성폭력 예방교육
-
-    </footer>
-
-
+```
+<!-- =========================
+     상단
+========================== -->
+
+<header class="hero">
+
+  <div class="badge">
+    2026 예방교육
   </div>
 
+  <h1>
+    우신고등학교<br>
+    교직원 성폭력 예방교육
+  </h1>
 
+  <p>
+    서로 존중하고 안전한 학교 문화를 함께 만들어 갑니다.
+  </p>
+
+</header>
+
+
+<main>
+
+
+  <!-- =========================
+       교육 시작
+  ========================== -->
+
+  <section
+    class="card"
+    id="start"
+  >
+
+    <h2>
+      교육 시작
+    </h2>
+
+
+    <label for="name">
+      성명 <span>*</span>
+    </label>
+
+
+    <input
+      type="text"
+      id="name"
+      maxlength="20"
+      placeholder="성명을 입력하세요"
+      autocomplete="name"
+    >
+
+
+    <p class="hint">
+      교육 이수 확인을 위해 성명을 입력해 주세요.
+    </p>
+
+
+    <button
+      type="button"
+      onclick="startTraining()"
+    >
+      교육 시작하기
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 1 영상
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="videoStep"
+  >
+
+    <div class="step-badge">
+      STEP 1
+    </div>
+
+
+    <h2>
+      교육 영상 시청
+    </h2>
+
+
+    <p class="step-description">
+      교육 영상을 시청해 주세요.
+    </p>
+
+
+    <div id="videoChoice">
+
+      <button
+        type="button"
+        onclick="watchVideo()"
+      >
+        ▶ 영상 시청하기
+      </button>
+
+
+      <button
+        type="button"
+        class="secondary-button"
+        onclick="skipVideo()"
+      >
+        나중에 볼게요
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         영상
+    ========================== -->
+
+    <div
+      class="video-wrap hidden"
+      id="videoPlayer"
+    >
+
+      <iframe
+        width="100%"
+        height="450"
+        src="https://www.youtube-nocookie.com/embed/zJG4Dz15B_8?rel=0"
+        title="교직원 성폭력 예방교육"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+
+    <button
+      type="button"
+      id="videoNextButton"
+      class="hidden"
+      onclick="showSummary()"
+    >
+      영상 시청 완료 · 다음 단계 →
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 2 요점 정리
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="summaryStep"
+  >
+
+    <div class="step-badge">
+      STEP 2
+    </div>
+
+
+    <h2>
+      영상 내용 핵심 요점
+    </h2>
+
+
+    <p class="step-description">
+      교육 내용을 간단하게 다시 확인해 보세요.
+    </p>
+
+
+    <div class="summary-grid">
+
+
+      <div class="summary-item">
+
+        <div class="summary-icon">
+          🤝
+        </div>
+
+        <h3>
+          서로의 경계 존중
+        </h3>
+
+        <p>
+          친한 사이라도 상대방의 의사와
+          불편함을 존중해야 합니다.
+        </p>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-icon">
+          🛡️
+        </div>
+
+        <h3>
+          함께 만드는 안전
+        </h3>
+
+        <p>
+          성폭력 예방은 특정 개인이 아니라
+          모든 구성원의 책임입니다.
+        </p>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-icon">
+          💬
+        </div>
+
+        <h3>
+          2차 피해 예방
+        </h3>
+
+        <p>
+          피해자를 비난하거나 소문을 퍼뜨리지 않고
+          필요한 도움을 안내합니다.
+        </p>
+
+      </div>
+
+
+      <div class="summary-item">
+
+        <div class="summary-icon">
+          📱
+        </div>
+
+        <h3>
+          디지털 공간도 동일
+        </h3>
+
+        <p>
+          동의 없는 촬영·저장·유포·공유는
+          해서는 안 됩니다.
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      type="button"
+      onclick="startQuiz()"
+    >
+      확인 문제 풀기 →
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 3 문제풀이
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="quizStep"
+  >
+
+    <div class="step-badge">
+      STEP 3
+    </div>
+
+
+    <h2>
+      교육 내용 확인
+    </h2>
+
+
+    <div id="quizProgress"></div>
+
+
+    <div id="quizContent"></div>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 4 결과
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="resultStep"
+  >
+  </section>
+
+
+  <!-- =========================
+       STEP 5 오답 확인
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="wrongStep"
+  >
+
+    <div class="step-badge">
+      STEP 5
+    </div>
+
+
+    <h2>
+      다시 확인해 볼 내용
+    </h2>
+
+
+    <p class="step-description">
+      틀린 문제와 정답을 다시 확인해 주세요.
+    </p>
+
+
+    <div id="wrongList"></div>
+
+
+    <button
+      type="button"
+      onclick="showKeyMessage()"
+    >
+      핵심 메시지 확인 →
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 6 핵심 메시지 및 서명
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="messageStep"
+  >
+
+    <div class="step-badge">
+      STEP 6
+    </div>
+
+
+    <h2>
+      꼭 기억해야 할 핵심 메시지
+    </h2>
+
+
+    <div class="key-message">
+
+      <div class="message-icon">
+        💙
+      </div>
+
+
+      <h3>
+        존중은 동의에서 시작됩니다.
+      </h3>
+
+
+      <p>
+        상대방의 의사를 확인하고,
+        불편함이 표현되면 즉시 멈춥니다.
+      </p>
+
+
+      <p>
+        피해자에게 책임을 묻지 않고,
+        서로를 보호하는 문화를 만들어 갑니다.
+      </p>
+
+    </div>
+
+
+    <!-- =========================
+         교육 이수 확인 서명
+    ========================== -->
+
+    <div class="signature-section">
+
+      <h3>
+        교육 이수 확인 서명
+      </h3>
+
+
+      <p class="hint">
+        휴대폰에서는 손가락으로,
+        PC에서는 마우스로 직접 서명해 주세요.
+      </p>
+
+
+      <div
+        id="canvasSignature"
+        class="signature-box"
+      >
+
+        <canvas
+          id="signatureCanvas"
+          width="600"
+          height="200">
+        </canvas>
+
+
+        <button
+          type="button"
+          class="secondary-button"
+          onclick="clearSignature()"
+        >
+          다시 서명하기
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      onclick="confirmSignature()"
+    >
+      서명하고 만족도 조사 →
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       STEP 7 만족도 조사
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="surveyStep"
+  >
+
+    <div class="step-badge">
+      STEP 7
+    </div>
+
+
+    <h2>
+      만족도 조사
+    </h2>
+
+
+    <p class="step-description">
+      교육에 대한 의견을 남겨 주세요.
+    </p>
+
+
+    <!-- 이해도 -->
+
+    <label for="understanding">
+      교육 내용은 이해하기 쉬웠습니까?
+    </label>
+
+
+    <select id="understanding">
+
+      <option value="매우 만족">
+        매우 만족
+      </option>
+
+      <option value="만족">
+        만족
+      </option>
+
+      <option value="보통">
+        보통
+      </option>
+
+      <option value="불만족">
+        불만족
+      </option>
+
+      <option value="매우 불만족">
+        매우 불만족
+      </option>
+
+    </select>
+
+
+    <!-- 유익성 -->
+
+    <label for="usefulness">
+      교육 내용이 유익했습니까?
+    </label>
+
+
+    <select id="usefulness">
+
+      <option value="매우 만족">
+        매우 만족
+      </option>
+
+      <option value="만족">
+        만족
+      </option>
+
+      <option value="보통">
+        보통
+      </option>
+
+      <option value="불만족">
+        불만족
+      </option>
+
+      <option value="매우 불만족">
+        매우 불만족
+      </option>
+
+    </select>
+
+
+    <!-- 개선 의견 -->
+
+    <label for="comment">
+      개선 의견 (선택)
+    </label>
+
+
+    <textarea
+      id="comment"
+      rows="4"
+      placeholder="교육에 대한 의견이나 개선사항을 자유롭게 작성해 주세요."
+    ></textarea>
+
+
+    <!--
+      app.js의 completeTraining(event)와 연결
+    -->
+
+    <button
+      type="button"
+      onclick="completeTraining(event)"
+    >
+      교육 완료하기
+    </button>
+
+  </section>
+
+
+  <!-- =========================
+       교육 완료
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="completeStep"
+  >
+  </section>
+
+
+</main>
+
+
+<!-- =========================
+     하단
+========================== -->
+
+<footer>
+
+  우신고등학교 · 교직원 성폭력 예방교육
+
+</footer>
+```
+
+  </div>
 
   <!-- =========================
        JavaScript
@@ -631,8 +603,6 @@
 
   <script src="app.js"></script>
 
-
 </body>
 
 </html>
-```
