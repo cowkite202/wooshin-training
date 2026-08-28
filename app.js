@@ -122,25 +122,14 @@ let drawing = false;
 let hasSignature = false;
 
 /* 시작 */
-
 function startTraining() {
-
-const nameInput =
-document.getElementById("name");
-
-userName =
-nameInput.value.trim();
+const nameInput = document.getElementById("name");
+userName = nameInput.value.trim();
 
 if (!userName) {
-
-```
 alert("성명을 입력해 주세요.");
-
 nameInput.focus();
-
 return;
-```
-
 }
 
 hideAllSteps();
@@ -151,13 +140,10 @@ document
 .remove("hidden");
 
 scrollTop();
-
 }
 
 /* 모든 단계 숨기기 */
-
 function hideAllSteps() {
-
 const steps = [
 "start",
 "videoStep",
@@ -171,22 +157,19 @@ const steps = [
 ];
 
 steps.forEach(function(id) {
+const element = document.getElementById(id);
 
 ```
-document
-  .getElementById(id)
-  .classList
-  .add("hidden");
+if (element) {
+  element.classList.add("hidden");
+}
 ```
 
 });
-
 }
 
 /* STEP 1 영상 보기 */
-
 function watchVideo() {
-
 document
 .getElementById("videoChoice")
 .classList
@@ -201,32 +184,21 @@ document
 .getElementById("videoNextButton")
 .classList
 .remove("hidden");
-
 }
 
 /* 영상 나중에 보기 */
-
 function skipVideo() {
-
-const confirmed =
-confirm(
+const confirmed = confirm(
 "영상을 나중에 시청하시겠습니까?\n교육 내용 요점 정리로 이동합니다."
 );
 
 if (confirmed) {
-
-```
 showSummary();
-```
-
 }
-
 }
 
 /* STEP 2 요점 정리 */
-
 function showSummary() {
-
 hideAllSteps();
 
 document
@@ -235,13 +207,10 @@ document
 .remove("hidden");
 
 scrollTop();
-
 }
 
 /* STEP 3 퀴즈 시작 */
-
 function startQuiz() {
-
 currentQuestion = 0;
 answers = [];
 score = 0;
@@ -256,15 +225,11 @@ document
 renderQuestion();
 
 scrollTop();
-
 }
 
 /* 문제 표시 */
-
 function renderQuestion() {
-
-const question =
-questions[currentQuestion];
+const question = questions[currentQuestion];
 
 const progress =
 document.getElementById("quizProgress");
@@ -273,126 +238,82 @@ const content =
 document.getElementById("quizContent");
 
 progress.innerHTML =
-'<div class="quiz-progress">' +
-'문제 ' +
+'<div class="quiz-progress">문제 ' +
 (currentQuestion + 1) +
 ' / ' +
 questions.length +
 '</div>';
 
-let html = "";
+let html = '<div class="question">';
 
-html +=
-'<div class="question">';
-
-html +=
-'<h3>' +
-question.question +
-'</h3>';
+html += '<h3>' + question.question + '</h3>';
 
 question.choices.forEach(function(choice, index) {
-
-```
 html +=
-  '<label class="choice">' +
-
-  '<input type="radio" ' +
-
-  'name="quizAnswer" ' +
-
-  'value="' +
-  index +
-  '">' +
-
-  String.fromCharCode(9312 + index) +
-
-  ' ' +
-
-  choice +
-
-  '</label>';
-```
-
+'<label class="choice">' +
+'<input type="radio" name="quizAnswer" value="' +
+   index +
+   '"> ' +
+String.fromCharCode(9312 + index) +
+' ' +
+choice +
+'</label>';
 });
 
 html +=
-'<button onclick="checkAnswer()">' +
+'<button type="button" onclick="checkAnswer()">' +
 '정답 확인하기' +
 '</button>';
 
-html +=
-'</div>';
+html += '</div>';
 
 content.innerHTML = html;
-
 }
 
 /* 정답 확인 */
-
 function checkAnswer() {
-
 const selected =
 document.querySelector(
 'input[name="quizAnswer"]:checked'
 );
 
 if (!selected) {
-
-```
 alert("답을 선택해 주세요.");
-
 return;
-```
-
 }
 
-const selectedAnswer =
-Number(selected.value);
+const selectedAnswer = Number(selected.value);
 
-answers[currentQuestion] =
-selectedAnswer;
+answers[currentQuestion] = selectedAnswer;
 
-const question =
-questions[currentQuestion];
+const question = questions[currentQuestion];
 
 const isCorrect =
 selectedAnswer === question.answer;
 
 if (isCorrect) {
-
-```
 score++;
-```
-
 }
 
 const labels =
-document.querySelectorAll(".choice");
+document.querySelectorAll("#quizContent .choice");
 
 labels.forEach(function(label, index) {
+const input =
+label.querySelector("input");
 
 ```
-const input =
-  label.querySelector("input");
-
-
 input.disabled = true;
 
-
 if (index === question.answer) {
-
   label.classList.add("correct");
-
 }
-
 
 if (
   index === selectedAnswer &&
   !isCorrect
 ) {
-
   label.classList.add("incorrect");
-
 }
 ```
 
@@ -400,16 +321,20 @@ if (
 
 const button =
 document.querySelector(
-'#quizContent button'
+"#quizContent .question button"
 );
 
+if (button) {
 button.remove();
+}
 
 let feedback = "";
 
 feedback +=
 '<div class="answer-feedback ' +
-(isCorrect ? "feedback-correct" : "feedback-wrong") +
+(isCorrect
+? "feedback-correct"
+: "feedback-wrong") +
 '">';
 
 feedback +=
@@ -434,18 +359,13 @@ question.explanation +
 '</p>';
 
 feedback +=
-'<button onclick="nextQuestion()">' +
-
-```
+'<button type="button" onclick="nextQuestion()">' +
 (currentQuestion === questions.length - 1
-  ? "최종 결과 확인 →"
-  : "다음 문제 →") +
-
+? "최종 결과 확인 →"
+: "다음 문제 →") +
 '</button>';
-```
 
-feedback +=
-'</div>';
+feedback += '</div>';
 
 document
 .getElementById("quizContent")
@@ -453,115 +373,79 @@ document
 "beforeend",
 feedback
 );
-
 }
 
 /* 다음 문제 */
-
 function nextQuestion() {
-
 if (
 currentQuestion <
 questions.length - 1
 ) {
-
-```
 currentQuestion++;
 
+```
 renderQuestion();
 
 scrollTop();
 ```
 
 } else {
-
-```
 showResult();
-```
-
 }
-
 }
 
 /* STEP 4 결과 */
-
 function showResult() {
-
 hideAllSteps();
 
 const resultStep =
 document.getElementById("resultStep");
 
-resultStep
-.classList
-.remove("hidden");
+resultStep.classList.remove("hidden");
 
-const points =
-score * 10;
+const points = score * 10;
 
 const wrongCount =
 questions.length - score;
 
 resultStep.innerHTML =
-
-```
 '<div class="step-badge">STEP 4</div>' +
-
 '<h2>최종 결과</h2>' +
-
 '<div class="result-score">' +
-
 '<p>' +
 userName +
 ' 선생님의 점수</p>' +
-
 '<h1>' +
 points +
 '점</h1>' +
-
 '<p>' +
 questions.length +
 '문제 중 ' +
 score +
 '문제 정답</p>' +
-
 '</div>' +
-
-
 '<p class="' +
 (points >= 80 ? "pass" : "fail") +
 '">' +
-
 (points >= 80
-  ? "🎉 교육 이수 기준을 충족했습니다."
-  : "교육 내용을 다시 확인해 주세요.") +
-
+? "🎉 교육 이수 기준을 충족했습니다."
+: "교육 내용을 다시 확인해 주세요.") +
 '</p>' +
-
-
-'<button onclick="' +
-
+'<button type="button" onclick="' +
 (wrongCount > 0
-  ? "showWrongAnswers()"
-  : "showKeyMessage()") +
-
+? "showWrongAnswers()"
+: "showKeyMessage()") +
 '">' +
-
 (wrongCount > 0
-  ? "오답 확인하기 →"
-  : "핵심 메시지 확인 →") +
-
+? "오답 확인하기 →"
+: "핵심 메시지 확인 →") +
 '</button>';
-```
 
 scrollTop();
-
 }
 
 /* STEP 5 오답 확인 */
-
 function showWrongAnswers() {
-
 hideAllSteps();
 
 document
@@ -575,55 +459,40 @@ document.getElementById("wrongList");
 let html = "";
 
 questions.forEach(function(question, index) {
+if (
+answers[index] !== question.answer
+) {
+html +=
+'<div class="wrong-answer">';
 
 ```
-if (
-  answers[index] !==
-  question.answer
-) {
-
-  html +=
-    '<div class="wrong-answer">';
-
   html +=
     '<h3>문제 ' +
     (index + 1) +
     '</h3>';
-
 
   html +=
     '<p>' +
     question.question +
     '</p>';
 
-
   html +=
     '<p><strong>정답:</strong> ' +
-
     String.fromCharCode(
       9312 + question.answer
     ) +
-
     ' ' +
-
     question.choices[
       question.answer
     ] +
-
     '</p>';
-
 
   html +=
     '<p><strong>해설:</strong> ' +
-
     question.explanation +
-
     '</p>';
 
-
-  html +=
-    '</div>';
-
+  html += '</div>';
 }
 ```
 
@@ -632,13 +501,10 @@ if (
 wrongList.innerHTML = html;
 
 scrollTop();
-
 }
 
 /* STEP 6 핵심 메시지 */
-
 function showKeyMessage() {
-
 hideAllSteps();
 
 document
@@ -647,21 +513,14 @@ document
 .remove("hidden");
 
 setTimeout(function() {
-
-```
 initSignatureCanvas();
-```
-
 }, 100);
 
 scrollTop();
-
 }
 
-/* 서명 방식 변경 */
-
+/* 직접 서명 선택 */
 function showCanvasSignature() {
-
 document
 .getElementById("canvasSignature")
 .classList
@@ -671,11 +530,10 @@ document
 .getElementById("textSignature")
 .classList
 .add("hidden");
-
 }
 
+/* 키보드 서명 선택 */
 function showTextSignature() {
-
 document
 .getElementById("canvasSignature")
 .classList
@@ -685,72 +543,58 @@ document
 .getElementById("textSignature")
 .classList
 .remove("hidden");
-
 }
 
 /* 캔버스 서명 */
-
 function initSignatureCanvas() {
-
 canvas =
 document.getElementById(
 "signatureCanvas"
 );
 
-ctx =
-canvas.getContext("2d");
+if (!canvas) {
+return;
+}
+
+ctx = canvas.getContext("2d");
 
 ctx.lineWidth = 2;
-
 ctx.lineCap = "round";
 
 function getPosition(event) {
+const rect =
+canvas.getBoundingClientRect();
 
 ```
-const rect =
-  canvas.getBoundingClientRect();
-
-
 if (event.touches) {
-
   return {
-
     x:
       event.touches[0].clientX -
       rect.left,
-
     y:
       event.touches[0].clientY -
       rect.top
-
   };
-
 }
 
-
 return {
-
   x:
     event.clientX -
     rect.left,
-
   y:
     event.clientY -
     rect.top
-
 };
 ```
 
 }
 
 function startDrawing(event) {
-
-```
 drawing = true;
 
+```
 const position =
   getPosition(event);
-
 
 ctx.beginPath();
 
@@ -759,32 +603,26 @@ ctx.moveTo(
   position.y
 );
 
-
 hasSignature = true;
 ```
 
 }
 
 function draw(event) {
-
-```
 if (!drawing) {
-  return;
+return;
 }
 
-
+```
 event.preventDefault();
-
 
 const position =
   getPosition(event);
-
 
 ctx.lineTo(
   position.x,
   position.y
 );
-
 
 ctx.stroke();
 ```
@@ -792,11 +630,7 @@ ctx.stroke();
 }
 
 function stopDrawing() {
-
-```
 drawing = false;
-```
-
 }
 
 canvas.onmousedown =
@@ -819,14 +653,11 @@ draw;
 
 canvas.ontouchend =
 stopDrawing;
-
 }
 
 /* 서명 지우기 */
-
 function clearSignature() {
-
-if (!canvas) {
+if (!canvas || !ctx) {
 return;
 }
 
@@ -838,13 +669,10 @@ canvas.height
 );
 
 hasSignature = false;
-
 }
 
 /* 서명 확인 */
-
 function confirmSignature() {
-
 const textSignature =
 document
 .getElementById("signatureText")
@@ -861,26 +689,16 @@ if (
 canvasVisible &&
 !hasSignature
 ) {
-
-```
 alert("서명을 작성해 주세요.");
-
 return;
-```
-
 }
 
 if (
 !canvasVisible &&
 !textSignature
 ) {
-
-```
 alert("성명을 입력해 주세요.");
-
 return;
-```
-
 }
 
 hideAllSteps();
@@ -891,13 +709,10 @@ document
 .remove("hidden");
 
 scrollTop();
-
 }
 
 /* STEP 7 만족도 및 완료 */
-
 function completeTraining() {
-
 const understanding =
 document
 .getElementById("understanding")
@@ -915,114 +730,71 @@ document
 .trim();
 
 const record = {
-
-```
 name: userName,
-
 score: score * 10,
-
 completedAt:
-  new Date()
-  .toLocaleString("ko-KR"),
-
+new Date()
+.toLocaleString("ko-KR"),
 understanding: understanding,
-
 usefulness: usefulness,
-
 comment: comment
-```
-
 };
 
 let records = [];
 
 try {
-
-```
 records =
-  JSON.parse(
-
-    localStorage.getItem(
-      "wooshinTrainingRecords"
-    ) || "[]"
-
-  );
-```
-
+JSON.parse(
+localStorage.getItem(
+"wooshinTrainingRecords"
+) || "[]"
+);
 } catch (error) {
-
-```
 records = [];
-```
-
 }
 
 records.push(record);
 
 localStorage.setItem(
-
-```
 "wooshinTrainingRecords",
-
 JSON.stringify(records)
-```
-
 );
 
 hideAllSteps();
 
 const completeStep =
-document
-.getElementById("completeStep");
+document.getElementById(
+"completeStep"
+);
 
 completeStep
 .classList
 .remove("hidden");
 
 completeStep.innerHTML =
-
-```
 '<h2>🎉 교육 이수가 완료되었습니다</h2>' +
-
 '<div class="completion-box">' +
-
 '<p><strong>' +
 userName +
 '</strong> 선생님의 교육 이수 기록이 저장되었습니다.</p>' +
-
 '<p>이수 점수: ' +
 score * 10 +
 '점</p>' +
-
 '<p>완료 일시: ' +
-new Date()
-  .toLocaleString("ko-KR") +
+record.completedAt +
 '</p>' +
-
 '</div>' +
-
-'<button onclick="location.reload()">' +
+'<button type="button" onclick="location.reload()">' +
 '처음으로 돌아가기' +
 '</button>';
-```
 
 scrollTop();
-
 }
 
 /* 화면 맨 위 */
-
 function scrollTop() {
-
 window.scrollTo({
-
-```
 top: 0,
-
 behavior: "smooth"
-```
-
 });
-
 }
-
