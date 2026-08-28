@@ -1,14 +1,15 @@
-```html
 <!doctype html>
+
 <html lang="ko">
 
 <head>
   <meta charset="utf-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1"
+
+>
 
   <title>
     2026학년도 우신고등학교 교직원 성폭력 예방교육
@@ -19,601 +20,570 @@
 
 <body>
 
-<div class="container">
+  <div class="container">
+
+```
+<!-- =========================
+     상단
+========================== -->
+
+<header class="hero">
+
+  <div class="badge">
+    2026 예방교육
+  </div>
+
+  <h1>
+    우신고등학교<br>
+    교직원 성폭력 예방교육
+  </h1>
+
+  <p>
+    서로 존중하고 안전한 학교 문화를 함께 만들어 갑니다.
+  </p>
+
+</header>
+
+
+<main>
+
 
   <!-- =========================
-       상단
+       STEP 0
+       교육 시작
   ========================== -->
 
-  <header class="hero">
+  <section
+    class="card"
+    id="start"
+  >
 
-    <div class="badge">
-      2026 예방교육
+    <div class="step-badge">
+      교육 시작
     </div>
 
-    <h1>
-      우신고등학교<br>
+    <h2>
       교직원 성폭력 예방교육
-    </h1>
+    </h2>
 
-    <p>
-      서로 존중하고 안전한 학교 문화를 함께 만들어 갑니다.
+    <p class="step-description">
+      교육 이수를 위해 성명을 입력해 주세요.
     </p>
 
-  </header>
 
+    <label for="name">
+      성명 <span>*</span>
+    </label>
 
-  <main>
-
-    <!-- =========================
-         STEP 0 이름 입력
-    ========================== -->
-
-    <section
-      class="card"
-      id="start"
+    <input
+      type="text"
+      id="name"
+      maxlength="20"
+      placeholder="성명을 입력하세요"
+      autocomplete="name"
     >
 
-      <div class="step-badge">
-        교육 시작
-      </div>
-
-      <h2>
-        교직원 성폭력 예방교육
-      </h2>
-
-      <p class="step-description">
-        교육 이수 확인을 위해 성명을 입력해 주세요.
-      </p>
-
-      <label for="name">
-        성명 <span>*</span>
-      </label>
-
-      <input
-        type="text"
-        id="name"
-        maxlength="20"
-        placeholder="성명을 입력하세요"
-        autocomplete="name"
-      >
-
-      <p
-        id="nameMessage"
-        class="hint"
-      ></p>
-
-      <button
-        type="button"
-        onclick="startTraining()"
-      >
-        교육 시작하기
-      </button>
-
-    </section>
+    <p class="hint">
+      이미 교육을 이수한 경우 동일한 성명으로 다시 이수할 수 없습니다.
+    </p>
 
 
-    <!-- =========================
-         STEP 1 영상
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="videoStep"
+    <button
+      type="button"
+      onclick="startTraining()"
     >
+      교육 시작하기
+    </button>
 
-      <div class="step-badge">
-        STEP 1
-      </div>
+  </section>
 
-      <h2>
-        교육 영상 시청
-      </h2>
-
-      <p class="step-description">
-        아래 교육 영상을 끝까지 시청해 주세요.
-        영상 확인 후 다음 단계로 이동할 수 있습니다.
-      </p>
-
-      <div
-        class="video-wrap"
-        id="videoPlayer"
-      >
-
-        <iframe
-          width="100%"
-          height="450"
-          src="https://www.youtube-nocookie.com/embed/zJG4Dz15B_8?rel=0"
-          title="교직원 성폭력 예방교육"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-
-      </div>
-
-      <div class="video-check">
-
-        <label class="check-label">
-
-          <input
-            type="checkbox"
-            id="videoConfirm"
-            onchange="enableVideoNext()"
-          >
-
-          <span>
-            교육 영상을 시청하고 내용을 확인했습니다.
-          </span>
-
-        </label>
-
-      </div>
-
-      <button
-        type="button"
-        id="videoNextButton"
-        disabled
-        onclick="showEducationPage(1)"
-      >
-        다음 단계 →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 2 교육 페이지
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="educationStep"
-    >
-
-      <div
-        class="step-badge"
-        id="educationBadge"
-      >
-        STEP 2
-      </div>
-
-      <div
-        id="educationContent"
-        class="education-content"
-      >
-      </div>
-
-      <div class="education-confirm">
-
-        <label class="check-label">
-
-          <input
-            type="checkbox"
-            id="educationCheck"
-            onchange="enableEducationNext()"
-          >
-
-          <span>
-            위 교육 내용을 읽고 충분히 숙지했습니다.
-          </span>
-
-        </label>
-
-      </div>
-
-      <button
-        type="button"
-        id="educationNextButton"
-        disabled
-        onclick="nextEducationPage()"
-      >
-        다음 페이지 →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 3 퀴즈
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="quizStep"
-    >
-
-      <div class="step-badge">
-        STEP 3
-      </div>
-
-      <h2>
-        교육 내용 확인 퀴즈
-      </h2>
-
-      <p class="step-description">
-        총 15문제입니다.
-        각 문제를 풀고 정답 및 해설을 확인해 주세요.
-      </p>
-
-      <div
-        id="quizProgress"
-        class="quiz-progress"
-      >
-      </div>
-
-      <div id="quizContent">
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 4 결과
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="resultStep"
-    >
-
-      <div class="step-badge">
-        STEP 4
-      </div>
-
-      <h2>
-        퀴즈 결과
-      </h2>
-
-      <div
-        id="resultContent"
-        class="result-score"
-      >
-      </div>
-
-      <button
-        type="button"
-        onclick="showWrongAnswers()"
-      >
-        오답 및 해설 확인 →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 5 오답 확인
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="wrongStep"
-    >
-
-      <div class="step-badge">
-        STEP 5
-      </div>
-
-      <h2>
-        오답 다시 확인하기
-      </h2>
-
-      <p class="step-description">
-        틀린 문제의 정답과 해설을 다시 확인해 주세요.
-      </p>
-
-      <div id="wrongList">
-      </div>
-
-      <button
-        type="button"
-        onclick="showKeyMessage()"
-      >
-        핵심 메시지 및 서명 →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 6 핵심 메시지 + 서명
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="messageStep"
-    >
-
-      <div class="step-badge">
-        STEP 6
-      </div>
-
-      <h2>
-        꼭 기억해야 할 핵심 메시지
-      </h2>
-
-      <div class="key-message">
-
-        <div class="message-icon">
-          💙
-        </div>
-
-        <h3>
-          존중은 동의에서 시작됩니다.
-        </h3>
-
-        <p>
-          상대방의 의사를 확인하고,
-          불편함이 표현되면 즉시 멈춥니다.
-        </p>
-
-        <p>
-          피해자에게 책임을 묻지 않고,
-          피해 사실을 함부로 공유하지 않습니다.
-        </p>
-
-        <p>
-          성희롱·성폭력 예방은
-          모든 학교 구성원의 책임입니다.
-        </p>
-
-      </div>
-
-
-      <!-- 서명 -->
-
-      <div class="signature-section">
-
-        <h3>
-          교육 이수 확인 서명
-        </h3>
-
-        <p class="hint">
-          휴대폰에서는 손가락으로,
-          PC에서는 마우스로 직접 서명해 주세요.
-        </p>
-
-        <div
-          id="canvasSignature"
-          class="signature-box"
-        >
-
-          <canvas
-            id="signatureCanvas"
-            width="600"
-            height="200">
-          </canvas>
-
-          <button
-            type="button"
-            class="secondary-button"
-            onclick="clearSignature()"
-          >
-            다시 서명하기
-          </button>
-
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        id="signatureNextButton"
-        onclick="confirmSignature()"
-      >
-        서명하고 만족도 조사 →
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         STEP 7 만족도
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="surveyStep"
-    >
-
-      <div class="step-badge">
-        STEP 7
-      </div>
-
-      <h2>
-        만족도 조사
-      </h2>
-
-      <p class="step-description">
-        교육에 대한 의견을 남겨 주세요.
-      </p>
-
-
-      <!-- 이해도 -->
-
-      <label for="understanding">
-        ① 교육 내용은 이해하기 쉬웠습니까?
-      </label>
-
-      <select id="understanding">
-
-        <option value="">
-          선택해 주세요
-        </option>
-
-        <option value="매우 만족">
-          매우 만족
-        </option>
-
-        <option value="만족">
-          만족
-        </option>
-
-        <option value="보통">
-          보통
-        </option>
-
-        <option value="불만족">
-          불만족
-        </option>
-
-        <option value="매우 불만족">
-          매우 불만족
-        </option>
-
-      </select>
-
-
-      <!-- 유익성 -->
-
-      <label for="usefulness">
-        ② 교육 내용이 유익했습니까?
-      </label>
-
-      <select id="usefulness">
-
-        <option value="">
-          선택해 주세요
-        </option>
-
-        <option value="매우 만족">
-          매우 만족
-        </option>
-
-        <option value="만족">
-          만족
-        </option>
-
-        <option value="보통">
-          보통
-        </option>
-
-        <option value="불만족">
-          불만족
-        </option>
-
-        <option value="매우 불만족">
-          매우 불만족
-        </option>
-
-      </select>
-
-
-      <!-- 학교생활 도움 -->
-
-      <label for="helpfulness">
-        ③ 학교생활에서 성폭력 예방에 도움이 될 것 같습니까?
-      </label>
-
-      <select id="helpfulness">
-
-        <option value="">
-          선택해 주세요
-        </option>
-
-        <option value="매우 그렇다">
-          매우 그렇다
-        </option>
-
-        <option value="그렇다">
-          그렇다
-        </option>
-
-        <option value="보통">
-          보통
-        </option>
-
-        <option value="그렇지 않다">
-          그렇지 않다
-        </option>
-
-        <option value="전혀 그렇지 않다">
-          전혀 그렇지 않다
-        </option>
-
-      </select>
-
-
-      <!-- 개선 의견 -->
-
-      <label for="comment">
-        ④ 개선 의견 (선택)
-      </label>
-
-      <textarea
-        id="comment"
-        rows="4"
-        placeholder="교육에 대한 의견이나 개선사항을 자유롭게 작성해 주세요."
-      ></textarea>
-
-
-      <button
-        type="button"
-        onclick="completeTraining(event)"
-      >
-        교육 완료 및 제출
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         교육 완료
-    ========================== -->
-
-    <section
-      class="card hidden"
-      id="completeStep"
-    >
-
-      <div class="completion-box">
-
-        <div class="message-icon">
-          🎉
-        </div>
-
-        <h2>
-          교육이 완료되었습니다.
-        </h2>
-
-        <div id="completionMessage">
-        </div>
-
-        <p>
-          교육 이수 기록이 정상적으로 저장되었습니다.
-        </p>
-
-        <p>
-          수고하셨습니다.
-        </p>
-
-      </div>
-
-    </section>
-
-  </main>
 
 
   <!-- =========================
-       하단
+       STEP 1
+       영상
   ========================== -->
 
-  <footer>
+  <section
+    class="card hidden"
+    id="videoStep"
+  >
 
-    우신고등학교 · 교직원 성폭력 예방교육
+    <div class="step-badge">
+      STEP 1 · 영상 시청
+    </div>
 
-  </footer>
+    <h2>
+      교육 영상 시청
+    </h2>
 
-</div>
+    <p class="step-description">
+      교육 영상을 끝까지 시청한 후 다음 단계로 이동해 주세요.
+    </p>
+
+
+    <div class="video-information">
+
+      <div class="video-icon">
+        🎬
+      </div>
+
+      <h3>
+        교직원 성폭력 예방교육 영상
+      </h3>
+
+      <p>
+        영상을 시청하면서 성폭력 예방과 안전한 학교문화에
+        대해 생각해 보세요.
+      </p>
+
+    </div>
+
+
+    <div
+      class="video-wrap"
+      id="videoPlayer"
+    >
+
+      <iframe
+        id="trainingVideo"
+        width="100%"
+        height="450"
+        src="https://www.youtube-nocookie.com/embed/zJG4Dz15B_8?rel=0"
+        title="교직원 성폭력 예방교육"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+
+    </div>
+
+
+    <div class="video-check">
+
+      <label class="confirm-check">
+
+        <input
+          type="checkbox"
+          id="videoCheck"
+          onchange="toggleVideoButton()"
+        >
+
+        <span>
+          교육 영상을 시청하였으며 내용을 확인했습니다.
+        </span>
+
+      </label>
+
+    </div>
+
+
+    <button
+      type="button"
+      id="videoNextButton"
+      disabled
+      onclick="startTrainingPages()"
+    >
+      영상을 확인해 주세요
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 2
+       6개 교육 페이지
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="trainingStep"
+  >
+
+    <div class="step-badge">
+      STEP 2 · 교육 내용
+    </div>
+
+
+    <div
+      id="trainingProgress"
+      class="quiz-progress"
+    >
+      교육 내용 1 / 6
+    </div>
+
+
+    <div
+      id="trainingContent"
+      class="training-content"
+    >
+      <!-- app.js에서 내용 표시 -->
+    </div>
+
+
+    <label class="confirm-check">
+
+      <input
+        type="checkbox"
+        id="pageCheck"
+        onchange="togglePageButton()"
+      >
+
+      <span>
+        위 교육 내용을 확인하고 숙지했습니다.
+      </span>
+
+    </label>
+
+
+    <button
+      type="button"
+      id="trainingNextButton"
+      disabled
+      onclick="nextTrainingPage()"
+    >
+      다음 페이지 →
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 3
+       퀴즈
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="quizStep"
+  >
+
+    <div class="step-badge">
+      STEP 3 · 교육 내용 확인
+    </div>
+
+
+    <h2>
+      교육 확인 퀴즈
+    </h2>
+
+
+    <p class="step-description">
+      총 15문제입니다.
+      각 문제는 오답일 경우 한 번 더 풀 수 있습니다.
+    </p>
+
+
+    <div
+      id="quizProgress"
+      class="quiz-progress"
+    >
+      문제 1 / 15
+    </div>
+
+
+    <div
+      id="quizContent"
+      class="quiz-content"
+    >
+      <!-- app.js에서 문제 표시 -->
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 4
+       결과
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="resultStep"
+  >
+
+    <!-- app.js에서 결과 표시 -->
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 5
+       핵심 메시지 + 서명
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="messageStep"
+  >
+
+    <div class="step-badge">
+      STEP 5 · 교육 이수 확인
+    </div>
+
+
+    <h2>
+      꼭 기억해야 할 핵심 메시지
+    </h2>
+
+
+    <div class="key-message">
+
+      <div class="message-icon">
+        🛡️
+      </div>
+
+      <h3>
+        존중은 동의에서 시작됩니다.
+      </h3>
+
+      <p>
+        상대방의 의사와 개인적인 경계를 존중합니다.
+      </p>
+
+      <p>
+        불편함이나 거부 의사가 표현되면 즉시 행동을 멈춥니다.
+      </p>
+
+      <p>
+        피해자를 비난하거나 피해 사실을 불필요하게 공유하지 않습니다.
+      </p>
+
+      <p>
+        안전하고 존중받는 학교문화를 만드는 데 함께 참여합니다.
+      </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         서명
+    ========================== -->
+
+    <div class="signature-section">
+
+      <h3>
+        교육 이수 확인 서명
+      </h3>
+
+      <p class="hint">
+        휴대전화에서는 손가락으로,
+        PC에서는 마우스로 서명해 주세요.
+      </p>
+
+
+      <div
+        id="canvasSignature"
+        class="signature-box"
+      >
+
+        <canvas
+          id="signatureCanvas"
+          width="600"
+          height="200">
+        </canvas>
+
+
+        <button
+          type="button"
+          class="secondary-button"
+          onclick="clearSignature()"
+        >
+          다시 서명하기
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      onclick="confirmSignature()"
+    >
+      서명 확인하고 만족도 조사 →
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 6
+       만족도
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="surveyStep"
+  >
+
+    <div class="step-badge">
+      STEP 6 · 만족도 조사
+    </div>
+
+
+    <h2>
+      교육 만족도 조사
+    </h2>
+
+
+    <p class="step-description">
+      교육에 대한 의견을 남겨 주세요.
+    </p>
+
+
+
+    <!-- 이해도 -->
+
+    <label for="understanding">
+      ① 교육 내용은 이해하기 쉬웠습니까?
+    </label>
+
+    <select id="understanding">
+
+      <option value="">
+        선택해 주세요
+      </option>
+
+      <option value="매우 만족">
+        매우 만족
+      </option>
+
+      <option value="만족">
+        만족
+      </option>
+
+      <option value="보통">
+        보통
+      </option>
+
+      <option value="불만족">
+        불만족
+      </option>
+
+      <option value="매우 불만족">
+        매우 불만족
+      </option>
+
+    </select>
+
+
+
+    <!-- 유익성 -->
+
+    <label for="usefulness">
+      ② 이번 교육이 성폭력 예방에 도움이 되었다고 생각하십니까?
+    </label>
+
+    <select id="usefulness">
+
+      <option value="">
+        선택해 주세요
+      </option>
+
+      <option value="매우 만족">
+        매우 만족
+      </option>
+
+      <option value="만족">
+        만족
+      </option>
+
+      <option value="보통">
+        보통
+      </option>
+
+      <option value="불만족">
+        불만족
+      </option>
+
+      <option value="매우 불만족">
+        매우 불만족
+      </option>
+
+    </select>
+
+
+
+    <!-- 개선 의견 -->
+
+    <label for="comment">
+      ③ 교육에 대한 의견 및 개선사항
+      <span class="optional">
+        (선택)
+      </span>
+    </label>
+
+    <textarea
+      id="comment"
+      rows="5"
+      maxlength="1000"
+      placeholder="교육에 대한 의견이나 개선사항을 자유롭게 작성해 주세요."
+    ></textarea>
+
+
+
+    <button
+      type="button"
+      onclick="completeTraining(event)"
+    >
+      교육 완료하기
+    </button>
+
+  </section>
+
+
+
+  <!-- =========================
+       STEP 7
+       완료
+  ========================== -->
+
+  <section
+    class="card hidden"
+    id="completeStep"
+  >
+
+    <!-- app.js에서 완료 메시지 표시 -->
+
+  </section>
+
+
+</main>
+
 
 
 <!-- =========================
-     JavaScript
+     하단
 ========================== -->
 
-<script src="app.js"></script>
+<footer>
+
+  <p>
+    우신고등학교 · 교직원 성폭력 예방교육
+  </p>
+
+  <p>
+    2026학년도 교직원 법정의무교육
+  </p>
+
+</footer>
+```
+
+  </div>
+
+  <!-- =========================
+       JavaScript
+  ========================== -->
+
+  <script src="app.js"></script>
 
 </body>
 
 </html>
-```
