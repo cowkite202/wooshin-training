@@ -1,4 +1,3 @@
-```css
 /* =========================
    기본 설정
 ========================= */
@@ -71,8 +70,8 @@ button {
   display: inline-block;
   margin-bottom: 14px;
   padding: 6px 15px;
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
@@ -108,13 +107,12 @@ button {
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 28px;
-  color: #1f3555;
   line-height: 1.4;
+  color: #1f3555;
 }
 
 .card h3 {
   color: #29476b;
-  line-height: 1.45;
 }
 
 /* =========================
@@ -131,8 +129,8 @@ button {
 
 .step-badge {
   display: inline-block;
-  margin-bottom: 13px;
-  padding: 6px 13px;
+  margin-bottom: 12px;
+  padding: 5px 13px;
   border-radius: 999px;
   background: #eaf1fb;
   color: #315b9d;
@@ -185,13 +183,17 @@ select:focus,
 textarea:focus {
   border-color: #527fc2;
   box-shadow:
-    0 0 0 3px rgba(82, 127, 194, 0.12);
+    0 0 0 3px rgba(82,127,194,0.12);
 }
 
 textarea {
   resize: vertical;
   min-height: 110px;
 }
+
+/* =========================
+   안내 문구
+========================= */
 
 .hint {
   margin-top: 8px;
@@ -217,34 +219,35 @@ button {
   transition:
     transform 0.15s ease,
     opacity 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease;
+    box-shadow 0.15s ease;
 }
 
-button:hover {
-  opacity: 0.94;
+button:hover:not(:disabled) {
+  opacity: 0.92;
   box-shadow:
-    0 5px 15px rgba(49, 91, 157, 0.2);
+    0 5px 15px rgba(49,91,157,0.2);
 }
 
-button:active {
+button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
 button:disabled {
   opacity: 0.45;
-  background: #aeb8c6;
-  color: #ffffff;
   cursor: not-allowed;
   box-shadow: none;
 }
+
+/* =========================
+   보조 버튼
+========================= */
 
 .secondary-button {
   background: #eef2f7;
   color: #42536a;
 }
 
-.secondary-button:hover {
+.secondary-button:hover:not(:disabled) {
   background: #e5eaf1;
 }
 
@@ -263,145 +266,141 @@ button:disabled {
 .video-wrap iframe {
   display: block;
   width: 100%;
-  height: 450px;
+  min-height: 450px;
   border: 0;
 }
 
 /* =========================
-   영상 완료 안내
-========================= */
-
-.video-complete-notice {
-  margin-top: 18px;
-  padding: 15px 18px;
-  border-radius: 12px;
-  background: #eef8f1;
-  border: 1px solid #c8e4d0;
-  color: #327348;
-  font-weight: 600;
-}
-
-/* =========================
-   교육 페이지 공통
+   교육 페이지
 ========================= */
 
 .education-page {
-  margin-top: 10px;
+  margin-top: 25px;
+}
+
+.education-header {
+  margin-bottom: 20px;
+}
+
+.education-header h2 {
+  margin-bottom: 8px;
 }
 
 .education-image {
   width: 100%;
-  height: 220px;
-  margin: 20px 0 25px;
+  min-height: 220px;
+  margin: 20px 0;
   border-radius: 18px;
   overflow: hidden;
+  background: #edf3fa;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    #edf4ff,
-    #f8fbff
-  );
-  border: 1px solid #dce6f2;
-  font-size: 75px;
 }
 
+.education-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 330px;
+  object-fit: cover;
+}
+
+.education-image-placeholder {
+  padding: 45px 20px;
+  text-align: center;
+  color: #52709a;
+  font-size: 45px;
+}
+
+/* =========================
+   교육 내용 박스
+========================= */
+
 .education-content {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .education-content h3 {
-  margin-top: 24px;
+  margin-top: 25px;
   margin-bottom: 10px;
   font-size: 20px;
 }
 
 .education-content p {
   margin: 8px 0;
-  color: #4d5d71;
 }
 
 .education-content ul {
+  margin: 12px 0;
   padding-left: 22px;
 }
 
 .education-content li {
-  margin-bottom: 9px;
-  color: #4d5d71;
+  margin-bottom: 8px;
 }
 
-.education-highlight {
+/* =========================
+   핵심 포인트
+========================= */
+
+.point-box {
   margin: 20px 0;
-  padding: 18px 20px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f5f8fc;
   border-left: 5px solid #527fc2;
-  border-radius: 10px;
-  background: #f3f7fc;
 }
 
-.education-highlight strong {
+.point-box strong {
   color: #315b9d;
 }
 
 /* =========================
-   교육 페이지 체크박스
+   체크박스 확인 영역
 ========================= */
 
-.education-confirm {
-  margin-top: 30px;
-  padding: 20px;
+.education-check {
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px solid #dce4ee;
   border-radius: 14px;
-  background: #f8fafc;
-  border: 1px solid #dce3ec;
+  background: #f9fbfd;
 }
 
-.confirm-label {
+.education-check label {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 10px;
   margin: 0;
-  padding: 4px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  line-height: 1.6;
 }
 
-.confirm-label input[type="checkbox"] {
+.education-check input[type="checkbox"] {
   width: 21px;
   height: 21px;
-  min-width: 21px;
-  margin-top: 3px;
+  margin: 3px 0 0;
+  flex-shrink: 0;
   cursor: pointer;
-  accent-color: #315b9d;
 }
 
-.confirm-text {
+.check-text {
   flex: 1;
 }
 
 /* =========================
-   교육 페이지 진행 표시
+   교육 페이지 진행상황
 ========================= */
 
 .education-progress {
-  display: flex;
-  gap: 7px;
-  margin: 20px 0 25px;
-}
-
-.education-progress span {
-  flex: 1;
-  height: 7px;
-  border-radius: 999px;
-  background: #e1e7ef;
-}
-
-.education-progress span.active {
-  background: #315b9d;
-}
-
-.education-progress span.completed {
-  background: #6da37b;
+  margin: 15px 0 25px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background: #eef4fb;
+  color: #315b9d;
+  text-align: center;
+  font-weight: 700;
 }
 
 /* =========================
@@ -435,21 +434,36 @@ button:disabled {
 }
 
 .summary-icon {
-  font-size: 32px;
+  font-size: 30px;
 }
 
 /* =========================
-   퀴즈
+   퀴즈 진행
 ========================= */
 
 .quiz-progress {
   margin: 15px 0 20px;
-  padding: 11px 14px;
+  padding: 12px 14px;
   border-radius: 9px;
   background: #eef4fb;
   color: #315b9d;
   font-weight: 700;
   text-align: center;
+}
+
+.quiz-attempt {
+  margin-bottom: 15px;
+  text-align: right;
+  font-size: 14px;
+  color: #7a8797;
+}
+
+/* =========================
+   문제
+========================= */
+
+.question {
+  margin-top: 10px;
 }
 
 .question h3 {
@@ -459,8 +473,14 @@ button:disabled {
   line-height: 1.5;
 }
 
+/* =========================
+   보기
+========================= */
+
 .choice {
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   margin: 10px 0;
   padding: 15px;
   border: 1px solid #dce3ec;
@@ -476,9 +496,15 @@ button:disabled {
 }
 
 .choice input {
-  margin-right: 8px;
-  accent-color: #315b9d;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
 }
+
+/* =========================
+   정답 / 오답
+========================= */
 
 .choice.correct {
   border-color: #5a9c70;
@@ -488,20 +514,6 @@ button:disabled {
 .choice.incorrect {
   border-color: #d96b6b;
   background: #fff0f0;
-}
-
-/* =========================
-   재도전 안내
-========================= */
-
-.retry-notice {
-  margin-top: 15px;
-  padding: 15px;
-  border-radius: 11px;
-  background: #fff8e8;
-  border: 1px solid #f0d99b;
-  color: #7c5c15;
-  font-weight: 600;
 }
 
 /* =========================
@@ -668,12 +680,16 @@ button:disabled {
    만족도 조사
 ========================= */
 
-.survey-question {
-  margin-bottom: 22px;
+.survey-item {
+  margin-bottom: 25px;
 }
 
-.survey-question label {
+.survey-item label {
   margin-top: 0;
+}
+
+.survey-item select {
+  margin-top: 5px;
 }
 
 /* =========================
@@ -693,44 +709,18 @@ button:disabled {
   margin: 8px 0;
 }
 
-.completion-icon {
-  margin-bottom: 10px;
-  font-size: 55px;
-}
-
 /* =========================
-   이미 이수한 경우
+   저장 중 표시
 ========================= */
 
-.already-completed {
-  margin-top: 20px;
-  padding: 25px;
-  border-radius: 15px;
-  background: #eef8f1;
-  border: 1px solid #c8e4d0;
-  text-align: center;
-}
-
-.already-completed h3 {
-  margin-top: 0;
-  color: #327348;
-}
-
-.already-completed p {
-  color: #4d5d71;
-}
-
-/* =========================
-   오류 메시지
-========================= */
-
-.error-message {
+.saving-message {
   margin-top: 15px;
-  padding: 15px;
+  padding: 14px;
   border-radius: 10px;
-  background: #fff3f3;
-  border: 1px solid #efd0d0;
-  color: #b74e4e;
+  background: #eef4fb;
+  color: #315b9d;
+  text-align: center;
+  font-weight: 700;
 }
 
 /* =========================
@@ -786,24 +776,20 @@ footer {
   }
 
   .video-wrap iframe {
+    min-height: 220px;
     height: 220px;
   }
 
   .education-image {
-    height: 170px;
-    font-size: 60px;
+    min-height: 170px;
+  }
+
+  .education-image img {
+    max-height: 230px;
   }
 
   .education-content h3 {
     font-size: 18px;
-  }
-
-  .education-confirm {
-    padding: 17px;
-  }
-
-  .confirm-label {
-    font-size: 14px;
   }
 
   .result-score h1 {
@@ -817,6 +803,11 @@ footer {
   button {
     min-height: 48px;
   }
+
+  .choice {
+    padding: 13px;
+  }
+
 }
 
 /* =========================
@@ -841,13 +832,8 @@ footer {
     padding: 22px 15px;
   }
 
-  .education-image {
-    height: 150px;
-    font-size: 52px;
-  }
-
   #signatureCanvas {
     height: 160px;
   }
+
 }
-```
