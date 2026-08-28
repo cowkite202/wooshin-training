@@ -3,6 +3,10 @@ const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyl6Qq03k4zIjHv8buA_TqtYVy4vLVmeYde2j68LD59XqpKBATQFaetN36EDyMTPLi2mQ/exec";
 
 
+/* =========================
+   퀴즈 문제
+========================= */
+
 const questions = [
   {
     question: "성폭력 예방을 위해 가장 바람직한 태도는 무엇입니까?",
@@ -117,6 +121,10 @@ const questions = [
 ];
 
 
+/* =========================
+   전역 변수
+========================= */
+
 let userName = "";
 let currentQuestion = 0;
 let answers = [];
@@ -129,7 +137,7 @@ let hasSignature = false;
 
 
 /* =========================
-   시작
+   교육 시작
 ========================= */
 
 function startTraining() {
@@ -668,6 +676,8 @@ function showKeyMessage() {
     .classList
     .remove("hidden");
 
+  hasSignature = false;
+
   setTimeout(function() {
 
     initSignatureCanvas();
@@ -741,6 +751,8 @@ function initSignatureCanvas() {
 
 
   function startDrawing(event) {
+
+    event.preventDefault();
 
     drawing = true;
 
@@ -864,10 +876,11 @@ function confirmSignature() {
 
 
 /* =========================
-   STEP 7 교육 완료
+   STEP 7 교육 완료 및
+   Google Sheets 저장
 ========================= */
 
-async function completeTraining() {
+async function completeTraining(event) {
 
   const understanding =
     document
@@ -886,16 +899,22 @@ async function completeTraining() {
       .trim();
 
 
-  // 서명을 이미지 데이터로 변환
-  const signatureData =
-    canvas.toDataURL(
-      "image/png"
-    );
+  let signatureData = "";
+
+  if (canvas && hasSignature) {
+
+    signatureData =
+      canvas.toDataURL(
+        "image/png"
+      );
+
+  }
 
 
   const record = {
 
-    name: userName,
+    name:
+      userName,
 
     score:
       score * 10,
@@ -916,10 +935,16 @@ async function completeTraining() {
 
 
   const button =
-    event.target;
+    event
+      ? event.target
+      : document.querySelector(
+          '#surveyStep button'
+        );
+
 
   const originalText =
     button.innerText;
+
 
   button.disabled = true;
 
@@ -933,13 +958,17 @@ async function completeTraining() {
       GOOGLE_SCRIPT_URL,
       {
 
-        method: "POST",
+        method:
+          "POST",
 
-        mode: "no-cors",
+        mode:
+          "no-cors",
 
         headers: {
+
           "Content-Type":
             "text/plain;charset=utf-8"
+
         },
 
         body:
@@ -1025,4 +1054,3 @@ function scrollTop() {
   });
 
 }
-```
