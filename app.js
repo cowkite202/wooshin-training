@@ -435,8 +435,15 @@ async function startTraining() {
         encodeURIComponent(userName)
       );
 
+
     const data =
       await response.json();
+
+
+    console.log(
+      "이수 여부 확인 결과:",
+      data
+    );
 
 
     if (data.completed) {
@@ -467,7 +474,10 @@ async function startTraining() {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "이수 여부 확인 오류:",
+      error
+    );
 
     alert(
       "이수 여부 확인 중 오류가 발생했습니다.\n" +
@@ -491,7 +501,6 @@ async function startTraining() {
 function hideAllSteps() {
 
   const ids = [
-
     "start",
     "videoStep",
     "trainingStep",
@@ -500,7 +509,6 @@ function hideAllSteps() {
     "messageStep",
     "surveyStep",
     "completeStep"
-
   ];
 
 
@@ -1592,29 +1600,35 @@ async function completeTraining(event) {
 
   try {
 
+    /*
+      Google Apps Script로 교육 이수 기록 전송
+
+      no-cors는 GitHub 페이지에서
+      Apps Script로 데이터를 전송하기 위해 사용합니다.
+    */
+
     await fetch(
       GOOGLE_SCRIPT_URL,
       {
+        method: "POST",
 
-        method:
-          "POST",
-
-        mode:
-          "no-cors",
+        mode: "no-cors",
 
         headers: {
-
           "Content-Type":
             "text/plain;charset=utf-8"
-
         },
 
         body:
           JSON.stringify(record)
-
       }
     );
 
+
+    /*
+      no-cors에서는 서버 응답을 읽을 수 없기 때문에
+      전송이 완료되면 완료 화면으로 이동합니다.
+    */
 
     hideAllSteps();
 
@@ -1671,11 +1685,14 @@ async function completeTraining(event) {
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "교육 기록 저장 오류:",
+      error
+    );
 
 
     alert(
-      "교육 기록 저장 중 오류가 발생했습니다.\n" +
+      "교육 이수 기록 저장 중 오류가 발생했습니다.\n" +
       "잠시 후 다시 시도해 주세요."
     );
 
