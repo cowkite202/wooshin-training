@@ -1,3 +1,4 @@
+javascript
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbysXqcNrTxC1_h6vcm6jVCLkMK6Mm41Pu8lsU-LgDZjq6VALYepiZwHQ8LmY-aJRuFOsw/exec";
 
@@ -21,6 +22,7 @@ let drawing = false;
 
 /* =====================================================
    6개 교육 페이지
+   - 동영상 이후 요점정리
 ===================================================== */
 
 const trainingPages = [
@@ -53,6 +55,7 @@ const trainingPages = [
     `
   },
 
+
   {
     title: "2. 직장 내 성희롱 예방",
     image: "🤝",
@@ -81,6 +84,7 @@ const trainingPages = [
     `
   },
 
+
   {
     title: "3. 동의와 개인적 경계",
     image: "💬",
@@ -106,6 +110,7 @@ const trainingPages = [
       </div>
     `
   },
+
 
   {
     title: "4. 피해자 보호와 2차 피해 예방",
@@ -136,6 +141,7 @@ const trainingPages = [
     `
   },
 
+
   {
     title: "5. 디지털 성범죄 예방",
     image: "📱",
@@ -163,6 +169,7 @@ const trainingPages = [
       </div>
     `
   },
+
 
   {
     title: "6. 안전한 학교문화 만들기",
@@ -195,10 +202,189 @@ const trainingPages = [
 
 
 /* =====================================================
+   교직원으로서 지켜야 할 경계
+   - 6개 요점정리 이후
+===================================================== */
+
+const boundaryContent = `
+
+  <div class="boundary-intro">
+
+    <h2>교직원으로서 지켜야 할 경계</h2>
+
+    <p>
+      학교에서는 학생과 교직원, 교직원과 교직원 사이에
+      서로 존중해야 할 전문적인 경계가 있습니다.
+    </p>
+
+    <p>
+      친근함이나 농담이라는 이유로
+      상대방의 경계를 넘지 않도록 주의해야 합니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>① 학생의 외모와 사생활</h3>
+
+    <p>
+      학생의 외모, 체형, 연애, 가족관계 등
+      사적인 영역에 대한 불필요한 언급은 피합니다.
+    </p>
+
+    <div class="info-box">
+      <strong>예를 들어</strong>
+      <p>
+        "요즘 몸이 좋아졌네.",
+        "여자친구 있어?",
+        "너 인기 많겠다."
+        등의 말은 친근함의 표현이라도
+        학생에게 불편함을 줄 수 있습니다.
+      </p>
+    </div>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      학생의 사생활보다 교육적 관계를 우선합니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>② 학생과의 신체 접촉</h3>
+
+    <p>
+      격려나 친근함을 표현하기 위한 행동이라도
+      불필요한 신체 접촉은 줄이는 것이 좋습니다.
+    </p>
+
+    <p>
+      특히 반복적인 어깨·등 만지기,
+      장난을 이유로 한 신체 접촉 등은 주의합니다.
+    </p>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      친근함도 상대방의 경계를 넘지 않아야 합니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>③ 학생과의 장난과 성적인 농담</h3>
+
+    <p>
+      "남학생끼리니까 괜찮다"거나
+      "장난일 뿐이다"라는 이유로
+      성적인 농담이나 부적절한 표현에 참여해서는 안 됩니다.
+    </p>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      장난이라는 이유로 경계가 사라지는 것은 아닙니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>④ 학생과의 개인적인 연락</h3>
+
+    <p>
+      학생과의 연락은 교육적 목적과 범위 안에서 이루어지도록 합니다.
+    </p>
+
+    <p>
+      늦은 시간의 사적인 대화,
+      불필요한 개인적인 연락,
+      지나치게 친밀한 관계로 이어지는 연락은 주의합니다.
+    </p>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      학생과는 친밀함보다 전문성이 우선입니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>⑤ 동료 교직원과의 말과 행동</h3>
+
+    <p>
+      친한 동료라 하더라도 외모, 연애, 결혼,
+      사생활 등에 대한 불필요한 언급이나
+      성적인 농담은 피해야 합니다.
+    </p>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      친밀함이 상대방의 동의를 대신할 수는 없습니다.
+    </p>
+
+  </div>
+
+
+  <div class="boundary-item">
+
+    <h3>⑥ 회식과 단체대화방에서도 같은 기준</h3>
+
+    <p>
+      회식 자리나 교직원 단체대화방에서도
+      학교 안에서와 같은 존중의 기준을 지켜야 합니다.
+    </p>
+
+    <p>
+      성적인 농담이나 이미지가 올라왔을 때
+      웃음이나 이모티콘으로 동조하거나
+      다른 사람에게 다시 전달하지 않습니다.
+    </p>
+
+    <p class="boundary-key">
+      <strong>💡 핵심:</strong>
+      온라인과 오프라인 모두 존중의 기준은 같습니다.
+    </p>
+
+  </div>
+
+
+  <div class="info-box boundary-final">
+
+    <strong>🌱 기억하세요</strong>
+
+    <p>
+      <strong>
+        친근함보다 존중,
+        의도보다 상대방의 입장,
+        사적인 관계보다 전문적인 관계
+      </strong>
+      를 선택합니다.
+    </p>
+
+  </div>
+
+`;
+
+
+/* =====================================================
    퀴즈 15문제
+   - 기존 10문제
+   - 새 상황형 5문제
 ===================================================== */
 
 const questions = [
+
+  /* -------------------------------------------------
+     기존 유지 문제 1
+  ------------------------------------------------- */
 
   {
     question: "성폭력 예방을 위해 가장 바람직한 태도는?",
@@ -213,18 +399,10 @@ const questions = [
       "성폭력 예방의 기본은 상대방의 의사와 개인적인 경계를 존중하는 것입니다."
   },
 
-  {
-    question: "직장 내 성희롱 예방을 위해 주의해야 할 행동은?",
-    choices: [
-      "동료의 의사를 존중한다.",
-      "상대방이 불편해하면 행동을 멈춘다.",
-      "상대방의 외모를 반복적으로 평가한다.",
-      "성적인 농담이나 발언을 주의한다."
-    ],
-    answer: 2,
-    explanation:
-      "상대방의 외모를 반복적으로 평가하는 행동은 불쾌감이나 성적 굴욕감을 줄 수 있으므로 주의해야 합니다."
-  },
+
+  /* -------------------------------------------------
+     기존 유지 문제 2
+  ------------------------------------------------- */
 
   {
     question: "상대방이 불편함을 표현했을 때 가장 적절한 행동은?",
@@ -239,6 +417,11 @@ const questions = [
       "상대방이 불편함이나 거부 의사를 표현하면 즉시 행동을 멈추고 그 의사를 존중해야 합니다."
   },
 
+
+  /* -------------------------------------------------
+     기존 유지 문제 3
+  ------------------------------------------------- */
+
   {
     question: "2차 피해에 해당할 수 있는 행동은?",
     choices: [
@@ -251,6 +434,11 @@ const questions = [
     explanation:
       "피해자를 비난하거나 피해 원인을 피해자에게 돌리는 행동은 2차 피해가 될 수 있습니다."
   },
+
+
+  /* -------------------------------------------------
+     기존 유지 문제 4
+  ------------------------------------------------- */
 
   {
     question: "피해 사실을 알게 된 동료의 태도로 가장 적절한 것은?",
@@ -265,70 +453,10 @@ const questions = [
       "피해자의 의사를 존중하고 피해 사실과 개인정보가 불필요하게 확산되지 않도록 주의해야 합니다."
   },
 
-  {
-    question: "디지털 성범죄 예방과 관련하여 옳은 것은?",
-    choices: [
-      "친한 사람에게는 동의 없이 사진을 보내도 된다.",
-      "온라인에서는 현실보다 책임이 적다.",
-      "동의 없는 촬영과 공유를 하지 않는다.",
-      "삭제 요청을 무시해도 된다."
-    ],
-    answer: 2,
-    explanation:
-      "디지털 공간에서도 동의와 개인정보 보호 원칙은 동일하게 적용됩니다."
-  },
 
-  {
-    question: "성적인 농담에 대한 설명으로 옳은 것은?",
-    choices: [
-      "농담이면 항상 문제가 없다.",
-      "친한 동료에게는 문제가 없다.",
-      "상대방이 불편할 수 있으므로 주의해야 한다.",
-      "웃었다면 항상 동의한 것이다."
-    ],
-    answer: 2,
-    explanation:
-      "말한 사람의 의도가 농담이었다고 하더라도 상대방에게 불쾌감이나 성적 굴욕감을 줄 수 있으므로 주의해야 합니다."
-  },
-
-  {
-    question: "동의에 대한 설명으로 옳은 것은?",
-    choices: [
-      "침묵은 항상 동의이다.",
-      "친분이 있으면 동의가 필요 없다.",
-      "상대방의 의사를 확인하는 것이 중요하다.",
-      "한 번 동의하면 언제나 동의한 것이다."
-    ],
-    answer: 2,
-    explanation:
-      "상대방의 의사는 상황에 따라 달라질 수 있으므로 필요한 경우 명확하게 확인하는 것이 중요합니다."
-  },
-
-  {
-    question: "안전한 학교문화에 필요한 것은?",
-    choices: [
-      "문제 제기를 어렵게 한다.",
-      "상호 존중을 실천한다.",
-      "불편함을 개인적으로 참도록 한다.",
-      "직급에 따라 기준을 다르게 적용한다."
-    ],
-    answer: 1,
-    explanation:
-      "상호 존중과 안전한 의사표현이 가능한 조직문화를 만드는 것이 중요합니다."
-  },
-
-  {
-    question: "피해자에게 가장 적절한 태도는?",
-    choices: [
-      "왜 그런 행동을 했는지 따진다.",
-      "사실인지 계속 확인한다.",
-      "피해자의 말을 경청한다.",
-      "주변 사람에게 피해 사실을 알린다."
-    ],
-    answer: 2,
-    explanation:
-      "피해자의 말을 경청하고 필요한 도움을 받을 수 있도록 안내하는 것이 중요합니다."
-  },
+  /* -------------------------------------------------
+     기존 유지 문제 5
+  ------------------------------------------------- */
 
   {
     question: "성폭력 예방의 책임은 누구에게 있습니까?",
@@ -343,6 +471,29 @@ const questions = [
       "안전한 학교문화를 만드는 것은 모든 학교 구성원이 함께 노력해야 하는 과제입니다."
   },
 
+
+  /* -------------------------------------------------
+     기존 유지 문제 6
+  ------------------------------------------------- */
+
+  {
+    question: "동의에 대한 설명으로 옳은 것은?",
+    choices: [
+      "침묵은 항상 동의이다.",
+      "친분이 있으면 동의가 필요 없다.",
+      "상대방의 의사를 확인하는 것이 중요하다.",
+      "한 번 동의하면 언제나 동의한 것이다."
+    ],
+    answer: 2,
+    explanation:
+      "상대방의 의사는 상황에 따라 달라질 수 있으므로 필요한 경우 명확하게 확인하는 것이 중요합니다."
+  },
+
+
+  /* -------------------------------------------------
+     기존 유지 문제 7
+  ------------------------------------------------- */
+
   {
     question: "상대방의 개인적 경계를 존중하는 방법은?",
     choices: [
@@ -355,6 +506,11 @@ const questions = [
     explanation:
       "상대방의 의사를 확인하고 불편함이나 거부 의사가 있을 경우 이를 존중해야 합니다."
   },
+
+
+  /* -------------------------------------------------
+     기존 유지 문제 8
+  ------------------------------------------------- */
 
   {
     question: "성희롱 예방을 위한 행동으로 적절한 것은?",
@@ -369,18 +525,28 @@ const questions = [
       "자신의 행동이 상대방에게 어떻게 받아들여질 수 있는지 살피는 태도가 필요합니다."
   },
 
+
+  /* -------------------------------------------------
+     기존 유지 문제 9
+  ------------------------------------------------- */
+
   {
-    question: "디지털 공간에서 개인정보 보호를 위해 필요한 것은?",
+    question: "디지털 성범죄 예방과 관련하여 옳은 것은?",
     choices: [
-      "동의 없이 사진을 공유한다.",
-      "개인정보와 사생활을 보호한다.",
-      "단체 채팅방에 자유롭게 올린다.",
-      "삭제 요청을 무시한다."
+      "친한 사람에게는 동의 없이 사진을 보내도 된다.",
+      "온라인에서는 현실보다 책임이 적다.",
+      "동의 없는 촬영과 공유를 하지 않는다.",
+      "삭제 요청을 무시해도 된다."
     ],
-    answer: 1,
+    answer: 2,
     explanation:
-      "디지털 공간에서도 개인정보와 사생활을 보호해야 합니다."
+      "디지털 공간에서도 동의와 개인정보 보호 원칙은 동일하게 적용됩니다."
   },
+
+
+  /* -------------------------------------------------
+     기존 유지 문제 10
+  ------------------------------------------------- */
 
   {
     question: "교육 내용을 실제 학교생활에서 실천하는 가장 좋은 방법은?",
@@ -393,6 +559,121 @@ const questions = [
     answer: 0,
     explanation:
       "서로의 경계를 존중하고 안전한 의사소통을 실천하는 것이 성폭력 예방의 시작입니다."
+  },
+
+
+  /* =================================================
+     새 상황형 문제 5개
+  ================================================= */
+
+
+  /* -------------------------------------------------
+     상황형 1
+  ------------------------------------------------- */
+
+  {
+    question:
+      "체육활동 후 교사가 학생에게 \"요즘 몸이 좋아졌네. 여자친구 생기겠어.\"라고 말했다. 가장 적절한 판단은?",
+
+    choices: [
+      "남학생끼리 하는 농담이므로 괜찮다.",
+      "학생이 웃었다면 문제가 없다.",
+      "학생의 외모와 사생활에 대한 불필요한 언급은 피하는 것이 좋다.",
+      "친근함을 표현한 것이므로 문제가 없다."
+    ],
+
+    answer: 2,
+
+    explanation:
+      "학생의 외모나 연애 등 사적인 영역에 대한 불필요한 언급은 학생에게 불편함을 줄 수 있으므로 피하는 것이 좋습니다."
+  },
+
+
+  /* -------------------------------------------------
+     상황형 2
+  ------------------------------------------------- */
+
+  {
+    question:
+      "교사가 학생을 격려한다는 이유로 어깨나 등을 반복해서 만지고 있다. 학생은 특별히 싫다는 말을 하지 않았다. 가장 적절한 행동은?",
+
+    choices: [
+      "학생이 싫다고 말하지 않았으므로 계속한다.",
+      "교사의 의도가 좋았다면 괜찮다.",
+      "불필요한 신체 접촉은 줄이고 말로 격려한다.",
+      "친한 학생에게는 신체 접촉을 해도 괜찮다."
+    ],
+
+    answer: 2,
+
+    explanation:
+      "학생이 명시적으로 거부하지 않았더라도 불필요한 신체 접촉은 줄이고 말이나 다른 적절한 방법으로 격려하는 것이 바람직합니다."
+  },
+
+
+  /* -------------------------------------------------
+     상황형 3
+  ------------------------------------------------- */
+
+  {
+    question:
+      "교사가 \"남학생들끼리니까 괜찮다\"며 학생들의 성적인 농담에 함께 웃고 농담을 주고받았다. 가장 적절한 행동은?",
+
+    choices: [
+      "학생들이 먼저 시작했으므로 괜찮다.",
+      "학생과의 관계에서는 성적인 농담이나 장난을 피한다.",
+      "학생들이 웃었다면 계속해도 된다.",
+      "친근한 교사라는 인상을 주기 위해 함께 참여한다."
+    ],
+
+    answer: 1,
+
+    explanation:
+      "학생과 교직원의 관계에서는 성적인 농담이나 장난을 피해야 합니다. 남학생이라는 이유로 전문적인 경계가 달라지는 것은 아닙니다."
+  },
+
+
+  /* -------------------------------------------------
+     상황형 4
+  ------------------------------------------------- */
+
+  {
+    question:
+      "교직원 단체대화방에 특정 교직원의 외모나 연애를 소재로 한 성적인 농담이 올라왔다. 가장 바람직한 행동은?",
+
+    choices: [
+      "재미있는 내용이면 웃음이나 이모티콘으로 반응한다.",
+      "친한 동료에게 개인적으로 다시 전달한다.",
+      "아무런 문제가 없으므로 계속 대화한다.",
+      "동조하거나 확산하지 않고 부적절한 대화에는 참여하지 않는다."
+    ],
+
+    answer: 3,
+
+    explanation:
+      "교직원 사이에서도 존중의 기준은 동일합니다. 성적인 농담이나 부적절한 내용에 동조하거나 확산하지 않는 것이 바람직합니다."
+  },
+
+
+  /* -------------------------------------------------
+     상황형 5
+  ------------------------------------------------- */
+
+  {
+    question:
+      "친한 동료에게 농담을 했는데 상대방이 \"그런 이야기는 불편하다.\"라고 말했다. 가장 적절한 반응은?",
+
+    choices: [
+      "상대방의 이야기를 듣고 해당 말이나 행동을 멈춘다.",
+      "\"그럴 의도는 아니었어.\"라고 먼저 설명한다.",
+      "\"친한 사이인데 너무 예민한 것 아니야?\"라고 말한다.",
+      "다른 동료들에게 상황을 이야기한다."
+    ],
+
+    answer: 0,
+
+    explanation:
+      "상대방이 불편함을 표현했다면 의도와 관계없이 그 말을 듣고 행동을 멈추는 것이 중요합니다. 친밀함이 상대방의 경계를 대신할 수는 없습니다."
   }
 
 ];
@@ -404,23 +685,34 @@ const questions = [
 
 async function startTraining() {
 
-  const input = document.getElementById("name");
+  const input =
+    document.getElementById("name");
 
-  userName = input.value.trim();
+  userName =
+    input.value.trim();
+
 
   if (!userName) {
 
-    alert("성명을 입력해 주세요.");
+    alert(
+      "성명을 입력해 주세요."
+    );
 
     input.focus();
 
     return;
+
   }
 
-  const button =
-    document.querySelector("#start button");
 
-  button.disabled = true;
+  const button =
+    document.querySelector(
+      "#start button"
+    );
+
+
+  button.disabled =
+    true;
 
   button.innerText =
     "이수 여부 확인 중...";
@@ -453,21 +745,26 @@ async function startTraining() {
         " 선생님은 이미 교육을 이수하셨습니다."
       );
 
-      button.disabled = false;
+
+      button.disabled =
+        false;
 
       button.innerText =
         "교육 시작하기";
 
       return;
+
     }
 
 
     hideAllSteps();
 
+
     document
       .getElementById("videoStep")
       .classList
       .remove("hidden");
+
 
     scrollTop();
 
@@ -479,12 +776,15 @@ async function startTraining() {
       error
     );
 
+
     alert(
       "이수 여부 확인 중 오류가 발생했습니다.\n" +
       "잠시 후 다시 시도해 주세요."
     );
 
-    button.disabled = false;
+
+    button.disabled =
+      false;
 
     button.innerText =
       "교육 시작하기";
@@ -512,18 +812,23 @@ function hideAllSteps() {
   ];
 
 
-  ids.forEach(function(id) {
+  ids.forEach(
+    function(id) {
 
-    const element =
-      document.getElementById(id);
+      const element =
+        document.getElementById(id);
 
-    if (element) {
 
-      element.classList.add("hidden");
+      if (element) {
+
+        element.classList.add(
+          "hidden"
+        );
+
+      }
 
     }
-
-  });
+  );
 
 }
 
@@ -535,16 +840,23 @@ function hideAllSteps() {
 function toggleVideoButton() {
 
   const check =
-    document.getElementById("videoCheck");
+    document.getElementById(
+      "videoCheck"
+    );
+
 
   const button =
-    document.getElementById("videoNextButton");
+    document.getElementById(
+      "videoNextButton"
+    );
+
 
   if (!check || !button) {
 
     return;
 
   }
+
 
   button.disabled =
     !check.checked;
@@ -559,7 +871,10 @@ function toggleVideoButton() {
 function showTrainingPages() {
 
   const videoCheck =
-    document.getElementById("videoCheck");
+    document.getElementById(
+      "videoCheck"
+    );
+
 
   if (
     !videoCheck ||
@@ -574,16 +889,21 @@ function showTrainingPages() {
 
   }
 
+
   currentPage = 0;
 
+
   hideAllSteps();
+
 
   document
     .getElementById("trainingStep")
     .classList
     .remove("hidden");
 
+
   renderTrainingPage();
+
 
   scrollTop();
 
@@ -598,6 +918,7 @@ function renderTrainingPage() {
 
   const page =
     trainingPages[currentPage];
+
 
   const container =
     document.getElementById(
@@ -641,11 +962,15 @@ function renderTrainingPage() {
       "trainingNextButton"
     );
 
-  nextButton.disabled = true;
+
+  nextButton.disabled =
+    true;
+
 
   nextButton.innerText =
-    currentPage === trainingPages.length - 1
-      ? "15문제 퀴즈 시작하기 →"
+    currentPage ===
+    trainingPages.length - 1
+      ? "교직원으로서 지켜야 할 경계 →"
       : "다음 페이지 →";
 
 
@@ -661,18 +986,23 @@ function renderTrainingPage() {
 function togglePageButton() {
 
   const check =
-    document.getElementById("pageCheck");
+    document.getElementById(
+      "pageCheck"
+    );
+
 
   const button =
     document.getElementById(
       "trainingNextButton"
     );
 
+
   if (!check || !button) {
 
     return;
 
   }
+
 
   button.disabled =
     !check.checked;
@@ -687,9 +1017,15 @@ function togglePageButton() {
 function nextTrainingPage() {
 
   const check =
-    document.getElementById("pageCheck");
+    document.getElementById(
+      "pageCheck"
+    );
 
-  if (!check || !check.checked) {
+
+  if (
+    !check ||
+    !check.checked
+  ) {
 
     alert(
       "교육 내용을 확인했다는 항목에 체크해 주세요."
@@ -713,7 +1049,7 @@ function nextTrainingPage() {
 
   } else {
 
-    startQuiz();
+    showBoundarySection();
 
   }
 
@@ -731,11 +1067,13 @@ function updatePageProgress() {
       "trainingProgress"
     );
 
+
   if (!progress) {
 
     return;
 
   }
+
 
   progress.innerText =
     "교육 내용 " +
@@ -747,10 +1085,142 @@ function updatePageProgress() {
 
 
 /* =====================================================
+   교직원으로서 지켜야 할 경계 표시
+===================================================== */
+
+function showBoundarySection() {
+
+  const container =
+    document.getElementById(
+      "trainingContent"
+    );
+
+
+  const nextButton =
+    document.getElementById(
+      "trainingNextButton"
+    );
+
+
+  if (!container || !nextButton) {
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div class="training-image">
+      🚦
+    </div>
+
+    ${boundaryContent}
+
+    <label class="confirm-check">
+
+      <input
+        type="checkbox"
+        id="boundaryCheck"
+        onchange="toggleBoundaryButton()"
+      >
+
+      <span>
+        위 내용을 확인하고 숙지했습니다.
+      </span>
+
+    </label>
+
+  `;
+
+
+  const progress =
+    document.getElementById(
+      "trainingProgress"
+    );
+
+
+  if (progress) {
+
+    progress.innerText =
+      "교직원으로서 지켜야 할 경계";
+
+  }
+
+
+  nextButton.disabled =
+    true;
+
+
+  nextButton.innerText =
+    "15문제 퀴즈 시작하기 →";
+
+
+  nextButton.onclick =
+    startQuiz;
+
+
+  scrollTop();
+
+}
+
+
+/* =====================================================
+   경계 내용 체크
+===================================================== */
+
+function toggleBoundaryButton() {
+
+  const check =
+    document.getElementById(
+      "boundaryCheck"
+    );
+
+
+  const button =
+    document.getElementById(
+      "trainingNextButton"
+    );
+
+
+  if (!check || !button) {
+
+    return;
+
+  }
+
+
+  button.disabled =
+    !check.checked;
+
+}
+
+
+/* =====================================================
    퀴즈 시작
 ===================================================== */
 
 function startQuiz() {
+
+  const boundaryCheck =
+    document.getElementById(
+      "boundaryCheck"
+    );
+
+
+  if (
+    boundaryCheck &&
+    !boundaryCheck.checked
+  ) {
+
+    alert(
+      "「교직원으로서 지켜야 할 경계」 내용을 확인했다는 항목에 체크해 주세요."
+    );
+
+    return;
+
+  }
+
 
   currentQuestion = 0;
 
@@ -760,14 +1230,18 @@ function startQuiz() {
 
   retryUsed = false;
 
+
   hideAllSteps();
+
 
   document
     .getElementById("quizStep")
     .classList
     .remove("hidden");
 
+
   renderQuestion();
+
 
   scrollTop();
 
@@ -782,13 +1256,16 @@ function renderQuestion() {
 
   retryUsed = false;
 
+
   const question =
     questions[currentQuestion];
+
 
   const progress =
     document.getElementById(
       "quizProgress"
     );
+
 
   const content =
     document.getElementById(
@@ -854,7 +1331,8 @@ function renderQuestion() {
   `;
 
 
-  content.innerHTML = html;
+  content.innerHTML =
+    html;
 
 }
 
@@ -873,7 +1351,9 @@ function checkAnswer() {
 
   if (!selected) {
 
-    alert("답을 선택해 주세요.");
+    alert(
+      "답을 선택해 주세요."
+    );
 
     return;
 
@@ -881,13 +1361,18 @@ function checkAnswer() {
 
 
   const selectedAnswer =
-    Number(selected.value);
+    Number(
+      selected.value
+    );
+
 
   const question =
     questions[currentQuestion];
 
+
   const isCorrect =
-    selectedAnswer === question.answer;
+    selectedAnswer ===
+    question.answer;
 
 
   if (isCorrect) {
@@ -911,16 +1396,22 @@ function checkAnswer() {
     function(label, index) {
 
       const input =
-        label.querySelector("input");
+        label.querySelector(
+          "input"
+        );
 
-      input.disabled = true;
+
+      input.disabled =
+        true;
 
 
       if (
         index === question.answer
       ) {
 
-        label.classList.add("correct");
+        label.classList.add(
+          "correct"
+        );
 
       }
 
@@ -930,7 +1421,9 @@ function checkAnswer() {
         !isCorrect
       ) {
 
-        label.classList.add("incorrect");
+        label.classList.add(
+          "incorrect"
+        );
 
       }
 
@@ -972,7 +1465,9 @@ function checkAnswer() {
 
       <p>
         <strong>정답:</strong>
-        ${String.fromCharCode(9312 + question.answer)}
+        ${String.fromCharCode(
+          9312 + question.answer
+        )}
         ${question.choices[question.answer]}
       </p>
 
@@ -990,6 +1485,7 @@ function checkAnswer() {
   ) {
 
     retryUsed = true;
+
 
     feedback += `
 
@@ -1012,7 +1508,8 @@ function checkAnswer() {
       >
 
         ${
-          currentQuestion === questions.length - 1
+          currentQuestion ===
+          questions.length - 1
             ? "최종 결과 확인 →"
             : "다음 문제 →"
         }
@@ -1024,11 +1521,14 @@ function checkAnswer() {
   }
 
 
-  feedback += "</div>";
+  feedback +=
+    "</div>";
 
 
   document
-    .getElementById("quizContent")
+    .getElementById(
+      "quizContent"
+    )
     .insertAdjacentHTML(
       "beforeend",
       feedback
@@ -1076,7 +1576,9 @@ function retryQuestion() {
           >
 
           <span>
-            ${String.fromCharCode(9312 + index)}
+            ${String.fromCharCode(
+              9312 + index
+            )}
             ${choice}
           </span>
 
@@ -1103,8 +1605,11 @@ function retryQuestion() {
 
 
   document
-    .getElementById("quizContent")
-    .innerHTML = html;
+    .getElementById(
+      "quizContent"
+    )
+    .innerHTML =
+    html;
 
 }
 
@@ -1143,10 +1648,12 @@ function showResult() {
 
   hideAllSteps();
 
+
   const resultStep =
     document.getElementById(
       "resultStep"
     );
+
 
   resultStep
     .classList
@@ -1214,7 +1721,7 @@ function showResult() {
       type="button"
       onclick="showKeyMessage()"
     >
-      서명 단계로 이동 →
+      실천 약속 단계로 이동 →
     </button>
 
   `;
@@ -1226,39 +1733,238 @@ function showResult() {
 
 
 /* =====================================================
-   핵심 메시지 + 서명
+   나는 이렇게 행동하겠습니다
+   + 서명
 ===================================================== */
 
 function showKeyMessage() {
 
   hideAllSteps();
 
-  document
-    .getElementById("messageStep")
+
+  const messageStep =
+    document.getElementById(
+      "messageStep"
+    );
+
+
+  messageStep
     .classList
     .remove("hidden");
 
 
-  hasSignature = false;
+  /*
+    서명 캔버스는 기존 HTML의
+    signatureCanvas를 그대로 사용합니다.
+  */
 
-  canvas = null;
+  messageStep.innerHTML = `
 
-  ctx = null;
+    <div class="step-badge">
+      STEP 5 · 실천 약속
+    </div>
 
-  drawing = false;
+
+    <h2>
+      나는 이렇게 행동하겠습니다
+    </h2>
 
 
-  setTimeout(
-    function() {
+    <div class="info-box">
 
-      initSignatureCanvas();
+      <p>
+        학교에서 학생과 동료를 대할 때
+        친근함보다 존중과 전문성을 우선하겠습니다.
+      </p>
 
-    },
-    100
-  );
+    </div>
+
+
+    <div class="commitment-box">
+
+      <p>
+        <strong>학생에게는</strong>
+        전문적인 교사로서 불필요한 신체 접촉과
+        사적인 관계를 만들지 않겠습니다.
+      </p>
+
+
+      <p>
+        <strong>동료에게는</strong>
+        존중하는 동료로서 외모·연애·사생활에 대한
+        불필요한 언급과 성적인 농담을 하지 않겠습니다.
+      </p>
+
+
+      <p>
+        <strong>문제가 발생했을 때는</strong>
+        "그럴 의도는 아니었다"라고 먼저 방어하기보다
+        상대방의 이야기를 듣고 적절한 절차에 따라
+        대응하겠습니다.
+      </p>
+
+
+      <p class="commitment-highlight">
+        <strong>
+          "친근함보다 존중,
+          의도보다 상대방의 입장,
+          사적인 관계보다 전문적인 관계를 선택하겠습니다."
+        </strong>
+      </p>
+
+    </div>
+
+
+    <label class="confirm-check">
+
+      <input
+        type="checkbox"
+        id="commitmentCheck"
+        onchange="toggleCommitmentButton()"
+      >
+
+      <span>
+        위 내용을 이해하고 실천하겠습니다.
+      </span>
+
+    </label>
+
+
+    <div
+      id="signatureArea"
+      class="signature-area"
+      style="display:none;"
+    >
+
+      <h3>
+        교육 이수 확인 서명
+      </h3>
+
+      <p>
+        아래 공간에 서명해 주세요.
+      </p>
+
+      <canvas
+        id="signatureCanvas"
+        width="500"
+        height="180"
+        style="
+          width:100%;
+          max-width:500px;
+          height:180px;
+          border:1px solid #ccc;
+          background:#fff;
+          touch-action:none;
+          display:block;
+          margin:0 auto;
+        "
+      ></canvas>
+
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+          justify-content:center;
+          margin-top:15px;
+        "
+      >
+
+        <button
+          type="button"
+          onclick="clearSignature()"
+        >
+          서명 지우기
+        </button>
+
+
+        <button
+          type="button"
+          id="signatureConfirmButton"
+          onclick="confirmSignature()"
+          disabled
+        >
+          서명 완료 →
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  hasSignature =
+    false;
+
+  canvas =
+    null;
+
+  ctx =
+    null;
+
+  drawing =
+    false;
 
 
   scrollTop();
+
+}
+
+
+/* =====================================================
+   실천 약속 체크
+===================================================== */
+
+function toggleCommitmentButton() {
+
+  const check =
+    document.getElementById(
+      "commitmentCheck"
+    );
+
+
+  const signatureArea =
+    document.getElementById(
+      "signatureArea"
+    );
+
+
+  if (
+    !check ||
+    !signatureArea
+  ) {
+
+    return;
+
+  }
+
+
+  if (check.checked) {
+
+    signatureArea.style.display =
+      "block";
+
+
+    setTimeout(
+      function() {
+
+        initSignatureCanvas();
+
+      },
+      100
+    );
+
+  } else {
+
+    signatureArea.style.display =
+      "none";
+
+
+    hasSignature =
+      false;
+
+  }
 
 }
 
@@ -1283,17 +1989,23 @@ function initSignatureCanvas() {
 
 
   ctx =
-    canvas.getContext("2d");
+    canvas.getContext(
+      "2d"
+    );
 
 
-  ctx.lineWidth = 2;
+  ctx.lineWidth =
+    2;
 
-  ctx.lineCap = "round";
+  ctx.lineCap =
+    "round";
 
-  ctx.lineJoin = "round";
+  ctx.lineJoin =
+    "round";
 
 
-  drawing = false;
+  drawing =
+    false;
 
 
   function getPosition(event) {
@@ -1344,7 +2056,9 @@ function initSignatureCanvas() {
 
     event.preventDefault();
 
-    drawing = true;
+
+    drawing =
+      true;
 
 
     const position =
@@ -1353,13 +2067,18 @@ function initSignatureCanvas() {
 
     ctx.beginPath();
 
+
     ctx.moveTo(
       position.x,
       position.y
     );
 
 
-    hasSignature = true;
+    hasSignature =
+      true;
+
+
+    updateSignatureButton();
 
   }
 
@@ -1399,7 +2118,12 @@ function initSignatureCanvas() {
 
     }
 
-    drawing = false;
+
+    drawing =
+      false;
+
+
+    updateSignatureButton();
 
   }
 
@@ -1426,6 +2150,34 @@ function initSignatureCanvas() {
   canvas.ontouchend =
     stopDrawing;
 
+
+  updateSignatureButton();
+
+}
+
+
+/* =====================================================
+   서명 완료 버튼 상태
+===================================================== */
+
+function updateSignatureButton() {
+
+  const button =
+    document.getElementById(
+      "signatureConfirmButton"
+    );
+
+
+  if (!button) {
+
+    return;
+
+  }
+
+
+  button.disabled =
+    !hasSignature;
+
 }
 
 
@@ -1450,7 +2202,11 @@ function clearSignature() {
   );
 
 
-  hasSignature = false;
+  hasSignature =
+    false;
+
+
+  updateSignatureButton();
 
 }
 
@@ -1474,10 +2230,14 @@ function confirmSignature() {
 
   hideAllSteps();
 
+
   document
-    .getElementById("surveyStep")
+    .getElementById(
+      "surveyStep"
+    )
     .classList
     .remove("hidden");
+
 
   scrollTop();
 
@@ -1541,7 +2301,8 @@ async function completeTraining(event) {
   }
 
 
-  let signatureData = "";
+  let signatureData =
+    "";
 
 
   if (
@@ -1592,7 +2353,9 @@ async function completeTraining(event) {
     event.target;
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
 
   button.innerText =
     "교육 이수 기록 저장 중...";
@@ -1603,24 +2366,31 @@ async function completeTraining(event) {
     /*
       Google Apps Script로 교육 이수 기록 전송
 
-      no-cors는 GitHub 페이지에서
-      Apps Script로 데이터를 전송하기 위해 사용합니다.
+      현재 사용 중인 서명 이미지 저장 기능과
+      동일한 방식입니다.
     */
 
     await fetch(
       GOOGLE_SCRIPT_URL,
       {
-        method: "POST",
+        method:
+          "POST",
 
-        mode: "no-cors",
+        mode:
+          "no-cors",
 
         headers: {
+
           "Content-Type":
             "text/plain;charset=utf-8"
+
         },
 
         body:
-          JSON.stringify(record)
+          JSON.stringify(
+            record
+          )
+
       }
     );
 
@@ -1672,7 +2442,9 @@ async function completeTraining(event) {
 
         <p>
           교육 완료일시:
-          ${new Date().toLocaleString("ko-KR")}
+          ${new Date().toLocaleString(
+            "ko-KR"
+          )}
         </p>
 
       </div>
@@ -1697,7 +2469,9 @@ async function completeTraining(event) {
     );
 
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
 
     button.innerText =
       "교육 완료하기";
