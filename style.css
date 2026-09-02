@@ -1,4 +1,3 @@
-'''css
 /* =====================================================
    기본 설정
 ===================================================== */
@@ -14,15 +13,20 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family:
-    "Noto Sans KR",
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    sans-serif;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: #f4f7fb;
   color: #263238;
   line-height: 1.7;
+
+  /* 한국어 문장이 자연스럽게 줄바꿈되도록 설정 */
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
+
+
+/* =====================================================
+   공통 폼
+===================================================== */
 
 button,
 input,
@@ -52,36 +56,55 @@ textarea {
   margin: 0 -20px 30px;
   padding: 55px 25px 50px;
   text-align: center;
+
   background: linear-gradient(
     135deg,
     #315bea,
     #5c7cfa
   );
+
   color: white;
+
   border-radius: 0 0 28px 28px;
-  box-shadow: 0 10px 30px rgba(40, 70, 150, 0.15);
+
+  box-shadow:
+    0 10px 30px
+    rgba(40, 70, 150, 0.15);
 }
+
 
 .hero .badge {
   display: inline-block;
+
   padding: 7px 15px;
   margin-bottom: 18px;
+
   border-radius: 30px;
-  background: rgba(255,255,255,0.18);
-  border: 1px solid rgba(255,255,255,0.35);
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.35);
+
   font-size: 14px;
   font-weight: 700;
 }
 
+
 .hero h1 {
   margin: 0;
+
   font-size: 34px;
   line-height: 1.35;
   font-weight: 800;
 }
 
+
 .hero p {
   margin: 18px 0 0;
+
   font-size: 16px;
   opacity: 0.95;
 }
@@ -93,12 +116,20 @@ textarea {
 
 .card {
   background: white;
+
   border-radius: 22px;
+
   padding: 38px;
   margin-bottom: 25px;
-  box-shadow: 0 8px 30px rgba(30, 50, 90, 0.08);
-  border: 1px solid #e8edf5;
+
+  box-shadow:
+    0 8px 30px
+    rgba(30, 50, 90, 0.08);
+
+  border:
+    1px solid #e8edf5;
 }
+
 
 .hidden {
   display: none !important;
@@ -111,24 +142,33 @@ textarea {
 
 .step-badge {
   display: inline-block;
+
   padding: 6px 13px;
   margin-bottom: 14px;
+
   border-radius: 20px;
+
   background: #edf2ff;
   color: #315bea;
+
   font-size: 13px;
   font-weight: 800;
 }
 
+
 .card h2 {
   margin: 5px 0 12px;
+
   font-size: 27px;
   line-height: 1.4;
+
   color: #172033;
 }
 
+
 .step-description {
   margin: 0 0 28px;
+
   color: #657083;
   font-size: 15px;
 }
@@ -140,35 +180,52 @@ textarea {
 
 label {
   display: block;
+
   margin: 20px 0 8px;
+
   font-weight: 700;
   color: #303b4d;
 }
+
 
 label span {
   color: #e53935;
 }
 
+
 input[type="text"],
 select,
 textarea {
   width: 100%;
+
   border: 1px solid #d8dee9;
   border-radius: 12px;
+
   padding: 14px 15px;
+
   font-size: 16px;
+
   background: #fff;
   color: #263238;
+
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
+
 
 input[type="text"]:focus,
 select:focus,
 textarea:focus {
   border-color: #5271ff;
-  box-shadow: 0 0 0 4px rgba(82, 113, 255, 0.10);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(82, 113, 255, 0.10);
 }
+
 
 textarea {
   resize: vertical;
@@ -182,6 +239,7 @@ textarea {
 
 .hint {
   margin: 10px 0 20px;
+
   font-size: 13px;
   color: #7a8494;
 }
@@ -193,29 +251,42 @@ textarea {
 
 button {
   width: 100%;
+
   margin-top: 24px;
+
   padding: 15px 20px;
+
   border: 0;
   border-radius: 13px;
+
   background: #315bea;
   color: white;
+
   font-size: 16px;
   font-weight: 800;
+
   cursor: pointer;
+
   transition:
     transform 0.15s,
     box-shadow 0.15s,
     opacity 0.15s;
 }
 
+
 button:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 7px 18px rgba(49, 91, 234, 0.22);
+
+  box-shadow:
+    0 7px 18px
+    rgba(49, 91, 234, 0.22);
 }
+
 
 button:active:not(:disabled) {
   transform: translateY(0);
 }
+
 
 button:disabled {
   cursor: not-allowed;
@@ -229,13 +300,19 @@ button:disabled {
 
 .secondary-button {
   width: auto;
+
   display: block;
+
   margin: 12px auto 0;
+
   padding: 10px 18px;
+
   background: #eef1f6;
   color: #475467;
+
   font-size: 14px;
 }
+
 
 .secondary-button:hover:not(:disabled) {
   background: #e1e6ee;
@@ -249,34 +326,51 @@ button:disabled {
 
 .video-wrap {
   width: 100%;
+
   overflow: hidden;
+
   border-radius: 16px;
+
   background: #111827;
+
   aspect-ratio: 16 / 9;
+
   margin: 20px 0;
 }
+
 
 .video-wrap iframe {
   width: 100%;
   height: 100%;
+
   border: 0;
+
   display: block;
 }
 
+
 .video-notice {
   margin: 20px 0;
+
   padding: 17px 18px;
+
   border-radius: 13px;
+
   background: #f5f7ff;
-  border-left: 4px solid #5271ff;
+
+  border-left:
+    4px solid #5271ff;
 }
+
 
 .video-notice strong {
   color: #315bea;
 }
 
+
 .video-notice p {
   margin: 5px 0 0;
+
   font-size: 14px;
 }
 
@@ -287,27 +381,40 @@ button:disabled {
 
 .confirm-check {
   display: flex;
+
   align-items: flex-start;
   gap: 10px;
+
   margin: 22px 0;
+
   padding: 15px;
+
   border-radius: 12px;
+
   background: #f7f9fc;
+
   cursor: pointer;
 }
+
 
 .confirm-check input {
   width: 20px;
   height: 20px;
+
   flex: 0 0 auto;
+
   margin-top: 2px;
+
   cursor: pointer;
 }
+
 
 .confirm-check span {
   font-size: 14px;
   font-weight: 600;
+
   line-height: 1.5;
+
   color: #394456;
 }
 
@@ -318,62 +425,271 @@ button:disabled {
 
 .quiz-progress {
   margin: 5px 0 25px;
+
   padding: 10px 14px;
+
   border-radius: 10px;
+
   background: #f4f6fa;
   color: #526174;
+
   font-size: 14px;
   font-weight: 700;
+
   text-align: center;
 }
+
 
 .training-image {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   width: 100px;
   height: 100px;
+
   margin: 10px auto 20px;
+
   border-radius: 50%;
+
   background: #edf2ff;
+
   font-size: 48px;
 }
 
-#trainingContent h2 {
-  text-align: center;
-  margin-bottom: 25px;
-}
 
 .training-text {
   font-size: 16px;
+
+  /* 문장 자연스러운 줄바꿈 */
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
+
 
 .training-text h3 {
   margin: 0 0 15px;
+
   color: #25345b;
+
   font-size: 21px;
 }
 
+
 .training-text p {
   margin: 0 0 18px;
+
+  /* 문장 중간 불필요한 줄바꿈 방지 */
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
+
+
+/* =====================================================
+   ⭐ 교육 문장 줄바꿈 핵심 수정
+===================================================== */
+
+/*
+   strong / u 태그가 문장 중간에서
+   블록처럼 동작하지 않도록 설정
+*/
+
+#trainingContent,
+.training-text,
+.visual-text,
+.info-box p,
+.key-message p {
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+
+/*
+   강조된 문구가 다음 줄로 따로 떨어지는 현상 방지
+*/
+
+#trainingContent strong,
+#trainingContent u,
+.training-text strong,
+.training-text u,
+.visual-text strong,
+.visual-text u,
+.info-box p strong,
+.info-box p u,
+.key-message strong,
+.key-message u {
+  display: inline !important;
+
+  white-space: normal !important;
+
+  word-break: keep-all !important;
+
+  overflow-wrap: normal !important;
+}
+
+
+/* =====================================================
+   INFO BOX
+===================================================== */
 
 .info-box {
   margin: 25px 0;
+
   padding: 20px;
+
   border-radius: 14px;
+
   background: #f4f7ff;
-  border-left: 5px solid #5271ff;
+
+  border-left:
+    5px solid #5271ff;
 }
 
-.info-box strong {
+
+/* 제목 역할 strong */
+
+.info-box > strong {
   display: block;
+
   margin-bottom: 7px;
+
   color: #315bea;
 }
 
+
+/* 문장 안의 강조 strong */
+
+.info-box p strong {
+  display: inline !important;
+
+  margin: 0;
+
+  color: inherit;
+}
+
+
+/* 문장 안의 밑줄 */
+
+.info-box p u {
+  display: inline !important;
+}
+
+
 .info-box p {
   margin: 0;
+
+  white-space: normal;
+
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+
+/* =====================================================
+   VISUAL CARD
+===================================================== */
+
+.visual-card {
+  margin: 10px 0 30px;
+
+  padding: 28px 25px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+
+.visual-icon {
+  font-size: 52px;
+
+  line-height: 1;
+
+  margin-bottom: 15px;
+}
+
+
+.visual-title {
+  font-size: 21px;
+  font-weight: 800;
+
+  margin-bottom: 10px;
+}
+
+
+/* ⭐ 교직원으로서 지켜야 할 경계 문장 관련 */
+
+.visual-text {
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  /*
+     단어가 이상하게 끊기지 않도록 설정
+  */
+
+  white-space: normal;
+
+  word-break: keep-all;
+
+  overflow-wrap: normal;
+}
+
+
+.visual-text strong,
+.visual-text u {
+  display: inline !important;
+
+  white-space: normal !important;
+
+  word-break: keep-all !important;
+
+  overflow-wrap: normal !important;
+}
+
+
+/* =====================================================
+   VISUAL CARD 색상
+===================================================== */
+
+.visual-purple {
+  background: #f1edff;
+  color: #4d3b8f;
+}
+
+
+.visual-blue {
+  background: #edf5ff;
+  color: #315a91;
+}
+
+
+.visual-green {
+  background: #edf9f1;
+  color: #32724a;
+}
+
+
+.visual-orange {
+  background: #fff4e9;
+  color: #9a5b24;
+}
+
+
+.visual-pink {
+  background: #fff0f6;
+  color: #9a4168;
+}
+
+
+.visual-teal {
+  background: #eaf9f7;
+  color: #28756c;
 }
 
 
@@ -385,46 +701,177 @@ button:disabled {
   margin-top: 10px;
 }
 
+
 .question h3 {
   margin: 0 0 22px;
+
   font-size: 21px;
+
   line-height: 1.5;
+
   color: #1f2937;
 }
 
+
 .choice {
   display: flex;
+
   align-items: flex-start;
   gap: 12px;
+
   width: 100%;
+
   margin: 10px 0;
+
   padding: 16px;
-  border: 1px solid #dfe4ec;
+
+  border:
+    1px solid #dfe4ec;
+
   border-radius: 13px;
+
   background: white;
+
   cursor: pointer;
+
   font-weight: 500;
+
   transition:
     background 0.15s,
     border-color 0.15s,
     transform 0.15s;
 }
 
+
 .choice:hover {
   background: #f7f9fc;
+
   border-color: #bfc9dc;
+
   transform: translateY(-1px);
 }
+
 
 .choice input {
   width: 19px;
   height: 19px;
+
   flex: 0 0 auto;
+
   margin-top: 2px;
 }
 
+
 .choice span {
   line-height: 1.5;
+
+  word-break: keep-all;
+}
+
+
+/* =====================================================
+   QUIZ BUTTON
+===================================================== */
+
+.question-card {
+  width: 100%;
+}
+
+
+.question-text {
+  margin: 0 0 22px;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  font-weight: 700;
+
+  color: #1f2937;
+
+  word-break: keep-all;
+}
+
+
+.choices {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+.choice-button {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  width: 100%;
+
+  margin: 0;
+
+  padding: 15px;
+
+  border:
+    1px solid #dfe4ec;
+
+  border-radius: 13px;
+
+  background: white;
+
+  color: #263238;
+
+  text-align: left;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  line-height: 1.55;
+
+  word-break: keep-all;
+}
+
+
+.choice-button:hover:not(:disabled) {
+  background: #f7f9fc;
+
+  border-color: #bfc9dc;
+
+  transform: translateY(-1px);
+
+  box-shadow: none;
+}
+
+
+.choice-button:disabled {
+  opacity: 0.8;
+
+  cursor: default;
+}
+
+
+.choice-number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  min-width: 28px;
+
+  border-radius: 50%;
+
+  background: #edf2ff;
+
+  color: #315bea;
+
+  font-weight: 800;
 }
 
 
@@ -434,50 +881,133 @@ button:disabled {
 
 .choice.correct {
   border-color: #37a169;
+
   background: #edf9f1;
 }
+
 
 .choice.incorrect {
   border-color: #e05252;
+
   background: #fff0f0;
 }
 
+
 .answer-feedback {
   margin-top: 25px;
+
   padding: 22px;
+
   border-radius: 15px;
 }
 
+
 .feedback-correct {
   background: #edf9f1;
-  border: 1px solid #bde4ca;
+
+  border:
+    1px solid #bde4ca;
 }
+
 
 .feedback-wrong {
   background: #fff2f2;
-  border: 1px solid #f0c1c1;
+
+  border:
+    1px solid #f0c1c1;
 }
+
 
 .answer-feedback h3 {
   margin-top: 0;
+
   margin-bottom: 12px;
 }
+
 
 .answer-feedback p {
   margin: 8px 0;
 }
 
+
 .answer-feedback button {
   margin-top: 18px;
 }
 
+
 .retry-notice {
   padding: 12px 14px;
+
   margin-bottom: 18px;
+
   background: #fff8e8;
+
   border-radius: 10px;
+
   color: #765b20;
+
   font-size: 14px;
+}
+
+
+/* =====================================================
+   정답 박스
+===================================================== */
+
+.correct-box {
+  margin-top: 20px;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  background: #edf9f1;
+
+  border:
+    1px solid #bde4ca;
+}
+
+
+.correct-box > strong {
+  display: inline;
+
+  color: #267346;
+}
+
+
+.correct-box p {
+  margin: 10px 0;
+}
+
+
+.wrong-box {
+  margin-top: 20px;
+
+  padding: 20px;
+
+  border-radius: 15px;
+
+  background: #fff2f2;
+
+  border:
+    1px solid #f0c1c1;
+}
+
+
+.wrong-box > strong {
+  display: inline;
+
+  color: #b33434;
+}
+
+
+.wrong-box p {
+  margin: 10px 0;
+}
+
+
+.next-question-button {
+  margin-top: 15px;
 }
 
 
@@ -487,40 +1017,120 @@ button:disabled {
 
 .result-score {
   margin: 25px 0;
+
   padding: 30px 20px;
+
   text-align: center;
+
   border-radius: 18px;
+
   background: #f5f7ff;
 }
 
+
 .result-score p {
   margin: 5px 0;
+
   color: #667085;
 }
 
+
 .result-score h1 {
   margin: 5px 0;
+
   font-size: 58px;
+
   color: #315bea;
+
   line-height: 1.2;
 }
+
 
 .pass,
 .fail {
   padding: 16px;
+
   border-radius: 12px;
+
   text-align: center;
+
   font-weight: 800;
 }
 
+
 .pass {
   background: #edf9f1;
+
   color: #267346;
 }
 
+
 .fail {
   background: #fff2f2;
+
   color: #b33434;
+}
+
+
+/* =====================================================
+   결과 화면
+===================================================== */
+
+.result-icon {
+  margin: 10px 0;
+
+  text-align: center;
+
+  font-size: 58px;
+}
+
+
+.score-circle {
+  width: 160px;
+  height: 160px;
+
+  margin: 25px auto;
+
+  border-radius: 50%;
+
+  background: #f5f7ff;
+
+  border:
+    8px solid #edf2ff;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.score-circle strong {
+  display: inline;
+
+  font-size: 48px;
+
+  line-height: 1;
+
+  color: #315bea;
+}
+
+
+.score-circle span {
+  margin-top: 5px;
+
+  font-size: 15px;
+
+  color: #667085;
+}
+
+
+.result-detail {
+  text-align: center;
+
+  color: #667085;
 }
 
 
@@ -530,91 +1140,74 @@ button:disabled {
 
 .key-message {
   margin: 25px 0;
+
   padding: 30px 25px;
+
   border-radius: 18px;
-  background: linear-gradient(
-    135deg,
-    #f4f7ff,
-    #f8faff
-  );
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4f7ff,
+      #f8faff
+    );
+
   text-align: center;
 }
+
 
 .message-icon {
   font-size: 50px;
+
   margin-bottom: 10px;
 }
+
 
 .key-message h3 {
   margin: 5px 0 22px;
+
   color: #263d82;
+
   font-size: 23px;
 }
 
+
 .key-message p {
   margin: 13px 0;
+
   font-size: 15px;
+
+  word-break: keep-all;
 }
 
 
 /* =====================================================
-   서명
+   경계 교육
 ===================================================== */
 
-.signature-section {
-  margin-top: 30px;
-}
+.boundary-hero {
+  display: flex;
 
-.signature-section h3 {
-  margin-bottom: 5px;
-  color: #263238;
-}
+  align-items: center;
 
-.signature-box {
-  margin-top: 15px;
-  padding: 15px;
-  border: 1px solid #dfe4ec;
-  border-radius: 15px;
-  background: #fafbfc;
-}
+  gap: 20px;
 
-#signatureCanvas {
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 180px;
-  background: white;
-  border: 1px dashed #b8c1cf;
-  border-radius: 10px;
-  cursor: crosshair;
-  touch-action: none;
+  margin: 10px 0 30px;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  background: #f5f7ff;
 }
 
 
-/* =====================================================
-   완료 화면
-===================================================== */
+.boundary-hero-icon {
+  flex: 0 0 auto;
 
-.completion-box {
-  padding: 35px 25px;
-  text-align: center;
-  border-radius: 18px;
-  background: #f3faf5;
-  border: 1px solid #cce8d3;
-}
+  font-size: 52px;
 
-.completion-icon {
-  font-size: 58px;
-  margin-bottom: 10px;
-}
-
-.completion-box h2 {
-  margin-bottom: 20px;
-  color: #267346;
-}
-
-.completion-box p {
-  margin: 10px 0;
+  line-height: 1;
 }
 
 
@@ -623,125 +1216,104 @@ button:disabled {
 ===================================================== */
 
 footer {
-  padding: 25px 10px;
+  margin-top: 35px;
+
   text-align: center;
-  color: #8a94a3;
+
   font-size: 13px;
+
+  color: #8a94a6;
 }
 
 
 /* =====================================================
-   모바일
+   모바일 화면
 ===================================================== */
 
-@media (max-width: 700px) {
-
-  body {
-    font-size: 15px;
-  }
+@media (max-width: 600px) {
 
   .container {
-    padding: 0 12px 35px;
+    padding:
+      0 14px 40px;
   }
 
+
   .hero {
-    margin: 0 -12px 20px;
-    padding: 40px 18px 38px;
-    border-radius: 0 0 22px 22px;
+    margin:
+      0 -14px 25px;
+
+    padding:
+      45px 20px 40px;
+
+    border-radius:
+      0 0 24px 24px;
   }
+
 
   .hero h1 {
     font-size: 27px;
   }
 
+
   .hero p {
     font-size: 14px;
   }
 
+
   .card {
-    padding: 25px 18px;
+    padding: 24px 18px;
+
     border-radius: 18px;
   }
+
 
   .card h2 {
     font-size: 23px;
   }
 
-  .step-description {
-    font-size: 14px;
-  }
-
-  .training-image {
-    width: 85px;
-    height: 85px;
-    font-size: 40px;
-  }
 
   .training-text {
     font-size: 15px;
   }
 
-  .training-text h3 {
+
+  .visual-card {
+    padding: 24px 18px;
+  }
+
+
+  .visual-title {
     font-size: 19px;
   }
 
-  .question h3 {
-    font-size: 18px;
-  }
 
-  .choice {
-    padding: 14px;
-    font-size: 14px;
-  }
-
-  .result-score h1 {
-    font-size: 48px;
-  }
-
-  .key-message {
-    padding: 25px 18px;
-  }
-
-  .key-message h3 {
-    font-size: 20px;
-  }
-
-  #signatureCanvas {
-    min-height: 160px;
-  }
-
-  button {
-    padding: 14px 16px;
+  .visual-text {
     font-size: 15px;
-  }
-}
 
-
-/* =====================================================
-   아주 작은 휴대폰
-===================================================== */
-
-@media (max-width: 400px) {
-
-  .hero h1 {
-    font-size: 24px;
+    /*
+       모바일에서도 문장이 단어 단위로
+       자연스럽게 이어지도록 유지
+    */
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
-  .card {
-    padding: 22px 15px;
+
+  .boundary-hero {
+    gap: 15px;
+
+    padding: 20px;
   }
 
-  .confirm-check {
-    padding: 13px;
+
+  .boundary-hero-icon {
+    font-size: 42px;
   }
 
-  .confirm-check span {
-    font-size: 13px;
-  }
 
-  .choice {
-    gap: 9px;
-    padding: 13px;
+  .score-circle {
+    width: 140px;
+    height: 140px;
   }
 
 }
