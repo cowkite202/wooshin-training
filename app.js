@@ -1,4 +1,3 @@
-javascript
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbysXqcNrTxC1_h6vcm6jVCLkMK6Mm41Pu8lsU-LgDZjq6VALYepiZwHQ8LmY-aJRuFOsw/exec";
 
