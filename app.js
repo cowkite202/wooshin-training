@@ -1,3 +1,7 @@
+/* =====================================================
+   Google Apps Script 주소
+===================================================== */
+
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbysXqcNrTxC1_h6vcm6jVCLkMK6Mm41Pu8lsU-LgDZjq6VALYepiZwHQ8LmY-aJRuFOsw/exec";
 
@@ -8,12 +12,12 @@ const GOOGLE_SCRIPT_URL =
 
 let userName = "";
 let currentPage = 0;
+let currentBoundaryPage = -1;
+
 let currentQuestion = 0;
 let score = 0;
 let retryUsed = false;
 let answers = [];
-
-let currentBoundaryPage = -1;
 
 let canvas = null;
 let ctx = null;
@@ -29,72 +33,126 @@ const trainingPages = [
 
   {
     title: "성폭력의 이해",
+
+    icon: "🛡️",
+
+    color: "purple",
+
     content: `
       <div class="visual-card visual-purple">
+
         <div class="visual-icon">🛡️</div>
-        <div class="visual-title">존중은 예방의 시작입니다</div>
+
+        <div class="visual-title">
+          존중은 예방의 시작입니다
+        </div>
+
         <div class="visual-text">
           성폭력 예방은 특별한 상황에서만 필요한 것이 아니라
-          <strong><u>일상적인 말과 행동에서 시작됩니다.</u></strong>
+          <strong>
+            <u>일상적인 말과 행동에서 시작됩니다.</u>
+          </strong>
         </div>
+
       </div>
+
 
       <h3>성폭력이란?</h3>
 
       <p>
         성폭력은 상대방의 의사에 반하여 이루어지는
-        <strong><u>성적인 말이나 행동</u></strong>으로
+        <strong>
+          <u>성적인 말이나 행동</u>
+        </strong>으로
         상대방에게 불쾌감이나 수치심 등을 느끼게 하는 행위를 포함합니다.
       </p>
 
+
       <div class="info-box">
+
         <strong>📌 중요한 점</strong>
+
         <p>
           행위자의 의도만으로 판단하지 않습니다.
-          <strong><u>상대방이 어떻게 받아들였는지도 중요합니다.</u></strong>
+          <strong>
+            <u>상대방이 어떻게 받아들였는지도 중요합니다.</u>
+          </strong>
         </p>
+
       </div>
 
+
       <p>
-        "농담이었다", "친해서 그랬다", "그럴 의도는 없었다"는
-        이유만으로 상대방의 불편함이 사라지는 것은 아닙니다.
+        "농담이었다", "친해서 그랬다",
+        "그럴 의도는 없었다"는 이유만으로
+        상대방의 불편함이 사라지는 것은 아닙니다.
       </p>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <u>내 의도보다 상대방의 입장과 경계를 먼저 생각합니다.</u>
+          <u>
+            내 의도보다 상대방의 입장과 경계를 먼저 생각합니다.
+          </u>
         </p>
+
       </div>
     `
   },
 
+
   {
     title: "직장 내 성희롱 예방",
+
+    icon: "🤝",
+
+    color: "blue",
+
     content: `
       <div class="visual-card visual-blue">
+
         <div class="visual-icon">🤝</div>
-        <div class="visual-title">학교도 안전한 일터여야 합니다</div>
+
+        <div class="visual-title">
+          학교도 안전한 일터여야 합니다
+        </div>
+
         <div class="visual-text">
           학생뿐만 아니라
-          <strong><u>모든 교직원이 존중받는 환경</u></strong>을 만들어야 합니다.
+          <strong>
+            <u>모든 교직원이 존중받는 환경</u>
+          </strong>을 만들어야 합니다.
         </div>
+
       </div>
+
 
       <h3>직장 내 성희롱 예방</h3>
 
       <p>
-        학교는 교육기관인 동시에 여러 사람이 함께 일하는
+        학교는 교육기관인 동시에
+        여러 사람이 함께 일하는
         <strong>직장</strong>이기도 합니다.
       </p>
 
+
       <p>
-        외모, 신체, 연애, 결혼, 성적 취향 등에 대한
+        외모, 신체, 연애, 결혼 등에 대한
         불필요한 질문이나 농담은 피해야 합니다.
       </p>
 
+
       <div class="info-box">
-        <strong>⚠️ 이런 말은 주의하세요</strong>
+
+        <strong>
+          ⚠️ 이런 말은 주의하세요
+        </strong>
+
         <p>
           "살 빠졌네."
           <br>
@@ -104,80 +162,152 @@ const trainingPages = [
           <br>
           "결혼은 언제 할 거야?"
         </p>
+
       </div>
 
+
       <p>
-        친한 관계라고 해서 모든 말이 허용되는 것은 아닙니다.
-        <strong><u>상대방의 경계를 존중하는 것이 중요합니다.</u></strong>
+        친한 관계라고 해서
+        모든 말이 허용되는 것은 아닙니다.
+        <strong>
+          <u>상대방의 경계를 존중하는 것이 중요합니다.</u>
+        </strong>
       </p>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <u>친밀함보다 존중을 우선합니다.</u>
+          <u>
+            친밀함보다 존중을 우선합니다.
+          </u>
         </p>
+
       </div>
     `
   },
 
+
   {
     title: "동의와 개인적 경계",
+
+    icon: "✋",
+
+    color: "green",
+
     content: `
       <div class="visual-card visual-green">
-        <div class="visual-icon">✋</div>
-        <div class="visual-title">멈춰야 한다는 신호를 존중하세요</div>
+
+        <div class="visual-icon">
+          ✋
+        </div>
+
+        <div class="visual-title">
+          멈춰야 한다는 신호를 존중하세요
+        </div>
+
         <div class="visual-text">
           상대방의 의사와 경계를 존중하는 것은
-          <strong><u>모든 관계의 기본입니다.</u></strong>
+          <strong>
+            <u>모든 관계의 기본입니다.</u>
+          </strong>
         </div>
+
       </div>
+
 
       <h3>동의란 무엇인가?</h3>
 
       <p>
         동의는 상대방이 자신의 의사를
-        <strong><u>자유롭게 표현하고 선택하는 것</u></strong>입니다.
+        <strong>
+          <u>자유롭게 표현하고 선택하는 것</u>
+        </strong>입니다.
       </p>
 
+
       <p>
-        상대방이 침묵했다고 해서 동의한 것은 아닙니다.
+        상대방이 침묵했다고 해서
+        동의한 것은 아닙니다.
       </p>
+
 
       <p>
         상대방이 불편해하거나 거절한다면
-        <strong><u>즉시 행동을 멈추어야 합니다.</u></strong>
+        <strong>
+          <u>즉시 행동을 멈추어야 합니다.</u>
+        </strong>
       </p>
 
+
       <div class="info-box">
-        <strong>💡 기억하세요</strong>
+
+        <strong>
+          💡 기억하세요
+        </strong>
+
         <p>
           친한 사이인지 여부와 관계없이
           상대방의 경계는 존중되어야 합니다.
         </p>
+
       </div>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <u>침묵은 동의가 아닙니다.</u>
+          <u>
+            침묵은 동의가 아닙니다.
+          </u>
+
           <br>
-          <u>거절이나 불편함의 표현을 존중합니다.</u>
+
+          <u>
+            거절이나 불편함의 표현을 존중합니다.
+          </u>
         </p>
+
       </div>
     `
   },
 
+
   {
     title: "피해자 보호와 2차 피해 예방",
+
+    icon: "❤️",
+
+    color: "orange",
+
     content: `
       <div class="visual-card visual-orange">
-        <div class="visual-icon">❤️</div>
-        <div class="visual-title">피해자의 입장에서 생각합니다</div>
+
+        <div class="visual-icon">
+          ❤️
+        </div>
+
+        <div class="visual-title">
+          피해자의 입장에서 생각합니다
+        </div>
+
         <div class="visual-text">
           피해 사실을 알게 되었을 때에는
-          <strong><u>비난보다 보호와 지원이 우선입니다.</u></strong>
+          <strong>
+            <u>비난보다 보호와 지원이 우선입니다.</u>
+          </strong>
         </div>
+
       </div>
+
 
       <h3>2차 피해란?</h3>
 
@@ -185,11 +315,18 @@ const trainingPages = [
         피해 사실을 알게 된 사람이 피해자를 비난하거나,
         소문을 퍼뜨리거나,
         피해 사실을 반복해서 이야기하게 하는 등의 행동은
-        <strong><u>2차 피해가 될 수 있습니다.</u></strong>
+        <strong>
+          <u>2차 피해가 될 수 있습니다.</u>
+        </strong>
       </p>
 
+
       <div class="info-box">
-        <strong>❌ 피해야 할 말</strong>
+
+        <strong>
+          ❌ 피해야 할 말
+        </strong>
+
         <p>
           "왜 그런 행동을 했어?"
           <br>
@@ -197,10 +334,16 @@ const trainingPages = [
           <br>
           "네가 오해한 것 아닐까?"
         </p>
+
       </div>
 
+
       <div class="info-box">
-        <strong>⭕ 도움이 되는 태도</strong>
+
+        <strong>
+          ⭕ 도움이 되는 태도
+        </strong>
+
         <p>
           "말해줘서 고마워."
           <br>
@@ -208,28 +351,56 @@ const trainingPages = [
           <br>
           "필요한 도움을 받을 수 있도록 함께 알아보자."
         </p>
+
       </div>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <u>피해자를 의심하거나 비난하지 않습니다.</u>
+          <u>
+            피해자를 의심하거나 비난하지 않습니다.
+          </u>
         </p>
+
       </div>
     `
   },
 
+
   {
     title: "디지털 성범죄 예방",
+
+    icon: "📱",
+
+    color: "pink",
+
     content: `
       <div class="visual-card visual-pink">
-        <div class="visual-icon">📱</div>
-        <div class="visual-title">온라인에서도 책임은 같습니다</div>
+
+        <div class="visual-icon">
+          📱
+        </div>
+
+        <div class="visual-title">
+          온라인에서도 책임은 같습니다
+        </div>
+
         <div class="visual-text">
           온라인 공간이라고 해서
-          <strong><u>말과 행동에 대한 책임이 가벼워지는 것은 아닙니다.</u></strong>
+          <strong>
+            <u>
+              말과 행동에 대한 책임이 가벼워지는 것은 아닙니다.
+            </u>
+          </strong>
         </div>
+
       </div>
+
 
       <h3>디지털 성범죄 예방</h3>
 
@@ -238,13 +409,21 @@ const trainingPages = [
         촬영하거나 저장하거나 공유해서는 안 됩니다.
       </p>
 
+
       <p>
         단체대화방에서 성적인 사진이나 농담 등이 올라왔을 때
-        <strong><u>웃음이나 이모티콘으로 동조하지 않습니다.</u></strong>
+        <strong>
+          <u>웃음이나 이모티콘으로 동조하지 않습니다.</u>
+        </strong>
       </p>
 
+
       <div class="info-box">
-        <strong>📱 온라인에서 특히 주의할 것</strong>
+
+        <strong>
+          📱 온라인에서 특히 주의할 것
+        </strong>
+
         <p>
           • 사진·영상의 무단 촬영
           <br>
@@ -254,35 +433,64 @@ const trainingPages = [
           <br>
           • 피해자의 개인정보 유포
         </p>
+
       </div>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <u>온라인에서도 오프라인과 같은 존중의 기준을 적용합니다.</u>
+          <u>
+            온라인에서도 오프라인과 같은 존중의 기준을 적용합니다.
+          </u>
         </p>
+
       </div>
     `
   },
 
+
   {
     title: "안전한 학교문화 만들기",
+
+    icon: "🌱",
+
+    color: "teal",
+
     content: `
       <div class="visual-card visual-teal">
-        <div class="visual-icon">🌱</div>
-        <div class="visual-title">안전한 학교문화는 함께 만듭니다</div>
+
+        <div class="visual-icon">
+          🌱
+        </div>
+
+        <div class="visual-title">
+          안전한 학교문화는 함께 만듭니다
+        </div>
+
         <div class="visual-text">
           작은 말과 행동의 변화가
-          <strong><u>서로 존중하는 학교문화를 만듭니다.</u></strong>
+          <strong>
+            <u>서로 존중하는 학교문화를 만듭니다.</u>
+          </strong>
         </div>
+
       </div>
+
 
       <h3>안전한 학교문화를 위해</h3>
 
       <p>
         성폭력 예방은 특정한 사람만의 책임이 아닙니다.
-        <strong><u>학교 구성원 모두의 책임</u></strong>입니다.
+        <strong>
+          <u>학교 구성원 모두의 책임</u>
+        </strong>입니다.
       </p>
+
 
       <p>
         불편한 상황을 발견했을 때에는
@@ -290,8 +498,13 @@ const trainingPages = [
         필요한 경우 관련 절차에 따라 대응해야 합니다.
       </p>
 
+
       <div class="info-box">
-        <strong>🌱 우리가 실천할 것</strong>
+
+        <strong>
+          🌱 우리가 실천할 것
+        </strong>
+
         <p>
           ① 상대방의 경계를 존중하기
           <br>
@@ -303,13 +516,22 @@ const trainingPages = [
           <br>
           ⑤ 서로 안전하게 말할 수 있는 분위기 만들기
         </p>
+
       </div>
 
+
       <div class="key-message">
-        <strong>핵심 기억하기</strong>
+
+        <strong>
+          핵심 기억하기
+        </strong>
+
         <p>
-          <strong><u>존중 · 배려 · 책임</u></strong>
+          <strong>
+            <u>존중 · 배려 · 책임</u>
+          </strong>
         </p>
+
       </div>
     `
   }
@@ -319,7 +541,6 @@ const trainingPages = [
 
 /* =====================================================
    교직원으로서 지켜야 할 경계
-   2페이지
 ===================================================== */
 
 const boundaryPages = [
@@ -330,27 +551,51 @@ const boundaryPages = [
     content: `
 
       <div class="boundary-hero">
-        <div class="boundary-hero-icon">🚦</div>
+
+        <div class="boundary-hero-icon">
+          🚦
+        </div>
+
         <div>
-          <h2>전문적인 경계를 지켜주세요</h2>
+
+          <h2>
+            전문적인 경계를 지켜주세요
+          </h2>
+
           <p>
             학교에서는 친근함보다
-            <strong><u>전문성과 존중</u></strong>이 중요합니다.
+            <strong>
+              <u>전문성과 존중</u>
+            </strong>이 중요합니다.
           </p>
+
         </div>
+
       </div>
+
 
       <div class="boundary-item">
 
-        <h3>① 학생의 외모와 사생활</h3>
+        <h3>
+          ① 학생의 외모와 사생활
+        </h3>
 
         <p>
           학생의 외모, 체형, 연애, 가족관계 등
-          <strong><u>사적인 영역에 대한 불필요한 언급은 피합니다.</u></strong>
+          <strong>
+            <u>
+              사적인 영역에 대한 불필요한 언급은 피합니다.
+            </u>
+          </strong>
         </p>
 
+
         <div class="info-box">
-          <strong>예를 들어</strong>
+
+          <strong>
+            예를 들어
+          </strong>
+
           <p>
             "요즘 몸이 좋아졌네."
             <br>
@@ -363,13 +608,22 @@ const boundaryPages = [
             친근함의 표현이라도 학생에게
             불편함을 줄 수 있습니다.
           </p>
+
         </div>
 
+
         <p class="boundary-key">
-          <strong>💡 핵심:</strong>
+
           <strong>
-            <u>학생의 사생활보다 교육적 관계를 우선합니다.</u>
+            💡 핵심:
           </strong>
+
+          <strong>
+            <u>
+              학생의 사생활보다 교육적 관계를 우선합니다.
+            </u>
+          </strong>
+
         </p>
 
       </div>
@@ -377,11 +631,17 @@ const boundaryPages = [
 
       <div class="boundary-item">
 
-        <h3>② 학생과의 신체 접촉</h3>
+        <h3>
+          ② 학생과의 신체 접촉
+        </h3>
 
         <p>
           격려나 친근함을 표현하기 위한 행동이라도
-          <strong><u>불필요한 신체 접촉은 줄이는 것이 좋습니다.</u></strong>
+          <strong>
+            <u>
+              불필요한 신체 접촉은 줄이는 것이 좋습니다.
+            </u>
+          </strong>
         </p>
 
         <p>
@@ -389,23 +649,35 @@ const boundaryPages = [
           장난을 이유로 한 신체 접촉 등은 주의합니다.
         </p>
 
+
         <div class="info-box">
-          <strong>⚠️ 기억하세요</strong>
+
+          <strong>
+            ⚠️ 기억하세요
+          </strong>
 
           <p>
             학생이 특별히 싫다고 말하지 않았더라도
             <strong>
-              교직원의 입장에서는 전문적인 경계를 지키는 것
+              교직원의 입장에서는 전문적인 경계를 지키는 것이 중요합니다.
             </strong>
-            이 중요합니다.
           </p>
+
         </div>
 
+
         <p class="boundary-key">
-          <strong>💡 핵심:</strong>
+
           <strong>
-            <u>친근함도 상대방의 경계를 넘지 않아야 합니다.</u>
+            💡 핵심:
           </strong>
+
+          <strong>
+            <u>
+              친근함도 상대방의 경계를 넘지 않아야 합니다.
+            </u>
+          </strong>
+
         </p>
 
       </div>
@@ -413,32 +685,47 @@ const boundaryPages = [
 
       <div class="boundary-item">
 
-        <h3>③ 학생과의 장난과 성적인 농담</h3>
+        <h3>
+          ③ 학생과의 장난과 성적인 농담
+        </h3>
 
         <p>
           "남학생끼리니까 괜찮다"거나
           "장난일 뿐이다"라는 이유로
           <strong>
-            <u>성적인 농담이나 부적절한 표현에 참여해서는 안 됩니다.</u>
+            <u>
+              성적인 농담이나 부적절한 표현에 참여해서는 안 됩니다.
+            </u>
           </strong>
         </p>
 
+
         <div class="info-box">
-          <strong>⚠️ 특히 주의하세요</strong>
+
+          <strong>
+            ⚠️ 특히 주의하세요
+          </strong>
 
           <p>
             학생이 먼저 성적인 농담을 시작했다고 하더라도
             교직원이 함께 참여하는 것은 적절하지 않습니다.
           </p>
+
         </div>
 
+
         <p class="boundary-key">
-          <strong>💡 핵심:</strong>
+
+          <strong>
+            💡 핵심:
+          </strong>
+
           <strong>
             <u>
               장난이라는 이유로 전문적인 경계가 사라지는 것은 아닙니다.
             </u>
           </strong>
+
         </p>
 
       </div>
@@ -446,14 +733,19 @@ const boundaryPages = [
 
       <div class="info-box boundary-final">
 
-        <strong>🌱 1페이지 핵심 기억하기</strong>
+        <strong>
+          🌱 1페이지 핵심 기억하기
+        </strong>
 
         <p>
           학생과의 관계에서는
-          <strong><u>친밀함보다 전문성</u></strong>을 우선합니다.
+          <strong>
+            <u>친밀함보다 전문성</u>
+          </strong>을 우선합니다.
         </p>
 
       </div>
+
     `
   },
 
@@ -464,27 +756,43 @@ const boundaryPages = [
     content: `
 
       <div class="boundary-hero">
-        <div class="boundary-hero-icon">🤝</div>
+
+        <div class="boundary-hero-icon">
+          🤝
+        </div>
 
         <div>
-          <h2>모든 관계에서 존중을 선택합니다</h2>
+
+          <h2>
+            모든 관계에서 존중을 선택합니다
+          </h2>
 
           <p>
             학생과 동료 교직원을 대할 때에도
-            <strong><u>존중과 전문적인 관계의 기준</u></strong>을 지켜야 합니다.
+            <strong>
+              <u>
+                존중과 전문적인 관계의 기준
+              </u>
+            </strong>을 지켜야 합니다.
           </p>
+
         </div>
+
       </div>
 
 
       <div class="boundary-item">
 
-        <h3>④ 학생과의 개인적인 연락</h3>
+        <h3>
+          ④ 학생과의 개인적인 연락
+        </h3>
 
         <p>
           학생과의 연락은
           <strong>
-            <u>교육적 목적과 범위 안에서 이루어지도록 합니다.</u>
+            <u>
+              교육적 목적과 범위 안에서 이루어지도록 합니다.
+            </u>
           </strong>
         </p>
 
@@ -494,46 +802,48 @@ const boundaryPages = [
           지나치게 친밀한 관계로 이어지는 연락은 주의합니다.
         </p>
 
+
         <div class="info-box">
 
-          <strong>💡 기억하세요</strong>
+          <strong>
+            💡 기억하세요
+          </strong>
 
           <p>
             학생과의 관계에서는
             개인적인 친밀함보다
-            <strong>교직원으로서의 전문적인 관계</strong>를 우선합니다.
+            <strong>
+              교직원으로서의 전문적인 관계
+            </strong>를 우선합니다.
           </p>
 
         </div>
-
-        <p class="boundary-key">
-
-          <strong>💡 핵심:</strong>
-
-          <strong>
-            <u>학생과는 친밀함보다 전문성이 우선입니다.</u>
-          </strong>
-
-        </p>
 
       </div>
 
 
       <div class="boundary-item">
 
-        <h3>⑤ 동료 교직원과의 말과 행동</h3>
+        <h3>
+          ⑤ 동료 교직원과의 말과 행동
+        </h3>
 
         <p>
           친한 동료라 하더라도
           외모, 연애, 결혼, 사생활 등에 대한
           <strong>
-            <u>불필요한 언급이나 성적인 농담은 피해야 합니다.</u>
+            <u>
+              불필요한 언급이나 성적인 농담은 피해야 합니다.
+            </u>
           </strong>
         </p>
 
+
         <div class="info-box">
 
-          <strong>⚠️ 중요한 원칙</strong>
+          <strong>
+            ⚠️ 중요한 원칙
+          </strong>
 
           <p>
             친한 사이인지 여부와 관계없이
@@ -545,24 +855,14 @@ const boundaryPages = [
 
         </div>
 
-        <p class="boundary-key">
-
-          <strong>💡 핵심:</strong>
-
-          <strong>
-            <u>
-              친밀함이 상대방의 동의를 대신할 수는 없습니다.
-            </u>
-          </strong>
-
-        </p>
-
       </div>
 
 
       <div class="boundary-item">
 
-        <h3>⑥ 회식과 단체대화방에서도 같은 기준</h3>
+        <h3>
+          ⑥ 회식과 단체대화방에서도 같은 기준
+        </h3>
 
         <p>
           회식 자리나 교직원 단체대화방에서도
@@ -578,38 +878,33 @@ const boundaryPages = [
           다른 사람에게 다시 전달하지 않습니다.
         </p>
 
+
         <div class="info-box">
 
-          <strong>📱 온라인에서도 주의하세요</strong>
+          <strong>
+            📱 온라인에서도 주의하세요
+          </strong>
 
           <p>
             온라인 공간이라고 해서
             책임이 가벼워지는 것은 아닙니다.
             <strong>
-              <u>불필요한 확산이나 동조를 하지 않습니다.</u>
+              <u>
+                불필요한 확산이나 동조를 하지 않습니다.
+              </u>
             </strong>
           </p>
 
         </div>
-
-        <p class="boundary-key">
-
-          <strong>💡 핵심:</strong>
-
-          <strong>
-            <u>
-              온라인과 오프라인 모두 존중의 기준은 같습니다.
-            </u>
-          </strong>
-
-        </p>
 
       </div>
 
 
       <div class="info-box boundary-final">
 
-        <strong>🌱 2페이지 핵심 기억하기</strong>
+        <strong>
+          🌱 2페이지 핵심 기억하기
+        </strong>
 
         <p>
           <strong>
@@ -880,16 +1175,22 @@ const questions = [
 
 
 /* =====================================================
-   공통 함수
+   맨 위로 이동
 ===================================================== */
 
 function scrollTop() {
+
   window.scrollTo({
     top: 0,
     behavior: "smooth"
   });
+
 }
 
+
+/* =====================================================
+   모든 단계 숨기기
+===================================================== */
 
 function hideAllSteps() {
 
@@ -904,16 +1205,20 @@ function hideAllSteps() {
     "completeStep"
   ];
 
+
   ids.forEach(function (id) {
 
     const element =
       document.getElementById(id);
 
     if (element) {
+
       element.classList.add("hidden");
+
     }
 
   });
+
 }
 
 
@@ -926,8 +1231,10 @@ async function startTraining() {
   const input =
     document.getElementById("name");
 
+
   userName =
     input.value.trim();
+
 
   if (!userName) {
 
@@ -936,16 +1243,22 @@ async function startTraining() {
     input.focus();
 
     return;
+
   }
 
 
   const button =
-    document.querySelector("#start button");
+    document.getElementById("startButton");
 
-  button.disabled = true;
 
-  button.innerText =
-    "이수 여부 확인 중...";
+  if (button) {
+
+    button.disabled = true;
+
+    button.innerText =
+      "이수 여부 확인 중...";
+
+  }
 
 
   try {
@@ -975,12 +1288,19 @@ async function startTraining() {
         " 선생님은 이미 교육을 이수하셨습니다."
       );
 
-      button.disabled = false;
 
-      button.innerText =
-        "교육 시작하기";
+      if (button) {
+
+        button.disabled = false;
+
+        button.innerText =
+          "교육 시작하기";
+
+      }
+
 
       return;
+
     }
 
 
@@ -1010,10 +1330,15 @@ async function startTraining() {
     );
 
 
-    button.disabled = false;
+    if (button) {
 
-    button.innerText =
-      "교육 시작하기";
+      button.disabled = false;
+
+      button.innerText =
+        "교육 시작하기";
+
+    }
+
   }
 
 }
@@ -1027,14 +1352,17 @@ function showTrainingPages() {
 
   hideAllSteps();
 
+
   currentPage = 0;
 
   currentBoundaryPage = -1;
+
 
   document
     .getElementById("trainingStep")
     .classList
     .remove("hidden");
+
 
   renderTrainingPage();
 
@@ -1052,10 +1380,12 @@ function renderTrainingPage() {
       "trainingContent"
     );
 
+
   const progress =
     document.getElementById(
       "trainingProgress"
     );
+
 
   const nextButton =
     document.getElementById(
@@ -1063,8 +1393,13 @@ function renderTrainingPage() {
     );
 
 
-  if (!container || !nextButton) {
+  if (
+    !container ||
+    !nextButton
+  ) {
+
     return;
+
   }
 
 
@@ -1080,6 +1415,7 @@ function renderTrainingPage() {
         ${currentPage + 1}
       </div>
 
+
       <div>
 
         <h2>
@@ -1093,6 +1429,7 @@ function renderTrainingPage() {
       </div>
 
     </div>
+
 
     ${page.content}
 
@@ -1130,7 +1467,9 @@ function renderTrainingPage() {
 
   nextButton.innerText =
     currentPage === trainingPages.length - 1
+
       ? "교직원으로서 지켜야 할 경계 →"
+
       : "다음 페이지 →";
 
 
@@ -1140,7 +1479,7 @@ function renderTrainingPage() {
 
 
 /* =====================================================
-   교육 페이지 버튼 활성화
+   교육 확인 체크
 ===================================================== */
 
 function toggleTrainingButton() {
@@ -1150,13 +1489,17 @@ function toggleTrainingButton() {
       "pageCheck"
     );
 
+
   const button =
     document.getElementById(
       "trainingNextButton"
     );
 
 
-  if (check && button) {
+  if (
+    check &&
+    button
+  ) {
 
     button.disabled =
       !check.checked;
@@ -1167,22 +1510,17 @@ function toggleTrainingButton() {
 
 
 /* =====================================================
-   ⭐ 핵심
-   교육 페이지 → 경계 페이지 → 퀴즈
+   다음 교육 페이지
 ===================================================== */
 
 function nextTrainingPage() {
-
-  /*
-    현재 경계 페이지라면
-    경계 페이지 이동 함수 실행
-  */
 
   if (currentBoundaryPage >= 0) {
 
     nextBoundaryPage();
 
     return;
+
   }
 
 
@@ -1192,13 +1530,17 @@ function nextTrainingPage() {
     );
 
 
-  if (!check || !check.checked) {
+  if (
+    !check ||
+    !check.checked
+  ) {
 
     alert(
       "교육 내용을 확인했다는 항목에 체크해 주세요."
     );
 
     return;
+
   }
 
 
@@ -1211,8 +1553,6 @@ function nextTrainingPage() {
 
     renderTrainingPage();
 
-    scrollTop();
-
   } else {
 
     showBoundarySection();
@@ -1223,7 +1563,7 @@ function nextTrainingPage() {
 
 
 /* =====================================================
-   교직원으로서 지켜야 할 경계
+   교직원 경계 페이지 시작
 ===================================================== */
 
 function showBoundarySection() {
@@ -1246,10 +1586,12 @@ function renderBoundaryPage() {
       "trainingContent"
     );
 
+
   const nextButton =
     document.getElementById(
       "trainingNextButton"
     );
+
 
   const progress =
     document.getElementById(
@@ -1261,14 +1603,14 @@ function renderBoundaryPage() {
     !container ||
     !nextButton
   ) {
+
     return;
+
   }
 
 
   const page =
-    boundaryPages[
-      currentBoundaryPage
-    ];
+    boundaryPages[currentBoundaryPage];
 
 
   container.innerHTML = `
@@ -1278,6 +1620,7 @@ function renderBoundaryPage() {
       <div class="training-page-number">
         ${currentBoundaryPage + 1}
       </div>
+
 
       <div>
 
@@ -1346,7 +1689,7 @@ function renderBoundaryPage() {
 
 
 /* =====================================================
-   경계 확인 버튼
+   경계 확인 체크
 ===================================================== */
 
 function toggleBoundaryButton() {
@@ -1356,13 +1699,17 @@ function toggleBoundaryButton() {
       "boundaryCheck"
     );
 
+
   const button =
     document.getElementById(
       "trainingNextButton"
     );
 
 
-  if (check && button) {
+  if (
+    check &&
+    button
+  ) {
 
     button.disabled =
       !check.checked;
@@ -1373,7 +1720,7 @@ function toggleBoundaryButton() {
 
 
 /* =====================================================
-   경계 페이지 이동
+   다음 경계 페이지
 ===================================================== */
 
 function nextBoundaryPage() {
@@ -1384,13 +1731,17 @@ function nextBoundaryPage() {
     );
 
 
-  if (!check || !check.checked) {
+  if (
+    !check ||
+    !check.checked
+  ) {
 
     alert(
       "위 내용을 확인했다는 항목에 체크해 주세요."
     );
 
     return;
+
   }
 
 
@@ -1456,6 +1807,7 @@ function renderQuestion() {
       "quizContent"
     );
 
+
   const progress =
     document.getElementById(
       "quizProgress"
@@ -1485,8 +1837,9 @@ function renderQuestion() {
     <div class="question-card">
 
       <h3>
-        문제 ${currentQuestion + 1}
+        Q${currentQuestion + 1}.
       </h3>
+
 
       <p class="question-text">
         ${question.question}
@@ -1496,34 +1849,34 @@ function renderQuestion() {
       <div class="choices">
 
         ${question.choices
-          .map(
-            function (choice, index) {
+          .map(function (choice, index) {
 
-              return `
+            return `
 
-                <button
-                  type="button"
-                  class="choice-button"
-                  onclick="checkAnswer(${index})"
-                >
+              <button
+                type="button"
+                class="choice-button"
+                data-index="${index}"
+                onclick="checkAnswer(${index})"
+              >
 
-                  <span class="choice-number">
-                    ${index + 1}
-                  </span>
+                <span class="choice-number">
+                  ${index + 1}
+                </span>
 
-                  <span>
-                    ${choice}
-                  </span>
+                <span>
+                  ${choice}
+                </span>
 
-                </button>
+              </button>
 
-              `;
+            `;
 
-            }
-          )
+          })
           .join("")}
 
       </div>
+
 
       <div id="answerFeedback"></div>
 
@@ -1543,6 +1896,7 @@ function checkAnswer(selectedIndex) {
   const question =
     questions[currentQuestion];
 
+
   const feedback =
     document.getElementById(
       "answerFeedback"
@@ -1550,7 +1904,9 @@ function checkAnswer(selectedIndex) {
 
 
   if (!feedback) {
+
     return;
+
   }
 
 
@@ -1560,13 +1916,11 @@ function checkAnswer(selectedIndex) {
     );
 
 
-  buttons.forEach(
-    function (button) {
+  buttons.forEach(function (button) {
 
-      button.disabled = true;
+    button.disabled = true;
 
-    }
-  );
+  });
 
 
   if (
@@ -1584,7 +1938,9 @@ function checkAnswer(selectedIndex) {
 
       <div class="correct-box">
 
-        <strong>⭕ 정답입니다!</strong>
+        <strong>
+          ⭕ 정답입니다!
+        </strong>
 
         <p>
           ${question.explanation}
@@ -1602,26 +1958,29 @@ function checkAnswer(selectedIndex) {
 
     `;
 
+
   } else {
+
 
     if (!retryUsed) {
 
       retryUsed = true;
 
-      buttons.forEach(
-        function (button) {
 
-          button.disabled = false;
+      buttons.forEach(function (button) {
 
-        }
-      );
+        button.disabled = false;
+
+      });
 
 
       feedback.innerHTML = `
 
         <div class="wrong-box">
 
-          <strong>❌ 다시 생각해 보세요.</strong>
+          <strong>
+            ❌ 다시 생각해 보세요.
+          </strong>
 
           <p>
             한 번 더 선택할 수 있습니다.
@@ -1630,6 +1989,7 @@ function checkAnswer(selectedIndex) {
         </div>
 
       `;
+
 
     } else {
 
@@ -1641,7 +2001,9 @@ function checkAnswer(selectedIndex) {
 
         <div class="wrong-box">
 
-          <strong>❌ 아쉽습니다.</strong>
+          <strong>
+            ❌ 아쉽습니다.
+          </strong>
 
           <p>
             ${question.explanation}
@@ -1693,7 +2055,7 @@ function nextQuestion() {
 
 
 /* =====================================================
-   결과
+   결과 화면
 ===================================================== */
 
 function showResult() {
@@ -1725,13 +2087,16 @@ function showResult() {
       STEP 4 · 교육 결과
     </div>
 
+
     <div class="result-icon">
       ${passed ? "🎉" : "📚"}
     </div>
 
+
     <h2>
       교육 확인 퀴즈 결과
     </h2>
+
 
     <div class="score-circle">
 
@@ -1745,15 +2110,23 @@ function showResult() {
 
     </div>
 
+
     <p class="result-detail">
+
       총 ${questions.length}문제 중
-      <strong>${score}문제</strong> 정답
+      <strong>
+        ${score}문제
+      </strong>
+      정답
+
     </p>
+
 
     ${
       passed
 
         ? `
+
           <div class="correct-box">
 
             <strong>
@@ -1765,9 +2138,11 @@ function showResult() {
             </p>
 
           </div>
+
         `
 
         : `
+
           <div class="info-box">
 
             <strong>
@@ -1775,12 +2150,15 @@ function showResult() {
             </strong>
 
             <p>
-              퀴즈 결과와 관계없이 교육 내용을 충분히 숙지하는 것이 중요합니다.
+              퀴즈 결과와 관계없이
+              교육 내용을 충분히 숙지하는 것이 중요합니다.
             </p>
 
           </div>
+
         `
     }
+
 
     <button
       type="button"
@@ -1803,11 +2181,7 @@ function showResult() {
     )
     .addEventListener(
       "click",
-      function () {
-
-        showKeyMessage();
-
-      }
+      showKeyMessage
     );
 
 
@@ -1844,9 +2218,11 @@ function showKeyMessage() {
         🌱
       </div>
 
+
       <div class="visual-title">
-        나는 이렇게 행동하겠습니다
+        우리는 이렇게 행동하겠습니다
       </div>
+
 
       <div class="visual-text">
         서로 존중하고 안전한 학교문화를 만들기 위해
@@ -1868,20 +2244,24 @@ function showKeyMessage() {
         상대방의 의사와 개인적인 경계를 존중하겠습니다.
       </label>
 
+
       <label>
         <input type="checkbox">
         학생과 동료 교직원에게 전문적인 관계의 기준을 지키겠습니다.
       </label>
+
 
       <label>
         <input type="checkbox">
         성적인 농담이나 불필요한 신체 접촉을 하지 않겠습니다.
       </label>
 
+
       <label>
         <input type="checkbox">
         피해자를 비난하거나 2차 피해를 만들지 않겠습니다.
       </label>
+
 
       <label>
         <input type="checkbox">
@@ -1896,6 +2276,7 @@ function showKeyMessage() {
       <h3>
         서명
       </h3>
+
 
       <p class="hint">
         아래 영역에 마우스 또는 손가락으로 서명해 주세요.
@@ -1923,6 +2304,7 @@ function showKeyMessage() {
           서명 지우기
         </button>
 
+
         <button
           type="button"
           id="confirmSignatureButton"
@@ -1945,14 +2327,13 @@ function showKeyMessage() {
 
   setupSignature();
 
-
   scrollTop();
 
 }
 
 
 /* =====================================================
-   서명 설정
+   서명 기능 설정
 ===================================================== */
 
 function setupSignature() {
@@ -1962,8 +2343,11 @@ function setupSignature() {
       "signatureCanvas"
     );
 
+
   if (!canvas) {
+
     return;
+
   }
 
 
@@ -1976,7 +2360,7 @@ function setupSignature() {
   drawing = false;
 
 
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 3;
 
   ctx.lineCap = "round";
 
@@ -1990,6 +2374,7 @@ function setupSignature() {
 
 
     let clientX;
+
     let clientY;
 
 
@@ -2018,13 +2403,11 @@ function setupSignature() {
     return {
 
       x:
-        (clientX - rect.left)
-        *
+        (clientX - rect.left) *
         (canvas.width / rect.width),
 
       y:
-        (clientY - rect.top)
-        *
+        (clientY - rect.top) *
         (canvas.height / rect.height)
 
     };
@@ -2061,7 +2444,9 @@ function setupSignature() {
   function draw(event) {
 
     if (!drawing) {
+
       return;
+
     }
 
 
@@ -2086,11 +2471,18 @@ function setupSignature() {
   function stopDrawing(event) {
 
     if (!drawing) {
+
       return;
+
     }
 
 
-    event.preventDefault();
+    if (event) {
+
+      event.preventDefault();
+
+    }
+
 
     drawing = false;
 
@@ -2104,15 +2496,18 @@ function setupSignature() {
     startDrawing
   );
 
+
   canvas.addEventListener(
     "mousemove",
     draw
   );
 
+
   canvas.addEventListener(
     "mouseup",
     stopDrawing
   );
+
 
   canvas.addEventListener(
     "mouseleave",
@@ -2126,11 +2521,13 @@ function setupSignature() {
     { passive: false }
   );
 
+
   canvas.addEventListener(
     "touchmove",
     draw,
     { passive: false }
   );
+
 
   canvas.addEventListener(
     "touchend",
@@ -2158,7 +2555,9 @@ function setupSignature() {
           canvas.height
         );
 
+
         hasSignature = false;
+
 
         updateSignatureButton();
 
@@ -2187,7 +2586,7 @@ function setupSignature() {
 
 
 /* =====================================================
-   서명 버튼
+   서명 완료 버튼 활성화
 ===================================================== */
 
 function updateSignatureButton() {
@@ -2221,6 +2620,7 @@ function confirmSignature() {
     );
 
     return;
+
   }
 
 
@@ -2250,13 +2650,15 @@ function showSurvey() {
 
 
 /* =====================================================
-   교육 완료
+   교육 완료 및 저장
 ===================================================== */
 
 async function completeTraining(event) {
 
   if (event) {
+
     event.preventDefault();
+
   }
 
 
@@ -2285,6 +2687,7 @@ async function completeTraining(event) {
     );
 
     return;
+
   }
 
 
@@ -2295,16 +2698,21 @@ async function completeTraining(event) {
     );
 
     return;
+
   }
 
 
-  if (!canvas || !hasSignature) {
+  if (
+    !canvas ||
+    !hasSignature
+  ) {
 
     alert(
       "서명을 먼저 작성해 주세요."
     );
 
     return;
+
   }
 
 
@@ -2314,10 +2722,14 @@ async function completeTraining(event) {
     );
 
 
-  button.disabled = true;
+  if (button) {
 
-  button.innerText =
-    "교육 이수 기록 저장 중...";
+    button.disabled = true;
+
+    button.innerText =
+      "교육 이수 기록 저장 중...";
+
+  }
 
 
   const points =
@@ -2362,17 +2774,23 @@ async function completeTraining(event) {
     await fetch(
       GOOGLE_SCRIPT_URL,
       {
-        method: "POST",
 
-        mode: "no-cors",
+        method:
+          "POST",
+
+        mode:
+          "no-cors",
 
         headers: {
+
           "Content-Type":
             "text/plain;charset=utf-8"
+
         },
 
         body:
           JSON.stringify(data)
+
       }
     );
 
@@ -2394,10 +2812,14 @@ async function completeTraining(event) {
     );
 
 
-    button.disabled = false;
+    if (button) {
 
-    button.innerText =
-      "교육 완료하기";
+      button.disabled = false;
+
+      button.innerText =
+        "교육 완료하기";
+
+    }
 
   }
 
@@ -2440,7 +2862,7 @@ function showComplete() {
 
 
     <h2>
-      ${userName} 선생님,
+      ${userName} 선생님,<br>
       교육이 완료되었습니다.
     </h2>
 
@@ -2448,12 +2870,18 @@ function showComplete() {
     <div class="completion-card">
 
       <p>
+        2026학년도 우신고등학교
+      </p>
+
+      <p>
         교직원 성폭력 예방교육
       </p>
+
 
       <strong>
         퀴즈 점수 ${points}점
       </strong>
+
 
       <p>
         교육 이수 기록이 정상적으로 저장되었습니다.
@@ -2470,8 +2898,8 @@ function showComplete() {
 
       <p>
         <u>
-          친근함보다 존중,
-          의도보다 상대방의 입장,
+          친근함보다 존중,<br>
+          의도보다 상대방의 입장,<br>
           사적인 관계보다 전문적인 관계를 선택하겠습니다.
         </u>
       </p>
@@ -2480,7 +2908,9 @@ function showComplete() {
 
 
     <p class="completion-thanks">
+
       안전하고 존중받는 학교문화를 함께 만들어 주셔서 감사합니다.
+
     </p>
 
   `;
