@@ -6,56 +6,67 @@
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
 
+
 body {
   margin: 0;
-  padding: 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      #f5f3ff 0%,
-      #f8fafc 45%,
-      #eef2ff 100%
-    );
-
-  color: #2d2d38;
 
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
     "Noto Sans KR",
+    Arial,
     sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5f7ff 0%,
+      #f8f9fc 100%
+    );
+
+  color: #1f2937;
 
   line-height: 1.7;
 }
 
 
 /* =====================================================
-   전체 컨테이너
+   앱 전체 영역
 ===================================================== */
 
-.container {
+.app-shell {
   width: 100%;
-  max-width: 850px;
+  max-width: 820px;
 
   margin: 0 auto;
-  padding: 28px 18px 50px;
+
+  padding: 24px 18px 50px;
 }
 
 
 /* =====================================================
-   헤더
+   숨김
+===================================================== */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =====================================================
+   HERO HEADER
 ===================================================== */
 
 .hero {
-  padding: 48px 30px;
+  padding: 38px 32px;
 
-  text-align: center;
+  margin-bottom: 24px;
 
   border-radius: 28px;
 
@@ -69,177 +80,277 @@ body {
   color: #ffffff;
 
   box-shadow:
-    0 18px 40px
-    rgba(81, 70, 229, 0.25);
-
-  margin-bottom: 28px;
+    0 16px 40px
+    rgba(81, 70, 229, 0.22);
 }
 
 
-.hero h1 {
-  margin: 18px 0 14px;
+.hero-top {
+  display: flex;
 
-  font-size: 34px;
-  line-height: 1.35;
+  justify-content: space-between;
 
-  font-weight: 800;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
 }
 
-
-.hero p {
-  margin: 0;
-
-  font-size: 16px;
-
-  opacity: 0.92;
-}
-
-
-/* =====================================================
-   배지
-===================================================== */
 
 .badge,
-.step-badge {
-  display: inline-block;
+.hero-step {
+  display: inline-flex;
 
-  padding: 7px 14px;
+  align-items: center;
+
+  padding: 7px 13px;
 
   border-radius: 999px;
 
   font-size: 13px;
+
   font-weight: 700;
 
-  letter-spacing: -0.2px;
-}
-
-
-.badge {
   background:
     rgba(255, 255, 255, 0.18);
 
   border:
     1px solid
-    rgba(255, 255, 255, 0.35);
-
-  color: #ffffff;
+    rgba(255, 255, 255, 0.2);
 }
 
 
-.step-badge {
-  margin-bottom: 16px;
+.hero-icon {
+  font-size: 48px;
 
-  background: #ede9fe;
-
-  color: #5b52d6;
+  margin-bottom: 12px;
 }
 
 
-/* =====================================================
-   카드
-===================================================== */
+.hero h1 {
+  margin: 0;
 
-.card {
-  background: #ffffff;
+  font-size: 32px;
 
-  border-radius: 24px;
+  line-height: 1.35;
 
-  padding: 36px;
-
-  margin-bottom: 24px;
-
-  box-shadow:
-    0 12px 35px
-    rgba(40, 40, 80, 0.08);
+  letter-spacing: -0.8px;
 }
 
 
-.hidden {
-  display: none !important;
-}
+.hero p {
+  margin-top: 16px;
 
+  margin-bottom: 26px;
 
-/* =====================================================
-   제목
-===================================================== */
-
-h2 {
-  margin-top: 0;
-
-  font-size: 26px;
-
-  line-height: 1.45;
-
-  color: #29263d;
-}
-
-
-h3 {
-  margin-top: 30px;
-
-  font-size: 20px;
-
-  color: #393456;
-}
-
-
-p {
-  margin: 12px 0;
-}
-
-
-.step-description {
-  margin-bottom: 28px;
-
-  color: #666675;
+  color:
+    rgba(255, 255, 255, 0.9);
 
   font-size: 16px;
 }
 
 
-.hint {
-  color: #858596;
+.hero-info {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+
+.hero-info div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 10px 13px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.14);
 
   font-size: 14px;
 }
 
 
 /* =====================================================
-   입력창
+   기본 카드
 ===================================================== */
 
-label {
-  display: block;
+.card {
+  width: 100%;
 
-  margin-top: 20px;
-  margin-bottom: 8px;
+  padding: 34px;
 
-  font-weight: 700;
+  margin-bottom: 24px;
 
-  color: #444451;
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(0, 0, 0, 0.04);
+
+  box-shadow:
+    0 10px 30px
+    rgba(31, 41, 55, 0.08);
 }
 
 
-input[type="text"],
-select,
-textarea {
+.card h2 {
+  margin-top: 8px;
+
+  margin-bottom: 12px;
+
+  font-size: 26px;
+
+  letter-spacing: -0.6px;
+
+  line-height: 1.4;
+}
+
+
+.card h3 {
+  margin-top: 28px;
+
+  margin-bottom: 12px;
+
+  font-size: 20px;
+
+  letter-spacing: -0.3px;
+}
+
+
+.card p {
+  color: #4b5563;
+}
+
+
+/* =====================================================
+   단계 배지
+===================================================== */
+
+.step-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 7px 12px;
+
+  margin-bottom: 18px;
+
+  border-radius: 999px;
+
+  background: #eef0ff;
+
+  color: #5146e5;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+.purple-badge {
+  background: #f0edff;
+
+  color: #6c63ff;
+}
+
+
+/* =====================================================
+   섹션 아이콘
+===================================================== */
+
+.section-icon {
+  width: 62px;
+
+  height: 62px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 16px;
+
+  border-radius: 20px;
+
+  background: #f4f3ff;
+
+  font-size: 30px;
+}
+
+
+/* =====================================================
+   설명
+===================================================== */
+
+.step-description {
+  margin-top: 0;
+
+  margin-bottom: 24px;
+
+  color: #6b7280;
+
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   입력 영역
+===================================================== */
+
+.input-card {
+  padding: 18px;
+
+  border-radius: 18px;
+
+  background: #f8f9fc;
+
+  border: 1px solid #eceef3;
+}
+
+
+.input-card label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+
+.input-card label span {
+  color: #ef4444;
+}
+
+
+input[type="text"] {
   width: 100%;
 
   padding: 15px 16px;
 
-  border:
-    1px solid
-    #dedee8;
+  border-radius: 12px;
 
-  border-radius: 14px;
+  border: 1px solid #d9dce5;
 
   background: #ffffff;
 
-  color: #333340;
-
   font-size: 16px;
 
-  font-family: inherit;
+  outline: none;
 
   transition:
     border-color 0.2s ease,
@@ -247,11 +358,7 @@ textarea {
 }
 
 
-input[type="text"]:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-
+input[type="text"]:focus {
   border-color: #6c63ff;
 
   box-shadow:
@@ -260,33 +367,72 @@ textarea:focus {
 }
 
 
-textarea {
-  resize: vertical;
+/* =====================================================
+   안내 카드
+===================================================== */
 
-  min-height: 120px;
+.notice-card {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 16px;
+
+  margin-top: 18px;
+
+  border-radius: 16px;
+
+  background: #fff9e9;
+
+  border: 1px solid #f5e6b8;
+
+  color: #735b14;
+
+  font-size: 14px;
+}
+
+
+.notice-icon {
+  font-size: 20px;
+
+  flex-shrink: 0;
+}
+
+
+.video-notice {
+  margin-bottom: 20px;
 }
 
 
 /* =====================================================
-   기본 버튼
-
-   중요:
-   모든 버튼을 완전히 강제로 덮어쓰지 않고
-   기본적인 디자인만 적용합니다.
+   공통 버튼
 ===================================================== */
 
 button {
+  font-family: inherit;
+}
+
+
+.primary-button,
+#resultNextButton,
+#trainingNextButton,
+#videoNextButton,
+#completeButton,
+#confirmSignatureButton,
+.next-question-button {
   width: 100%;
 
-  min-height: 54px;
+  min-height: 56px;
 
-  margin-top: 20px;
+  margin-top: 22px;
 
   padding: 14px 20px;
 
   border: none;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
   background:
     linear-gradient(
@@ -297,16 +443,15 @@ button {
 
   color: #ffffff;
 
-  font-family: inherit;
-
   font-size: 16px;
-  font-weight: 700;
+
+  font-weight: 800;
 
   cursor: pointer;
 
   box-shadow:
-    0 6px 16px
-    rgba(81, 70, 229, 0.18);
+    0 8px 20px
+    rgba(81, 70, 229, 0.2);
 
   transition:
     transform 0.2s ease,
@@ -315,28 +460,45 @@ button {
 }
 
 
-button:hover:not(:disabled) {
+.primary-button:hover:not(:disabled),
+#resultNextButton:hover:not(:disabled),
+#trainingNextButton:hover:not(:disabled),
+#videoNextButton:hover:not(:disabled),
+#completeButton:hover:not(:disabled),
+#confirmSignatureButton:hover:not(:disabled),
+.next-question-button:hover:not(:disabled) {
   transform: translateY(-2px);
 
   box-shadow:
-    0 9px 22px
-    rgba(81, 70, 229, 0.25);
+    0 12px 26px
+    rgba(81, 70, 229, 0.27);
 }
 
 
-button:active:not(:disabled) {
+.primary-button:active:not(:disabled),
+#resultNextButton:active:not(:disabled),
+#trainingNextButton:active:not(:disabled),
+#videoNextButton:active:not(:disabled),
+#completeButton:active:not(:disabled),
+#confirmSignatureButton:active:not(:disabled),
+.next-question-button:active:not(:disabled) {
   transform: translateY(0);
 }
 
 
 button:disabled {
-  background: #e1e1e7;
+  background: #d8dbe4 !important;
 
-  color: #94949d;
+  color: #8a8f9b !important;
 
   cursor: not-allowed;
 
-  box-shadow: none;
+  box-shadow: none !important;
+}
+
+
+.primary-button span {
+  margin-left: 8px;
 }
 
 
@@ -345,22 +507,27 @@ button:disabled {
 ===================================================== */
 
 .video-wrap {
+  position: relative;
+
   width: 100%;
 
   overflow: hidden;
 
   border-radius: 18px;
 
-  background: #000;
+  background: #111827;
 
   aspect-ratio: 16 / 9;
 
-  margin: 24px 0;
+  box-shadow:
+    0 8px 22px
+    rgba(0, 0, 0, 0.12);
 }
 
 
 .video-wrap iframe {
   width: 100%;
+
   height: 100%;
 
   border: none;
@@ -368,85 +535,121 @@ button:disabled {
 
 
 /* =====================================================
-   영상 안내
-===================================================== */
-
-.video-notice {
-  padding: 18px 20px;
-
-  border-radius: 16px;
-
-  background: #f5f3ff;
-
-  border:
-    1px solid
-    #e4e0ff;
-
-  color: #4b4770;
-}
-
-
-/* =====================================================
-   확인 체크박스
+   체크박스
 ===================================================== */
 
 .confirm-check {
   display: flex;
 
-  align-items: center;
+  align-items: flex-start;
 
   gap: 12px;
 
-  padding: 18px;
+  padding: 17px;
 
-  margin-top: 26px;
+  margin-top: 22px;
 
   border-radius: 16px;
 
-  background: #fafafa;
+  background: #f7f7fb;
 
-  border:
-    1px solid
-    #e5e5e5;
+  border: 1px solid #e4e5ed;
 
   cursor: pointer;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #374151;
 }
 
 
 .confirm-check input {
   width: 20px;
+
   height: 20px;
 
-  flex-shrink: 0;
+  margin-top: 3px;
 
   accent-color: #6c63ff;
-}
 
-
-.confirm-check span {
-  font-weight: 600;
+  flex-shrink: 0;
 }
 
 
 /* =====================================================
-   교육 진행 상태
+   진행 상황
 ===================================================== */
 
-.quiz-progress {
-  display: inline-block;
+.progress-card {
+  padding: 16px 18px;
 
-  margin-bottom: 20px;
+  margin-bottom: 26px;
 
-  padding: 7px 13px;
+  border-radius: 18px;
+
+  background: #f7f8fb;
+
+  border: 1px solid #eceef3;
+}
+
+
+.progress-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  font-size: 14px;
+
+  color: #6b7280;
+}
+
+
+.progress-header strong {
+  color: #5146e5;
+}
+
+
+.progress-line {
+  width: 100%;
+
+  height: 8px;
+
+  overflow: hidden;
 
   border-radius: 999px;
 
-  background: #f1efff;
+  background: #e4e6ee;
+}
 
-  color: #6158d8;
 
-  font-size: 14px;
-  font-weight: 700;
+.progress-line span {
+  display: block;
+
+  width: 65%;
+
+  height: 100%;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6c63ff,
+      #8b85ff
+    );
+}
+
+
+.purple-progress {
+  background: #faf9ff;
 }
 
 
@@ -461,28 +664,24 @@ button:disabled {
 
   gap: 16px;
 
-  padding-bottom: 20px;
-
-  margin-bottom: 24px;
-
-  border-bottom:
-    1px solid
-    #eeeeee;
+  margin-bottom: 26px;
 }
 
 
 .training-page-number {
+  width: 52px;
+
+  height: 52px;
+
   display: flex;
 
   align-items: center;
-  justify-content: center;
 
-  width: 52px;
-  height: 52px;
+  justify-content: center;
 
   flex-shrink: 0;
 
-  border-radius: 50%;
+  border-radius: 18px;
 
   background:
     linear-gradient(
@@ -494,6 +693,7 @@ button:disabled {
   color: #ffffff;
 
   font-size: 22px;
+
   font-weight: 800;
 }
 
@@ -501,91 +701,86 @@ button:disabled {
 .training-page-header h2 {
   margin: 0;
 
-  font-size: 23px;
+  font-size: 22px;
 }
 
 
-.training-page-header .hint {
-  margin: 3px 0 0;
+.hint {
+  margin: 4px 0 0 !important;
+
+  color: #8b90a0 !important;
+
+  font-size: 14px;
 }
 
 
 /* =====================================================
-   시각 카드
+   교육 시각 카드
 ===================================================== */
 
 .visual-card {
   padding: 28px;
 
-  margin: 24px 0;
+  margin: 22px 0;
 
-  border-radius: 20px;
+  border-radius: 22px;
 
   text-align: center;
 }
 
 
 .visual-icon {
-  margin-bottom: 12px;
+  font-size: 42px;
 
-  font-size: 46px;
+  margin-bottom: 12px;
 }
 
 
 .visual-title {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 
-  font-size: 20px;
+  font-size: 21px;
+
   font-weight: 800;
+
+  color: #1f2937;
 }
 
 
 .visual-text {
-  font-size: 16px;
+  color: #4b5563;
 
-  line-height: 1.7;
+  font-size: 16px;
 }
 
 
 .visual-purple {
-  background: #f1efff;
-
-  color: #4d468d;
+  background: #f0edff;
 }
 
 
 .visual-blue {
-  background: #eef6ff;
-
-  color: #315b8d;
+  background: #edf6ff;
 }
 
 
 .visual-green {
-  background: #effaf3;
-
-  color: #317150;
+  background: #edf9f1;
 }
 
 
 .visual-orange {
-  background: #fff5ed;
-
-  color: #a35b2b;
+  background: #fff4e8;
 }
 
 
 .visual-pink {
   background: #fff0f5;
-
-  color: #a74b70;
 }
 
 
 .visual-teal {
-  background: #edfafa;
-
-  color: #27777a;
+  background: #eafaf8;
 }
 
 
@@ -594,17 +789,20 @@ button:disabled {
 ===================================================== */
 
 .info-box {
-  margin: 24px 0;
-
   padding: 20px;
 
-  border-radius: 16px;
+  margin: 22px 0;
 
-  background: #f8f8fc;
+  border-radius: 18px;
 
-  border-left:
-    5px solid
-    #6c63ff;
+  background: #f8f9fc;
+
+  border-left: 5px solid #6c63ff;
+}
+
+
+.info-box strong {
+  color: #374151;
 }
 
 
@@ -618,9 +816,9 @@ button:disabled {
 ===================================================== */
 
 .key-message {
-  margin: 28px 0;
-
   padding: 22px;
+
+  margin: 24px 0;
 
   border-radius: 18px;
 
@@ -632,27 +830,23 @@ button:disabled {
     );
 
   color: #ffffff;
-
-  text-align: center;
-
-  box-shadow:
-    0 8px 20px
-    rgba(81, 70, 229, 0.18);
 }
 
 
 .key-message strong {
-  font-size: 18px;
+  color: #ffffff;
 }
 
 
 .key-message p {
   margin-bottom: 0;
+
+  color: #ffffff;
 }
 
 
 /* =====================================================
-   교직원 경계 교육
+   교직원 경계
 ===================================================== */
 
 .boundary-hero {
@@ -664,11 +858,11 @@ button:disabled {
 
   padding: 24px;
 
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 
-  border-radius: 20px;
+  border-radius: 22px;
 
-  background: #f5f3ff;
+  background: #f0edff;
 }
 
 
@@ -678,48 +872,42 @@ button:disabled {
 
 
 .boundary-hero h2 {
-  margin: 0;
+  margin: 0 0 8px;
 
   font-size: 21px;
 }
 
 
 .boundary-hero p {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 
 .boundary-item {
-  padding: 24px;
+  padding: 4px 0 22px;
 
-  margin: 22px 0;
+  margin-bottom: 18px;
 
-  border-radius: 18px;
-
-  border:
-    1px solid
-    #ececf2;
-
-  background: #ffffff;
+  border-bottom: 1px solid #eceef3;
 }
 
 
 .boundary-item h3 {
-  margin-top: 0;
+  color: #5146e5;
 }
 
 
 .boundary-key {
-  padding-top: 14px;
+  padding: 14px 16px;
 
-  border-top:
-    1px solid
-    #eeeeee;
+  border-radius: 14px;
+
+  background: #f7f7fb;
 }
 
 
 .boundary-final {
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
 
@@ -728,122 +916,122 @@ button:disabled {
 ===================================================== */
 
 .question-card {
-  margin-top: 16px;
+  padding: 24px;
+
+  margin-top: 10px;
+
+  border-radius: 22px;
+
+  background: #f8f9fc;
+
+  border: 1px solid #eceef3;
 }
 
 
 .question-card h3 {
-  margin-top: 0;
+  margin: 0 0 14px;
 
   color: #6c63ff;
+
+  font-size: 18px;
 }
 
 
 .question-text {
-  padding: 22px;
-
-  border-radius: 16px;
-
-  background: #f7f6ff;
+  margin-bottom: 24px !important;
 
   font-size: 18px;
+
   font-weight: 700;
 
-  line-height: 1.7;
+  color: #1f2937 !important;
 }
 
 
 .choices {
-  margin-top: 18px;
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
 }
 
 
-/* =====================================================
-   퀴즈 선택 버튼
-
-   중요:
-   기본 button 디자인과 완전히 다르게 적용
-===================================================== */
-
 .choice-button {
+  width: 100%;
+
   display: flex;
 
   align-items: center;
 
-  gap: 14px;
+  gap: 13px;
 
-  width: 100%;
+  min-height: 62px;
 
-  min-height: auto;
+  padding: 16px;
 
-  margin-top: 12px;
-
-  padding: 17px;
-
-  background: #ffffff;
-
-  color: #333340;
-
-  border:
-    1px solid
-    #ddddE8;
+  margin: 0;
 
   border-radius: 16px;
 
+  background: #ffffff;
+
+  color: #374151;
+
+  border: 1px solid #dfe2e9;
+
   text-align: left;
 
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
   box-shadow: none;
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
 }
 
 
 .choice-button:hover:not(:disabled) {
-  background: #f7f6ff;
+  transform: translateY(-2px);
 
   border-color: #6c63ff;
 
-  color: #333340;
-
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 4px 12px
-    rgba(81, 70, 229, 0.1);
+  background: #f8f7ff;
 }
 
 
 .choice-button:disabled {
-  background: #f5f5f5;
-
-  color: #777777;
-
-  border-color: #e5e5e5;
-
-  cursor: default;
-
-  transform: none;
-
-  box-shadow: none;
+  opacity: 0.85;
 }
 
 
 .choice-number {
+  width: 30px;
+
+  height: 30px;
+
   display: flex;
 
   align-items: center;
-  justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  justify-content: center;
 
   flex-shrink: 0;
 
   border-radius: 50%;
 
-  background: #ede9fe;
+  background: #f0edff;
 
-  color: #6258d8;
+  color: #5146e5;
 
   font-size: 14px;
+
   font-weight: 800;
 }
 
@@ -852,40 +1040,48 @@ button:disabled {
    정답 / 오답
 ===================================================== */
 
-.correct-box,
-.wrong-box {
+.correct-box {
+  padding: 20px;
+
   margin-top: 22px;
 
-  padding: 22px;
+  border-radius: 18px;
 
-  border-radius: 16px;
+  background: #edf9f1;
+
+  border: 1px solid #ccebd7;
+
+  color: #21683c;
 }
 
 
-.correct-box {
-  background: #ecfdf3;
-
-  border:
-    1px solid
-    #b9efd0;
-
-  color: #267047;
+.correct-box p {
+  color: #39754e;
 }
 
 
 .wrong-box {
-  background: #fff4f4;
+  padding: 20px;
 
-  border:
-    1px solid
-    #ffd0d0;
+  margin-top: 22px;
 
-  color: #a84747;
+  border-radius: 18px;
+
+  background: #fff3f3;
+
+  border: 1px solid #ffd4d4;
+
+  color: #b23a3a;
+}
+
+
+.wrong-box p {
+  color: #a34d4d;
 }
 
 
 .next-question-button {
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 
@@ -894,31 +1090,28 @@ button:disabled {
 ===================================================== */
 
 .result-icon {
-  margin: 18px 0;
+  font-size: 54px;
 
   text-align: center;
 
-  font-size: 64px;
-}
-
-
-#resultStep {
-  text-align: center;
+  margin: 14px 0;
 }
 
 
 .score-circle {
+  width: 150px;
+
+  height: 150px;
+
   display: flex;
 
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
-  width: 150px;
-  height: 150px;
-
-  margin: 26px auto;
+  margin: 28px auto;
 
   border-radius: 50%;
 
@@ -938,7 +1131,7 @@ button:disabled {
 
 
 .score-circle strong {
-  font-size: 44px;
+  font-size: 50px;
 
   line-height: 1;
 }
@@ -947,17 +1140,14 @@ button:disabled {
 .score-circle span {
   margin-top: 6px;
 
-  font-size: 15px;
+  font-size: 16px;
 }
 
 
 .result-detail {
-  margin-bottom: 24px;
-}
+  text-align: center;
 
-
-#resultNextButton {
-  margin-top: 24px;
+  font-size: 17px;
 }
 
 
@@ -966,6 +1156,12 @@ button:disabled {
 ===================================================== */
 
 .commitment-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
   margin-top: 24px;
 }
 
@@ -979,25 +1175,30 @@ button:disabled {
 
   padding: 16px;
 
-  margin: 10px 0;
+  border-radius: 16px;
 
-  border-radius: 14px;
+  background: #f7f8fb;
 
-  background: #f8f8fc;
+  border: 1px solid #e7e9ef;
 
-  font-weight: 500;
+  cursor: pointer;
+
+  font-size: 15px;
+
+  color: #374151;
 }
 
 
 .commitment-list input {
   width: 20px;
+
   height: 20px;
 
-  flex-shrink: 0;
-
-  margin-top: 3px;
+  margin-top: 2px;
 
   accent-color: #6c63ff;
+
+  flex-shrink: 0;
 }
 
 
@@ -1006,13 +1207,7 @@ button:disabled {
 ===================================================== */
 
 .signature-section {
-  margin-top: 36px;
-
-  padding-top: 28px;
-
-  border-top:
-    1px solid
-    #eeeeee;
+  margin-top: 30px;
 }
 
 
@@ -1021,15 +1216,13 @@ button:disabled {
 
   overflow: hidden;
 
-  border:
-    2px dashed
-    #cfcfe0;
+  margin-top: 14px;
 
   border-radius: 18px;
 
-  background: #fafaff;
+  background: #ffffff;
 
-  margin-top: 16px;
+  border: 2px dashed #cfd3dd;
 }
 
 
@@ -1040,6 +1233,8 @@ button:disabled {
 
   height: auto;
 
+  background: #ffffff;
+
   touch-action: none;
 }
 
@@ -1049,44 +1244,39 @@ button:disabled {
 
   gap: 12px;
 
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 
 .signature-buttons button {
-  flex: 1;
-
-  width: auto;
+  min-height: 54px;
 
   margin-top: 0;
 }
 
 
 #clearSignatureButton {
+  flex: 1;
+
   background: #f3f4f6;
 
-  color: #555555;
+  color: #4b5563;
 
-  border:
-    1px solid
-    #dddddd;
+  border: 1px solid #dfe2e8;
 
   box-shadow: none;
 }
 
 
-#clearSignatureButton:hover:not(:disabled) {
-  background: #e9e9ee;
+#clearSignatureButton:hover {
+  background: #e9ebf0;
+
+  transform: translateY(-1px);
 }
 
 
 #confirmSignatureButton {
-  background:
-    linear-gradient(
-      135deg,
-      #6c63ff,
-      #5146e5
-    );
+  flex: 1;
 }
 
 
@@ -1094,13 +1284,64 @@ button:disabled {
    만족도 조사
 ===================================================== */
 
-#surveyStep label {
-  margin-top: 26px;
+.survey-card {
+  padding: 20px;
+
+  margin-top: 18px;
+
+  border-radius: 18px;
+
+  background: #f8f9fc;
+
+  border: 1px solid #eceef3;
 }
 
 
-#surveyStep select {
-  margin-bottom: 4px;
+.survey-card label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  font-weight: 700;
+
+  color: #374151;
+}
+
+
+select,
+textarea {
+  width: 100%;
+
+  padding: 14px 15px;
+
+  border-radius: 12px;
+
+  border: 1px solid #d9dce5;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  color: #374151;
+
+  outline: none;
+}
+
+
+select:focus,
+textarea:focus {
+  border-color: #6c63ff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(108, 99, 255, 0.1);
+}
+
+
+textarea {
+  resize: vertical;
 }
 
 
@@ -1114,64 +1355,79 @@ button:disabled {
 
 
 .completion-icon {
-  font-size: 70px;
+  font-size: 58px;
 
   margin-bottom: 16px;
 }
 
 
 .completion-card {
-  margin: 28px 0;
+  padding: 26px;
 
-  padding: 28px;
+  margin: 24px 0;
 
-  border-radius: 20px;
+  border-radius: 22px;
 
-  background: #f7f6ff;
+  background: #f7f7fb;
 
-  border:
-    1px solid
-    #e4e0ff;
+  border: 1px solid #e5e7ee;
 }
 
 
 .completion-card p {
-  margin: 6px 0;
-
-  color: #666675;
+  margin: 5px 0;
 }
 
 
 .completion-card strong {
-  display: block;
+  display: inline-block;
 
-  margin: 12px 0;
+  margin: 16px 0;
 
-  font-size: 22px;
+  padding: 10px 16px;
 
-  color: #5b52d6;
+  border-radius: 999px;
+
+  background: #e9e7ff;
+
+  color: #5146e5;
 }
 
 
 .completion-thanks {
-  margin-top: 28px;
+  margin-top: 26px;
 
-  color: #777785;
+  color: #6b7280;
 }
 
 
 /* =====================================================
-   푸터
+   FOOTER
 ===================================================== */
 
 footer {
-  padding: 24px 10px 0;
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  padding: 26px 15px 10px;
 
   text-align: center;
 
-  color: #888899;
+  color: #6b7280;
 
-  font-size: 14px;
+  font-size: 13px;
+}
+
+
+footer strong {
+  color: #5146e5;
+
+  font-size: 15px;
 }
 
 
@@ -1181,37 +1437,61 @@ footer {
 
 @media (max-width: 600px) {
 
-  .container {
-    padding: 16px 12px 36px;
+  .app-shell {
+    padding:
+      12px
+      10px
+      40px;
   }
 
 
   .hero {
-    padding: 38px 20px;
+    padding: 28px 22px;
 
     border-radius: 22px;
   }
 
 
   .hero h1 {
-    font-size: 27px;
+    font-size: 26px;
+  }
+
+
+  .hero-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .hero-info {
+    gap: 8px;
+  }
+
+
+  .hero-info div {
+    width: 100%;
   }
 
 
   .card {
-    padding: 24px 20px;
+    padding: 24px 18px;
 
     border-radius: 20px;
   }
 
 
-  h2 {
+  .card h2 {
     font-size: 23px;
   }
 
 
-  h3 {
-    font-size: 19px;
+  .section-icon {
+    width: 56px;
+
+    height: 56px;
+
+    font-size: 27px;
   }
 
 
@@ -1220,16 +1500,8 @@ footer {
   }
 
 
-  .training-page-number {
-    width: 46px;
-    height: 46px;
-
-    font-size: 19px;
-  }
-
-
   .training-page-header h2 {
-    font-size: 20px;
+    font-size: 19px;
   }
 
 
@@ -1238,20 +1510,32 @@ footer {
   }
 
 
-  .visual-icon {
-    font-size: 40px;
+  .visual-title {
+    font-size: 19px;
   }
 
 
   .boundary-hero {
     align-items: flex-start;
 
-    padding: 20px;
+    flex-direction: column;
   }
 
 
-  .boundary-item {
-    padding: 20px 16px;
+  .question-card {
+    padding: 18px;
+  }
+
+
+  .question-text {
+    font-size: 16px;
+  }
+
+
+  .choice-button {
+    padding: 14px;
+
+    font-size: 14px;
   }
 
 
@@ -1260,19 +1544,21 @@ footer {
   }
 
 
-  .signature-buttons button {
+  #clearSignatureButton,
+  #confirmSignatureButton {
     width: 100%;
   }
 
 
   .score-circle {
     width: 130px;
+
     height: 130px;
   }
 
 
   .score-circle strong {
-    font-size: 38px;
+    font-size: 42px;
   }
 
 }
