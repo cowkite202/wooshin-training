@@ -1,28 +1,305 @@
 /* =====================================================
-   공통 버튼 디자인 통일
+   기본 설정
 ===================================================== */
 
-/* 기본 버튼 */
+* {
+  box-sizing: border-box;
+}
 
-button {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5f3ff 0%,
+      #f8fafc 45%,
+      #eef2ff 100%
+    );
+
+  color: #2d2d38;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans KR",
+    sans-serif;
+
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   전체 컨테이너
+===================================================== */
+
+.container {
   width: 100%;
-  min-height: 56px;
+  max-width: 850px;
 
-  margin-top: 20px;
-  padding: 14px 20px;
+  margin: 0 auto;
+  padding: 28px 18px 50px;
+}
 
-  border: none;
-  border-radius: 14px;
 
-  background: linear-gradient(
-    135deg,
-    #6c63ff,
-    #5146e5
-  );
+/* =====================================================
+   헤더
+===================================================== */
+
+.hero {
+  padding: 48px 30px;
+
+  text-align: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
 
   color: #ffffff;
 
-  font-size: 17px;
+  box-shadow:
+    0 18px 40px
+    rgba(81, 70, 229, 0.25);
+
+  margin-bottom: 28px;
+}
+
+
+.hero h1 {
+  margin: 18px 0 14px;
+
+  font-size: 34px;
+  line-height: 1.35;
+
+  font-weight: 800;
+}
+
+
+.hero p {
+  margin: 0;
+
+  font-size: 16px;
+
+  opacity: 0.92;
+}
+
+
+/* =====================================================
+   배지
+===================================================== */
+
+.badge,
+.step-badge {
+  display: inline-block;
+
+  padding: 7px 14px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: -0.2px;
+}
+
+
+.badge {
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.35);
+
+  color: #ffffff;
+}
+
+
+.step-badge {
+  margin-bottom: 16px;
+
+  background: #ede9fe;
+
+  color: #5b52d6;
+}
+
+
+/* =====================================================
+   카드
+===================================================== */
+
+.card {
+  background: #ffffff;
+
+  border-radius: 24px;
+
+  padding: 36px;
+
+  margin-bottom: 24px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(40, 40, 80, 0.08);
+}
+
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =====================================================
+   제목
+===================================================== */
+
+h2 {
+  margin-top: 0;
+
+  font-size: 26px;
+
+  line-height: 1.45;
+
+  color: #29263d;
+}
+
+
+h3 {
+  margin-top: 30px;
+
+  font-size: 20px;
+
+  color: #393456;
+}
+
+
+p {
+  margin: 12px 0;
+}
+
+
+.step-description {
+  margin-bottom: 28px;
+
+  color: #666675;
+
+  font-size: 16px;
+}
+
+
+.hint {
+  color: #858596;
+
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   입력창
+===================================================== */
+
+label {
+  display: block;
+
+  margin-top: 20px;
+  margin-bottom: 8px;
+
+  font-weight: 700;
+
+  color: #444451;
+}
+
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  border:
+    1px solid
+    #dedee8;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  color: #333340;
+
+  font-size: 16px;
+
+  font-family: inherit;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+
+  border-color: #6c63ff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(108, 99, 255, 0.12);
+}
+
+
+textarea {
+  resize: vertical;
+
+  min-height: 120px;
+}
+
+
+/* =====================================================
+   기본 버튼
+
+   중요:
+   모든 버튼을 완전히 강제로 덮어쓰지 않고
+   기본적인 디자인만 적용합니다.
+===================================================== */
+
+button {
+  width: 100%;
+
+  min-height: 54px;
+
+  margin-top: 20px;
+
+  padding: 14px 20px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 16px;
   font-weight: 700;
 
   cursor: pointer;
@@ -38,8 +315,6 @@ button {
 }
 
 
-/* 버튼 마우스 효과 */
-
 button:hover:not(:disabled) {
   transform: translateY(-2px);
 
@@ -49,19 +324,15 @@ button:hover:not(:disabled) {
 }
 
 
-/* 버튼 클릭 효과 */
-
 button:active:not(:disabled) {
   transform: translateY(0);
 }
 
 
-/* 비활성화 버튼 */
-
 button:disabled {
-  background: #d9d9df;
+  background: #e1e1e7;
 
-  color: #888888;
+  color: #94949d;
 
   cursor: not-allowed;
 
@@ -70,126 +341,454 @@ button:disabled {
 
 
 /* =====================================================
-   결과 화면 다음 단계 버튼
+   영상
 ===================================================== */
 
-#resultNextButton {
+.video-wrap {
   width: 100%;
 
-  min-height: 56px;
+  overflow: hidden;
 
-  margin-top: 24px;
+  border-radius: 18px;
 
-  background: linear-gradient(
-    135deg,
-    #6c63ff,
-    #5146e5
-  );
+  background: #000;
 
-  color: #ffffff;
+  aspect-ratio: 16 / 9;
 
-  font-size: 17px;
+  margin: 24px 0;
+}
+
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+}
+
+
+/* =====================================================
+   영상 안내
+===================================================== */
+
+.video-notice {
+  padding: 18px 20px;
+
+  border-radius: 16px;
+
+  background: #f5f3ff;
+
+  border:
+    1px solid
+    #e4e0ff;
+
+  color: #4b4770;
+}
+
+
+/* =====================================================
+   확인 체크박스
+===================================================== */
+
+.confirm-check {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 18px;
+
+  margin-top: 26px;
+
+  border-radius: 16px;
+
+  background: #fafafa;
+
+  border:
+    1px solid
+    #e5e5e5;
+
+  cursor: pointer;
+}
+
+
+.confirm-check input {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  accent-color: #6c63ff;
+}
+
+
+.confirm-check span {
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   교육 진행 상태
+===================================================== */
+
+.quiz-progress {
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  background: #f1efff;
+
+  color: #6158d8;
+
+  font-size: 14px;
   font-weight: 700;
 }
 
 
 /* =====================================================
-   교육 시작 버튼
+   교육 페이지 헤더
 ===================================================== */
 
-#startButton {
-  margin-top: 24px;
+.training-page-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding-bottom: 20px;
+
+  margin-bottom: 24px;
+
+  border-bottom:
+    1px solid
+    #eeeeee;
+}
+
+
+.training-page-number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
+
+  color: #ffffff;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+
+.training-page-header h2 {
+  margin: 0;
+
+  font-size: 23px;
+}
+
+
+.training-page-header .hint {
+  margin: 3px 0 0;
 }
 
 
 /* =====================================================
-   영상 다음 단계 버튼
+   시각 카드
 ===================================================== */
 
-#videoNextButton {
-  margin-top: 24px;
+.visual-card {
+  padding: 28px;
+
+  margin: 24px 0;
+
+  border-radius: 20px;
+
+  text-align: center;
+}
+
+
+.visual-icon {
+  margin-bottom: 12px;
+
+  font-size: 46px;
+}
+
+
+.visual-title {
+  margin-bottom: 12px;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+
+.visual-text {
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+.visual-purple {
+  background: #f1efff;
+
+  color: #4d468d;
+}
+
+
+.visual-blue {
+  background: #eef6ff;
+
+  color: #315b8d;
+}
+
+
+.visual-green {
+  background: #effaf3;
+
+  color: #317150;
+}
+
+
+.visual-orange {
+  background: #fff5ed;
+
+  color: #a35b2b;
+}
+
+
+.visual-pink {
+  background: #fff0f5;
+
+  color: #a74b70;
+}
+
+
+.visual-teal {
+  background: #edfafa;
+
+  color: #27777a;
 }
 
 
 /* =====================================================
-   교육 페이지 다음 버튼
+   정보 박스
 ===================================================== */
 
-#trainingNextButton {
-  margin-top: 24px;
+.info-box {
+  margin: 24px 0;
+
+  padding: 20px;
+
+  border-radius: 16px;
+
+  background: #f8f8fc;
+
+  border-left:
+    5px solid
+    #6c63ff;
+}
+
+
+.info-box p {
+  margin-bottom: 0;
 }
 
 
 /* =====================================================
-   서명 버튼
+   핵심 메시지
 ===================================================== */
 
-#confirmSignatureButton {
-  flex: 1;
+.key-message {
+  margin: 28px 0;
 
-  width: auto;
+  padding: 22px;
 
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
+
+  color: #ffffff;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 20px
+    rgba(81, 70, 229, 0.18);
+}
+
+
+.key-message strong {
+  font-size: 18px;
+}
+
+
+.key-message p {
+  margin-bottom: 0;
+}
+
+
+/* =====================================================
+   교직원 경계 교육
+===================================================== */
+
+.boundary-hero {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 24px;
+
+  margin-bottom: 28px;
+
+  border-radius: 20px;
+
+  background: #f5f3ff;
+}
+
+
+.boundary-hero-icon {
+  font-size: 42px;
+}
+
+
+.boundary-hero h2 {
+  margin: 0;
+
+  font-size: 21px;
+}
+
+
+.boundary-hero p {
+  margin-bottom: 0;
+}
+
+
+.boundary-item {
+  padding: 24px;
+
+  margin: 22px 0;
+
+  border-radius: 18px;
+
+  border:
+    1px solid
+    #ececf2;
+
+  background: #ffffff;
+}
+
+
+.boundary-item h3 {
   margin-top: 0;
 }
 
 
+.boundary-key {
+  padding-top: 14px;
+
+  border-top:
+    1px solid
+    #eeeeee;
+}
+
+
+.boundary-final {
+  margin-top: 32px;
+}
+
+
 /* =====================================================
-   서명 지우기 버튼
+   퀴즈
 ===================================================== */
 
-#clearSignatureButton {
-  flex: 1;
+.question-card {
+  margin-top: 16px;
+}
 
-  width: auto;
 
+.question-card h3 {
   margin-top: 0;
 
-  background: #f3f4f6;
-
-  color: #555555;
-
-  border: 1px solid #dddddd;
-
-  box-shadow: none;
+  color: #6c63ff;
 }
 
 
-#clearSignatureButton:hover {
-  background: #e9e9ee;
+.question-text {
+  padding: 22px;
 
-  transform: translateY(-1px);
+  border-radius: 16px;
+
+  background: #f7f6ff;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  line-height: 1.7;
+}
+
+
+.choices {
+  margin-top: 18px;
 }
 
 
 /* =====================================================
-   교육 완료 버튼
-===================================================== */
+   퀴즈 선택 버튼
 
-#completeButton {
-  margin-top: 24px;
-}
-
-
-/* =====================================================
-   퀴즈 답변 버튼
+   중요:
+   기본 button 디자인과 완전히 다르게 적용
 ===================================================== */
 
 .choice-button {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
   width: 100%;
 
   min-height: auto;
 
   margin-top: 12px;
 
-  padding: 16px;
+  padding: 17px;
 
   background: #ffffff;
 
-  color: #333333;
+  color: #333340;
 
-  border: 1px solid #dddddd;
+  border:
+    1px solid
+    #ddddE8;
 
-  border-radius: 14px;
+  border-radius: 16px;
 
   text-align: left;
 
@@ -202,7 +801,7 @@ button:disabled {
 
   border-color: #6c63ff;
 
-  color: #333333;
+  color: #333340;
 
   transform: translateY(-1px);
 
@@ -220,31 +819,230 @@ button:disabled {
   border-color: #e5e5e5;
 
   cursor: default;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+.choice-number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ede9fe;
+
+  color: #6258d8;
+
+  font-size: 14px;
+  font-weight: 800;
 }
 
 
 /* =====================================================
-   다음 문제 버튼
+   정답 / 오답
 ===================================================== */
+
+.correct-box,
+.wrong-box {
+  margin-top: 22px;
+
+  padding: 22px;
+
+  border-radius: 16px;
+}
+
+
+.correct-box {
+  background: #ecfdf3;
+
+  border:
+    1px solid
+    #b9efd0;
+
+  color: #267047;
+}
+
+
+.wrong-box {
+  background: #fff4f4;
+
+  border:
+    1px solid
+    #ffd0d0;
+
+  color: #a84747;
+}
+
 
 .next-question-button {
-  width: 100%;
-
   margin-top: 18px;
-
-  background: linear-gradient(
-    135deg,
-    #6c63ff,
-    #5146e5
-  );
-
-  color: #ffffff;
 }
 
 
 /* =====================================================
-   서명 버튼 영역
+   결과 화면
 ===================================================== */
+
+.result-icon {
+  margin: 18px 0;
+
+  text-align: center;
+
+  font-size: 64px;
+}
+
+
+#resultStep {
+  text-align: center;
+}
+
+
+.score-circle {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 150px;
+  height: 150px;
+
+  margin: 26px auto;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 12px 30px
+    rgba(81, 70, 229, 0.25);
+}
+
+
+.score-circle strong {
+  font-size: 44px;
+
+  line-height: 1;
+}
+
+
+.score-circle span {
+  margin-top: 6px;
+
+  font-size: 15px;
+}
+
+
+.result-detail {
+  margin-bottom: 24px;
+}
+
+
+#resultNextButton {
+  margin-top: 24px;
+}
+
+
+/* =====================================================
+   실천 다짐
+===================================================== */
+
+.commitment-list {
+  margin-top: 24px;
+}
+
+
+.commitment-list label {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 16px;
+
+  margin: 10px 0;
+
+  border-radius: 14px;
+
+  background: #f8f8fc;
+
+  font-weight: 500;
+}
+
+
+.commitment-list input {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  margin-top: 3px;
+
+  accent-color: #6c63ff;
+}
+
+
+/* =====================================================
+   서명
+===================================================== */
+
+.signature-section {
+  margin-top: 36px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid
+    #eeeeee;
+}
+
+
+.signature-wrap {
+  width: 100%;
+
+  overflow: hidden;
+
+  border:
+    2px dashed
+    #cfcfe0;
+
+  border-radius: 18px;
+
+  background: #fafaff;
+
+  margin-top: 16px;
+}
+
+
+#signatureCanvas {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  touch-action: none;
+}
+
 
 .signature-buttons {
   display: flex;
@@ -256,22 +1054,204 @@ button:disabled {
 
 
 .signature-buttons button {
-  min-height: 52px;
+  flex: 1;
+
+  width: auto;
+
+  margin-top: 0;
+}
+
+
+#clearSignatureButton {
+  background: #f3f4f6;
+
+  color: #555555;
+
+  border:
+    1px solid
+    #dddddd;
+
+  box-shadow: none;
+}
+
+
+#clearSignatureButton:hover:not(:disabled) {
+  background: #e9e9ee;
+}
+
+
+#confirmSignatureButton {
+  background:
+    linear-gradient(
+      135deg,
+      #6c63ff,
+      #5146e5
+    );
 }
 
 
 /* =====================================================
-   모바일 화면
+   만족도 조사
+===================================================== */
+
+#surveyStep label {
+  margin-top: 26px;
+}
+
+
+#surveyStep select {
+  margin-bottom: 4px;
+}
+
+
+/* =====================================================
+   완료 화면
+===================================================== */
+
+#completeStep {
+  text-align: center;
+}
+
+
+.completion-icon {
+  font-size: 70px;
+
+  margin-bottom: 16px;
+}
+
+
+.completion-card {
+  margin: 28px 0;
+
+  padding: 28px;
+
+  border-radius: 20px;
+
+  background: #f7f6ff;
+
+  border:
+    1px solid
+    #e4e0ff;
+}
+
+
+.completion-card p {
+  margin: 6px 0;
+
+  color: #666675;
+}
+
+
+.completion-card strong {
+  display: block;
+
+  margin: 12px 0;
+
+  font-size: 22px;
+
+  color: #5b52d6;
+}
+
+
+.completion-thanks {
+  margin-top: 28px;
+
+  color: #777785;
+}
+
+
+/* =====================================================
+   푸터
+===================================================== */
+
+footer {
+  padding: 24px 10px 0;
+
+  text-align: center;
+
+  color: #888899;
+
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   모바일
 ===================================================== */
 
 @media (max-width: 600px) {
 
-  button {
-    min-height: 54px;
+  .container {
+    padding: 16px 12px 36px;
+  }
 
-    font-size: 16px;
 
-    border-radius: 12px;
+  .hero {
+    padding: 38px 20px;
+
+    border-radius: 22px;
+  }
+
+
+  .hero h1 {
+    font-size: 27px;
+  }
+
+
+  .card {
+    padding: 24px 20px;
+
+    border-radius: 20px;
+  }
+
+
+  h2 {
+    font-size: 23px;
+  }
+
+
+  h3 {
+    font-size: 19px;
+  }
+
+
+  .training-page-header {
+    align-items: flex-start;
+  }
+
+
+  .training-page-number {
+    width: 46px;
+    height: 46px;
+
+    font-size: 19px;
+  }
+
+
+  .training-page-header h2 {
+    font-size: 20px;
+  }
+
+
+  .visual-card {
+    padding: 22px 18px;
+  }
+
+
+  .visual-icon {
+    font-size: 40px;
+  }
+
+
+  .boundary-hero {
+    align-items: flex-start;
+
+    padding: 20px;
+  }
+
+
+  .boundary-item {
+    padding: 20px 16px;
   }
 
 
@@ -280,9 +1260,19 @@ button:disabled {
   }
 
 
-  #confirmSignatureButton,
-  #clearSignatureButton {
+  .signature-buttons button {
     width: 100%;
+  }
+
+
+  .score-circle {
+    width: 130px;
+    height: 130px;
+  }
+
+
+  .score-circle strong {
+    font-size: 38px;
   }
 
 }
